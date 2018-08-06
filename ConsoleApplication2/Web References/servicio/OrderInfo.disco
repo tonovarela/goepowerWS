@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="https://goepowerlive.goepower.com/webservices/OrderInfo.asmx?wsdl" docRef="http://goepowerlive.goepower.com/webservices/OrderInfo.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://goepowerlive.goepower.com/webservices/OrderInfo.asmx" xmlns:q1="http://goepower.com/" binding="q1:OrderInfoSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://goepowerlive.goepower.com/webservices/OrderInfo.asmx" xmlns:q2="http://goepower.com/" binding="q2:OrderInfoSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

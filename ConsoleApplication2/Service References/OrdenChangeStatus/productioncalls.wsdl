@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://goepower.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://goepower.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://goepower.com/">
+      <s:element name="StatusToProduction">
+        <s:complexType />
+      </s:element>
+      <s:element name="StatusToProductionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="StatusToProductionResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StatusToShipping">
+        <s:complexType />
+      </s:element>
+      <s:element name="StatusToShippingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="StatusToShippingResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StatusToBilling">
+        <s:complexType />
+      </s:element>
+      <s:element name="StatusToBillingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="StatusToBillingResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StatusToCompleted">
+        <s:complexType />
+      </s:element>
+      <s:element name="StatusToCompletedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="StatusToCompletedResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StatusRelease">
+        <s:complexType />
+      </s:element>
+      <s:element name="StatusReleaseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="StatusReleaseResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StatusCancel">
+        <s:complexType />
+      </s:element>
+      <s:element name="StatusCancelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="StatusCancelResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeStatus">
+        <s:complexType />
+      </s:element>
+      <s:element name="ChangeStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeStatusResult" type="tns:AuthReturn" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AuthReturn">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ProducerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSuccessful" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AuthHeader" type="tns:AuthHeader" />
+      <s:complexType name="AuthHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MasterKey" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProducerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderIDs" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ePowerOrderStatus" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:simpleType name="ePowerOrderStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Release" />
+          <s:enumeration value="ToProduction" />
+          <s:enumeration value="ToShipping" />
+          <s:enumeration value="ToBilling" />
+          <s:enumeration value="ToCompleted" />
+          <s:enumeration value="Cancel" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="StatusToProductionSoapIn">
+    <wsdl:part name="parameters" element="tns:StatusToProduction" />
+  </wsdl:message>
+  <wsdl:message name="StatusToProductionSoapOut">
+    <wsdl:part name="parameters" element="tns:StatusToProductionResponse" />
+  </wsdl:message>
+  <wsdl:message name="StatusToShippingSoapIn">
+    <wsdl:part name="parameters" element="tns:StatusToShipping" />
+  </wsdl:message>
+  <wsdl:message name="StatusToShippingSoapOut">
+    <wsdl:part name="parameters" element="tns:StatusToShippingResponse" />
+  </wsdl:message>
+  <wsdl:message name="StatusToBillingSoapIn">
+    <wsdl:part name="parameters" element="tns:StatusToBilling" />
+  </wsdl:message>
+  <wsdl:message name="StatusToBillingSoapOut">
+    <wsdl:part name="parameters" element="tns:StatusToBillingResponse" />
+  </wsdl:message>
+  <wsdl:message name="StatusToCompletedSoapIn">
+    <wsdl:part name="parameters" element="tns:StatusToCompleted" />
+  </wsdl:message>
+  <wsdl:message name="StatusToCompletedSoapOut">
+    <wsdl:part name="parameters" element="tns:StatusToCompletedResponse" />
+  </wsdl:message>
+  <wsdl:message name="StatusReleaseSoapIn">
+    <wsdl:part name="parameters" element="tns:StatusRelease" />
+  </wsdl:message>
+  <wsdl:message name="StatusReleaseSoapOut">
+    <wsdl:part name="parameters" element="tns:StatusReleaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="StatusCancelSoapIn">
+    <wsdl:part name="parameters" element="tns:StatusCancel" />
+  </wsdl:message>
+  <wsdl:message name="StatusCancelSoapOut">
+    <wsdl:part name="parameters" element="tns:StatusCancelResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeStatus" />
+  </wsdl:message>
+  <wsdl:message name="ChangeStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeStatusAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:portType name="productioncallsSoap">
+    <wsdl:operation name="StatusToProduction">
+      <wsdl:input message="tns:StatusToProductionSoapIn" />
+      <wsdl:output message="tns:StatusToProductionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StatusToShipping">
+      <wsdl:input message="tns:StatusToShippingSoapIn" />
+      <wsdl:output message="tns:StatusToShippingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StatusToBilling">
+      <wsdl:input message="tns:StatusToBillingSoapIn" />
+      <wsdl:output message="tns:StatusToBillingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StatusToCompleted">
+      <wsdl:input message="tns:StatusToCompletedSoapIn" />
+      <wsdl:output message="tns:StatusToCompletedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StatusRelease">
+      <wsdl:input message="tns:StatusReleaseSoapIn" />
+      <wsdl:output message="tns:StatusReleaseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StatusCancel">
+      <wsdl:input message="tns:StatusCancelSoapIn" />
+      <wsdl:output message="tns:StatusCancelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeStatus">
+      <wsdl:input message="tns:ChangeStatusSoapIn" />
+      <wsdl:output message="tns:ChangeStatusSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="productioncallsSoap" type="tns:productioncallsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="StatusToProduction">
+      <soap:operation soapAction="http://goepower.com/StatusToProduction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StatusToShipping">
+      <soap:operation soapAction="http://goepower.com/StatusToShipping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StatusToBilling">
+      <soap:operation soapAction="http://goepower.com/StatusToBilling" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StatusToCompleted">
+      <soap:operation soapAction="http://goepower.com/StatusToCompleted" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StatusRelease">
+      <soap:operation soapAction="http://goepower.com/StatusRelease" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StatusCancel">
+      <soap:operation soapAction="http://goepower.com/StatusCancel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeStatus">
+      <soap:operation soapAction="http://goepower.com/ChangeStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ChangeStatusAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="productioncallsSoap12" type="tns:productioncallsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="StatusToProduction">
+      <soap12:operation soapAction="http://goepower.com/StatusToProduction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StatusToShipping">
+      <soap12:operation soapAction="http://goepower.com/StatusToShipping" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StatusToBilling">
+      <soap12:operation soapAction="http://goepower.com/StatusToBilling" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StatusToCompleted">
+      <soap12:operation soapAction="http://goepower.com/StatusToCompleted" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StatusRelease">
+      <soap12:operation soapAction="http://goepower.com/StatusRelease" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StatusCancel">
+      <soap12:operation soapAction="http://goepower.com/StatusCancel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeStatus">
+      <soap12:operation soapAction="http://goepower.com/ChangeStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ChangeStatusAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="productioncalls">
+    <wsdl:port name="productioncallsSoap" binding="tns:productioncallsSoap">
+      <soap:address location="http://live.goepower.com/webservices/productioncalls.asmx" />
+    </wsdl:port>
+    <wsdl:port name="productioncallsSoap12" binding="tns:productioncallsSoap12">
+      <soap12:address location="http://live.goepower.com/webservices/productioncalls.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

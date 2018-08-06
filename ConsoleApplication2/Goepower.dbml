@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Goepower" Class="GoepowerDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.2.209;Initial Catalog=Goepower;Persist Security Info=True;User ID=sa" SettingsObjectName="ConsoleApplication2.Properties.Settings" SettingsPropertyName="GoepowerConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Item" Member="Item">
+    <Type Name="Item">
+      <Column Name="ordenID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="sku" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="precio" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="descripcion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="itemID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Orden" Member="Orden">
+    <Type Name="Orden">
+      <Column Name="ordenID" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="webUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tienda" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="orderDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="status" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="releaseDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="shippingDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="completeDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="pagado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Total" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

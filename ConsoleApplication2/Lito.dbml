@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Lito" Class="LitoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.2.217;Initial Catalog=Lito;Persist Security Info=True;User ID=sa" SettingsObjectName="ConsoleApplication2.Properties.Settings" SettingsPropertyName="LitoConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.VentaD" Member="VentaD">
+    <Type Name="VentaD">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Renglon" Type="System.Double" DbType="Float NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RenglonSub" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RenglonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RenglonTipo" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="Cantidad" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Almacen" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="EnviarA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Codigo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Articulo" Type="System.String" DbType="Char(20) NOT NULL" CanBeNull="false" />
+      <Column Name="SubCuenta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Precio" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PrecioSugerido" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DescuentoTipo" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="DescuentoLinea" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DescuentoImporte" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Impuesto1" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Impuesto2" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Impuesto3" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DescripcionExtra" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Costo" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="CostoActividad" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Paquete" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ContUso" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Comision" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Aplica" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="AplicaID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CantidadPendiente" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CantidadReservada" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CantidadCancelada" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CantidadOrdenada" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CantidadEmbarcada" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CantidadA" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Unidad" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Factor" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CantidadInventario" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SustitutoArticulo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SustitutoSubCuenta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaRequerida" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HoraRequerida" Type="System.String" DbType="Char(5)" CanBeNull="true" />
+      <Column Name="Instruccion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Agente" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="Departamento" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UltimoReservadoCantidad" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="UltimoReservadoFecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Sucursal" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PoliticaPrecios" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="SincroID" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Column Name="SincroC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SucursalOrigen" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AutoLocalidad" Type="System.String" DbType="Char(5)" CanBeNull="true" />
+      <Column Name="UEN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Espacio" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="CantidadAlterna" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PrecioMoneda" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PrecioTipoCambio" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="ServicioNumero" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="AgentesAsignados" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AFArticulo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="AFSerie" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ExcluirPlaneacion" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Anexo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ExcluirISAN" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LITOComision" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LITOComisionMonto" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LitoConcepto" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="CostoUEPS" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="CostoPEPS" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="UltimoCosto" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="PrecioLista" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Posicion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AjusteCosteo" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DepartamentoDetallista" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PresupuestoEsp" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Puntos" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="CantidadObsequio" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="OfertaID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProveedorRef" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TransferirA" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ArtEstatus" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="ArtSituacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ContUso2" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ContUso3" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CostoEstandar" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Tarima" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="OrdenCompra" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ABC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TipoImpuesto1" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TipoImpuesto2" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TipoImpuesto3" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="CostoPromedio" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="CostoReposicion" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TipoComprobante" Type="System.String" DbType="VarChar(20)" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="SustentoComprobante" Type="System.String" DbType="VarChar(20)" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="TipoIdentificacion" Type="System.String" DbType="VarChar(20)" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="DerechoDevolucion" Type="System.Boolean" DbType="Bit" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="Establecimiento" Type="System.String" DbType="VarChar(20)" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="PuntoEmision" Type="System.String" DbType="VarChar(50)" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="SecuencialSRI" Type="System.String" DbType="VarChar(50)" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="AutorizacionSRI" Type="System.String" DbType="VarChar(50)" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="VigenteA" Type="System.DateTime" DbType="DateTime" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="SecuenciaRetencion" Type="System.String" DbType="VarChar(50)" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="Comprobante" Type="System.Boolean" DbType="Bit" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="FechaContableMov" Type="System.DateTime" DbType="DateTime" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="AnticipoFacturado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AnticipoMoneda" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AnticipoTipoCambio" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="AnticipoRetencion" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TipoRetencion1" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TipoRetencion2" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TipoRetencion3" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Retencion1" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Retencion2" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Retencion3" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ProcesadoID" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CteHonda" Member="CteHonda">
+    <Type Name="CteHonda">
+      <Column Name="CteHonda" Member="CteHonda1" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="NombreHonda" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CteIntelisis" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="NombreIntelisis" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Concesionaria" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CtoCampoExtra" Member="CtoCampoExtra">
+    <Type Name="CtoCampoExtra">
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SubTipo" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CampoExtra" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Valor" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Puntos" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SincroID" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Column Name="SincroC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Venta" Member="Venta">
+    <Type Name="Venta">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Empresa" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Mov" Type="System.String" DbType="Char(20) NOT NULL" CanBeNull="false" />
+      <Column Name="MovID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FechaEmision" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UltimoCambio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Proyecto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="UEN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Moneda" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TipoCambio" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="Autorizacion" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="Referencia" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DocFuente" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Observaciones" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="Char(15)" CanBeNull="true" />
+      <Column Name="Situacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SituacionFecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Directo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Prioridad" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="RenglonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FechaOriginal" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="EnviarA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Almacen" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AlmacenDestino" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="Agente" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="AgenteServicio" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FormaEnvio" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaRequerida" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HoraRequerida" Type="System.String" DbType="Char(5)" CanBeNull="true" />
+      <Column Name="FechaProgramadaEnvio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaOrdenCompra" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OrdenCompra" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Condicion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Vencimiento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CtaDinero" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="Descuento" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="DescuentoGlobal" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Importe" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Impuestos" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Saldo" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="AnticiposFacturados" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="AnticiposImpuestos" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Retencion" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DescuentoLineal" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ComisionTotal" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="CostoTotal" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="PrecioTotal" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Paquetes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ServicioTipo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ServicioArticulo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ServicioSerie" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ServicioContrato" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ServicioContratoID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ServicioContratoTipo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ServicioGarantia" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ServicioDescripcion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ServicioFecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ServicioFlotilla" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ServicioRampa" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ServicioIdentificador" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ServicioPlacas" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ServicioKms" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ServicioTipoOrden" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ServicioTipoOperacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ServicioSiniestro" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ServicioExpress" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ServicioDemerito" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ServicioDeducible" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ServicioDeducibleImporte" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ServicioNumero" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ServicioNumeroEconomico" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ServicioAseguradora" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ServicioPuntual" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="OrigenTipo" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Origen" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="OrigenID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="PolizaID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="GenerarPoliza" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ContID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ejercicio" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Periodo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FechaRegistro" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaConclusion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaCancelacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaEntrega" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EmbarqueEstado" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EmbarqueGastos" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Peso" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Volumen" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Causa" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Atencion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AtencionTelefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ListaPreciosEsp" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ZonaImpuesto" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Extra" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CancelacionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Mensaje" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Departamento" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Sucursal" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GenerarOP" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DesglosarImpuestos" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DesglosarImpuesto2" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ExcluirPlaneacion" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ConVigencia" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="VigenciaDesde" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="VigenciaHasta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Enganche" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Bonificacion" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="IVAFiscal" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="IEPSFiscal" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="EstaImpreso" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Periodicidad" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SubModulo" Type="System.String" DbType="Char(5)" CanBeNull="true" />
+      <Column Name="ContUso" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Espacio" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AutoCorrida" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="AutoCorridaHora" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="AutoCorridaServicio" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AutoCorridaRol" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AutoCorridaOrigen" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="AutoCorridaDestino" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="AutoCorridaKms" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AutoCorridaLts" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AutoCorridaRuta" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="AutoOperador2" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AutoBoleto" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="AutoKms" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AutoKmsActuales" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AutoBomba" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AutoBombaContador" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Logico1" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Logico2" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Logico3" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Logico4" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DifCredito" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="EspacioResultado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Clase" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Subclase" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="GastoAcreedor" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="GastoConcepto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Comentarios" Type="System.String" DbType="Text" CanBeNull="true" />
+      <Column Name="Pagado" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="GenerarDinero" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Dinero" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DineroID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DineroCtaDinero" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="DineroConciliado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DineroFechaConciliacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Extra1" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Extra2" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Extra3" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Reabastecido" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SucursalVenta" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AF" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AFArticulo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="AFSerie" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ContratoTipo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ContratoDescripcion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ContratoSerie" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ContratoValor" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ContratoValorMoneda" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ContratoSeguro" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ContratoVencimiento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ContratoResponsable" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Incentivo" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="IncentivoConcepto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EndosarA" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="InteresTasa" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="InteresIVA" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="AnexoID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FordVisitoOASIS" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LineaCredito" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="TipoAmortizacion" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="TipoTasa" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Comisiones" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ComisionesIVA" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="CompraID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OperacionRelevante" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SincroID" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Column Name="SincroC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SucursalOrigen" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SucursalDestino" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LitoTripa" Type="System.String" DbType="NVarChar(510)" CanBeNull="true" />
+      <Column Name="LitoCveCliente" Type="System.String" DbType="NVarChar(510)" CanBeNull="true" />
+      <Column Name="LitoCveAgente" Type="System.String" DbType="NVarChar(510)" CanBeNull="true" />
+      <Column Name="LitoCveContacto" Type="System.String" DbType="NVarChar(510)" CanBeNull="true" />
+      <Column Name="LitoDiseño" Type="System.String" DbType="NVarChar(510)" CanBeNull="true" />
+      <Column Name="LitoPreprensa" Type="System.String" DbType="NVarChar(510)" CanBeNull="true" />
+      <Column Name="LitoSeleccionesColor" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LitoSeleccionesMinimas" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LitoMediosTonos" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LitoTamFinal1" Type="System.String" DbType="NVarChar(510)" CanBeNull="true" />
+      <Column Name="LitoTamFinal2" Type="System.String" DbType="NVarChar(510)" CanBeNull="true" />
+      <Column Name="LitoTamFinal3" Type="System.String" DbType="NVarChar(510)" CanBeNull="true" />
+      <Column Name="LitoTamFinalP" Type="System.String" DbType="NVarChar(510)" CanBeNull="true" />
+      <Column Name="LitoCantPaginas1" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LitoCantPaginas2" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LitoCantPaginas3" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LitoCantPaginasP" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LitoBarnizV1" Type="System.String" DbType="NVarChar(510)" CanBeNull="true" />
+      <Column Name="LitoBarnizV2" Type="System.String" DbType="NVarChar(510)" CanBeNull="true" />
+      <Column Name="LitoBarnizV3" Type="System.String" DbType="NVarChar(510)" CanBeNull="true" />
+      <Column Name="LitoBarnizVP" Type="System.String" DbType="NVarChar(510)" CanBeNull="true" />
+      <Column Name="LitoEncuadernado" Type="System.String" DbType="NVarChar(510)" CanBeNull="true" />
+      <Column Name="jimmy" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LITOBUV1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOBUV2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOBUV3" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOBUVP" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOBUVR1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOBUVR2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOBUVR3" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOBUVRP" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOAcabado1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOAcabado2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOAcabado3" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOAcabadoP" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOMaquila1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOMaquila2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOMaquila3" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOBarnizF1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOBarnizF2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOBarnizF3" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOBarnizFP" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOTiempoAproxEntrega" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LITOCondicionesdePago" Type="System.String" DbType="VarChar(70)" CanBeNull="true" />
+      <Column Name="LITOAnticipos" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LitoTintas1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LitoTintas2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LitoTintas3" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LitoTintasP" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOFormaEnvio" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LitoLaminado1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LitoLaminado2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LitoLaminado3" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LitoLaminadoP" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LITODestino" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="LITODestinoDireccion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITODestinoColonia" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="LITODestinoCodigoPostal" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="LITODestinoPoblacion" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="LITODestinoEstado" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LITODestinoTelefonos" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITODestinoAtencion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOEmbarque1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOEmbarque2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOEmbarque3" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOPoliza" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="LITOTipoServicio1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOTipoServicio2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOTipoServicio3" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LITOLeyendaPago" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LitoPapel1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LitoPapel2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LitoPapel3" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LitoPapelP" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LitoTamExtendido1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LitoTamExtendido2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LitoTamExtendido3" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LitoTamExtendidoP" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="AgenteComision" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TieneTasaEsp" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TasaEsp" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ServicioPoliza" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SituacionUsuario" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SituacionNota" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ReferenciaOrdenCompra" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Contacto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ContactoNombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Esp1BUVR1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Esp1BUVR2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Esp1BUVR3" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Esp1BUVRP" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Esp1BUVRPP" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Esp1BUV1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Esp1BUV2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Esp1BUV3" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Esp1BUVP" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Esp1BUVPP" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Esp1LAMINADO1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Esp1LAMINADO2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Esp1LAMINADO3" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Esp1LAMINADOP" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Esp1LAMINADOPP" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Esp1PAPEL1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Esp1PAPEL2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Esp1PAPEL3" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Esp1PAPELP" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Esp1PAPELPP" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Esp1EMBOLSADOP" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="EspPERSONALIZADO" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Esp1OPCION1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Esp1OPCION1P" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Esp1OPCION2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Esp1OPCION2P" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LitoEmbolsado" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Maquina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Codigo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FormaPagoTipo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SobrePrecio" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CRCFDSerie" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CRCFDFolio" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ContUso2" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ContUso3" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Actividad" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ContratoID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ContratoMov" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ContratoMovID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MAFCiclo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TipoComprobante" Type="System.String" DbType="VarChar(20)" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="SustentoComprobante" Type="System.String" DbType="VarChar(20)" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="TipoIdentificacion" Type="System.String" DbType="VarChar(20)" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="DerechoDevolucion" Type="System.Boolean" DbType="Bit" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="Establecimiento" Type="System.String" DbType="VarChar(20)" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="PuntoEmision" Type="System.String" DbType="VarChar(50)" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="SecuencialSRI" Type="System.String" DbType="VarChar(50)" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="AutorizacionSRI" Type="System.String" DbType="VarChar(50)" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="VigenteA" Type="System.DateTime" DbType="DateTime" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="SecuenciaRetencion" Type="System.String" DbType="VarChar(50)" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="Comprobante" Type="System.Boolean" DbType="Bit" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="FechaContableMov" Type="System.DateTime" DbType="DateTime" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="CFDTimbrado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Posicion" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CFDFlexEstatus" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="usocfdi" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="AnticipoFacturadoTipoServicio" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="OrdenID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
