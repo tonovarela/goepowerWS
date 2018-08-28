@@ -8,6 +8,8 @@
       <Column Name="descripcion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="itemID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="records" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="setSize" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Orden" Member="Orden">
@@ -22,6 +24,7 @@
       <Column Name="completeDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="pagado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Total" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="clienteIntelisis" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

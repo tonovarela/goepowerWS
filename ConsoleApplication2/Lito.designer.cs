@@ -33,12 +33,12 @@ namespace ConsoleApplication2
     partial void InsertVentaD(VentaD instance);
     partial void UpdateVentaD(VentaD instance);
     partial void DeleteVentaD(VentaD instance);
-    partial void InsertCtoCampoExtra(CtoCampoExtra instance);
-    partial void UpdateCtoCampoExtra(CtoCampoExtra instance);
-    partial void DeleteCtoCampoExtra(CtoCampoExtra instance);
     partial void InsertVenta(Venta instance);
     partial void UpdateVenta(Venta instance);
     partial void DeleteVenta(Venta instance);
+    partial void InsertCtoCampoExtra(CtoCampoExtra instance);
+    partial void UpdateCtoCampoExtra(CtoCampoExtra instance);
+    partial void DeleteCtoCampoExtra(CtoCampoExtra instance);
     #endregion
 		
 		public LitoDataContext() : 
@@ -79,6 +79,14 @@ namespace ConsoleApplication2
 			}
 		}
 		
+		public System.Data.Linq.Table<Venta> Venta
+		{
+			get
+			{
+				return this.GetTable<Venta>();
+			}
+		}
+		
 		public System.Data.Linq.Table<CteHonda> CteHonda
 		{
 			get
@@ -92,14 +100,6 @@ namespace ConsoleApplication2
 			get
 			{
 				return this.GetTable<CtoCampoExtra>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Venta> Venta
-		{
-			get
-			{
-				return this.GetTable<Venta>();
 			}
 		}
 	}
@@ -2901,335 +2901,6 @@ namespace ConsoleApplication2
 					this._ProcesadoID = value;
 					this.SendPropertyChanged("ProcesadoID");
 					this.OnProcesadoIDChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CteHonda")]
-	public partial class CteHonda
-	{
-		
-		private string _CteHonda1;
-		
-		private string _NombreHonda;
-		
-		private string _CteIntelisis;
-		
-		private string _NombreIntelisis;
-		
-		private string _Concesionaria;
-		
-		public CteHonda()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="CteHonda", Storage="_CteHonda1", DbType="Char(10)")]
-		public string CteHonda1
-		{
-			get
-			{
-				return this._CteHonda1;
-			}
-			set
-			{
-				if ((this._CteHonda1 != value))
-				{
-					this._CteHonda1 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreHonda", DbType="VarChar(100)")]
-		public string NombreHonda
-		{
-			get
-			{
-				return this._NombreHonda;
-			}
-			set
-			{
-				if ((this._NombreHonda != value))
-				{
-					this._NombreHonda = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CteIntelisis", DbType="Char(10)")]
-		public string CteIntelisis
-		{
-			get
-			{
-				return this._CteIntelisis;
-			}
-			set
-			{
-				if ((this._CteIntelisis != value))
-				{
-					this._CteIntelisis = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreIntelisis", DbType="VarChar(100)")]
-		public string NombreIntelisis
-		{
-			get
-			{
-				return this._NombreIntelisis;
-			}
-			set
-			{
-				if ((this._NombreIntelisis != value))
-				{
-					this._NombreIntelisis = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Concesionaria", DbType="Char(10)")]
-		public string Concesionaria
-		{
-			get
-			{
-				return this._Concesionaria;
-			}
-			set
-			{
-				if ((this._Concesionaria != value))
-				{
-					this._Concesionaria = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CtoCampoExtra")]
-	public partial class CtoCampoExtra : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _Tipo;
-		
-		private string _SubTipo;
-		
-		private string _Clave;
-		
-		private string _CampoExtra;
-		
-		private string _Valor;
-		
-		private System.Nullable<double> _Puntos;
-		
-		private System.Data.Linq.Binary _SincroID;
-		
-		private System.Nullable<int> _SincroC;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnTipoChanging(string value);
-    partial void OnTipoChanged();
-    partial void OnSubTipoChanging(string value);
-    partial void OnSubTipoChanged();
-    partial void OnClaveChanging(string value);
-    partial void OnClaveChanged();
-    partial void OnCampoExtraChanging(string value);
-    partial void OnCampoExtraChanged();
-    partial void OnValorChanging(string value);
-    partial void OnValorChanged();
-    partial void OnPuntosChanging(System.Nullable<double> value);
-    partial void OnPuntosChanged();
-    partial void OnSincroIDChanging(System.Data.Linq.Binary value);
-    partial void OnSincroIDChanged();
-    partial void OnSincroCChanging(System.Nullable<int> value);
-    partial void OnSincroCChanged();
-    #endregion
-		
-		public CtoCampoExtra()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(20) NOT NULL", CanBeNull=false, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
-		public string Tipo
-		{
-			get
-			{
-				return this._Tipo;
-			}
-			set
-			{
-				if ((this._Tipo != value))
-				{
-					this.OnTipoChanging(value);
-					this.SendPropertyChanging();
-					this._Tipo = value;
-					this.SendPropertyChanged("Tipo");
-					this.OnTipoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubTipo", DbType="VarChar(20) NOT NULL", CanBeNull=false, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
-		public string SubTipo
-		{
-			get
-			{
-				return this._SubTipo;
-			}
-			set
-			{
-				if ((this._SubTipo != value))
-				{
-					this.OnSubTipoChanging(value);
-					this.SendPropertyChanging();
-					this._SubTipo = value;
-					this.SendPropertyChanged("SubTipo");
-					this.OnSubTipoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Clave", DbType="VarChar(20) NOT NULL", CanBeNull=false, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
-		public string Clave
-		{
-			get
-			{
-				return this._Clave;
-			}
-			set
-			{
-				if ((this._Clave != value))
-				{
-					this.OnClaveChanging(value);
-					this.SendPropertyChanging();
-					this._Clave = value;
-					this.SendPropertyChanged("Clave");
-					this.OnClaveChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CampoExtra", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
-		public string CampoExtra
-		{
-			get
-			{
-				return this._CampoExtra;
-			}
-			set
-			{
-				if ((this._CampoExtra != value))
-				{
-					this.OnCampoExtraChanging(value);
-					this.SendPropertyChanging();
-					this._CampoExtra = value;
-					this.SendPropertyChanged("CampoExtra");
-					this.OnCampoExtraChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Valor", DbType="VarChar(255)", UpdateCheck=UpdateCheck.Never)]
-		public string Valor
-		{
-			get
-			{
-				return this._Valor;
-			}
-			set
-			{
-				if ((this._Valor != value))
-				{
-					this.OnValorChanging(value);
-					this.SendPropertyChanging();
-					this._Valor = value;
-					this.SendPropertyChanged("Valor");
-					this.OnValorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Puntos", DbType="Float", UpdateCheck=UpdateCheck.Never)]
-		public System.Nullable<double> Puntos
-		{
-			get
-			{
-				return this._Puntos;
-			}
-			set
-			{
-				if ((this._Puntos != value))
-				{
-					this.OnPuntosChanging(value);
-					this.SendPropertyChanging();
-					this._Puntos = value;
-					this.SendPropertyChanged("Puntos");
-					this.OnPuntosChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SincroID", AutoSync=AutoSync.Always, DbType="rowversion", IsDbGenerated=true, IsVersion=true, UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary SincroID
-		{
-			get
-			{
-				return this._SincroID;
-			}
-			set
-			{
-				if ((this._SincroID != value))
-				{
-					this.OnSincroIDChanging(value);
-					this.SendPropertyChanging();
-					this._SincroID = value;
-					this.SendPropertyChanged("SincroID");
-					this.OnSincroIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SincroC", DbType="Int", UpdateCheck=UpdateCheck.Never)]
-		public System.Nullable<int> SincroC
-		{
-			get
-			{
-				return this._SincroC;
-			}
-			set
-			{
-				if ((this._SincroC != value))
-				{
-					this.OnSincroCChanging(value);
-					this.SendPropertyChanging();
-					this._SincroC = value;
-					this.SendPropertyChanged("SincroC");
-					this.OnSincroCChanged();
 				}
 			}
 		}
@@ -11212,6 +10883,335 @@ namespace ConsoleApplication2
 					this._OrdenID = value;
 					this.SendPropertyChanged("OrdenID");
 					this.OnOrdenIDChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CteHonda")]
+	public partial class CteHonda
+	{
+		
+		private string _CteHonda1;
+		
+		private string _NombreHonda;
+		
+		private string _CteIntelisis;
+		
+		private string _NombreIntelisis;
+		
+		private string _Concesionaria;
+		
+		public CteHonda()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="CteHonda", Storage="_CteHonda1", DbType="Char(10)")]
+		public string CteHonda1
+		{
+			get
+			{
+				return this._CteHonda1;
+			}
+			set
+			{
+				if ((this._CteHonda1 != value))
+				{
+					this._CteHonda1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreHonda", DbType="VarChar(100)")]
+		public string NombreHonda
+		{
+			get
+			{
+				return this._NombreHonda;
+			}
+			set
+			{
+				if ((this._NombreHonda != value))
+				{
+					this._NombreHonda = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CteIntelisis", DbType="Char(10)")]
+		public string CteIntelisis
+		{
+			get
+			{
+				return this._CteIntelisis;
+			}
+			set
+			{
+				if ((this._CteIntelisis != value))
+				{
+					this._CteIntelisis = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreIntelisis", DbType="VarChar(100)")]
+		public string NombreIntelisis
+		{
+			get
+			{
+				return this._NombreIntelisis;
+			}
+			set
+			{
+				if ((this._NombreIntelisis != value))
+				{
+					this._NombreIntelisis = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Concesionaria", DbType="Char(10)")]
+		public string Concesionaria
+		{
+			get
+			{
+				return this._Concesionaria;
+			}
+			set
+			{
+				if ((this._Concesionaria != value))
+				{
+					this._Concesionaria = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CtoCampoExtra")]
+	public partial class CtoCampoExtra : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Tipo;
+		
+		private string _SubTipo;
+		
+		private string _Clave;
+		
+		private string _CampoExtra;
+		
+		private string _Valor;
+		
+		private System.Nullable<double> _Puntos;
+		
+		private System.Data.Linq.Binary _SincroID;
+		
+		private System.Nullable<int> _SincroC;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTipoChanging(string value);
+    partial void OnTipoChanged();
+    partial void OnSubTipoChanging(string value);
+    partial void OnSubTipoChanged();
+    partial void OnClaveChanging(string value);
+    partial void OnClaveChanged();
+    partial void OnCampoExtraChanging(string value);
+    partial void OnCampoExtraChanged();
+    partial void OnValorChanging(string value);
+    partial void OnValorChanged();
+    partial void OnPuntosChanging(System.Nullable<double> value);
+    partial void OnPuntosChanged();
+    partial void OnSincroIDChanging(System.Data.Linq.Binary value);
+    partial void OnSincroIDChanged();
+    partial void OnSincroCChanging(System.Nullable<int> value);
+    partial void OnSincroCChanged();
+    #endregion
+		
+		public CtoCampoExtra()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(20) NOT NULL", CanBeNull=false, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		public string Tipo
+		{
+			get
+			{
+				return this._Tipo;
+			}
+			set
+			{
+				if ((this._Tipo != value))
+				{
+					this.OnTipoChanging(value);
+					this.SendPropertyChanging();
+					this._Tipo = value;
+					this.SendPropertyChanged("Tipo");
+					this.OnTipoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubTipo", DbType="VarChar(20) NOT NULL", CanBeNull=false, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		public string SubTipo
+		{
+			get
+			{
+				return this._SubTipo;
+			}
+			set
+			{
+				if ((this._SubTipo != value))
+				{
+					this.OnSubTipoChanging(value);
+					this.SendPropertyChanging();
+					this._SubTipo = value;
+					this.SendPropertyChanged("SubTipo");
+					this.OnSubTipoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Clave", DbType="VarChar(20) NOT NULL", CanBeNull=false, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		public string Clave
+		{
+			get
+			{
+				return this._Clave;
+			}
+			set
+			{
+				if ((this._Clave != value))
+				{
+					this.OnClaveChanging(value);
+					this.SendPropertyChanging();
+					this._Clave = value;
+					this.SendPropertyChanged("Clave");
+					this.OnClaveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CampoExtra", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		public string CampoExtra
+		{
+			get
+			{
+				return this._CampoExtra;
+			}
+			set
+			{
+				if ((this._CampoExtra != value))
+				{
+					this.OnCampoExtraChanging(value);
+					this.SendPropertyChanging();
+					this._CampoExtra = value;
+					this.SendPropertyChanged("CampoExtra");
+					this.OnCampoExtraChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Valor", DbType="VarChar(255)", UpdateCheck=UpdateCheck.Never)]
+		public string Valor
+		{
+			get
+			{
+				return this._Valor;
+			}
+			set
+			{
+				if ((this._Valor != value))
+				{
+					this.OnValorChanging(value);
+					this.SendPropertyChanging();
+					this._Valor = value;
+					this.SendPropertyChanged("Valor");
+					this.OnValorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Puntos", DbType="Float", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<double> Puntos
+		{
+			get
+			{
+				return this._Puntos;
+			}
+			set
+			{
+				if ((this._Puntos != value))
+				{
+					this.OnPuntosChanging(value);
+					this.SendPropertyChanging();
+					this._Puntos = value;
+					this.SendPropertyChanged("Puntos");
+					this.OnPuntosChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SincroID", AutoSync=AutoSync.Always, DbType="rowversion", IsDbGenerated=true, IsVersion=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary SincroID
+		{
+			get
+			{
+				return this._SincroID;
+			}
+			set
+			{
+				if ((this._SincroID != value))
+				{
+					this.OnSincroIDChanging(value);
+					this.SendPropertyChanging();
+					this._SincroID = value;
+					this.SendPropertyChanged("SincroID");
+					this.OnSincroIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SincroC", DbType="Int", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<int> SincroC
+		{
+			get
+			{
+				return this._SincroC;
+			}
+			set
+			{
+				if ((this._SincroC != value))
+				{
+					this.OnSincroCChanging(value);
+					this.SendPropertyChanging();
+					this._SincroC = value;
+					this.SendPropertyChanged("SincroC");
+					this.OnSincroCChanged();
 				}
 			}
 		}

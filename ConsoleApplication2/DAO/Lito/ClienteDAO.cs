@@ -25,7 +25,7 @@ namespace ConsoleApplication2.DAO.Lito
                 .Where(x => x.Tipo == "Cliente" && 
                             x.SubTipo == "Cliente" && 
                             x.CampoExtra == "WebUserID" &&
-                            x.Valor==id
+                            x.Valor==id                             
                             )
                  .FirstOrDefault();
             return client;

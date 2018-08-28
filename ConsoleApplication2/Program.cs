@@ -1,4 +1,6 @@
 ﻿using ConsoleApplication2.Class;
+using ConsoleApplication2.DAO.Goepower;
+using ConsoleApplication2.DAO.Lito;
 using ConsoleApplication2.Model;
 using System;
 using System.Collections.Generic;
@@ -13,28 +15,25 @@ namespace ConsoleApplication2
         static void Main(string[] args)
         {
 
-            ServicioKumon sk = new ServicioKumon();
-            ServicioHonda ch = new ServicioHonda();
-            ServicioMichelin mc = new ServicioMichelin();
-            ServicioSeat sseat = new ServicioSeat();
-            ServicioStarBucks sstar = new ServicioStarBucks();
-            ServicioAcura sacura = new ServicioAcura();
-            ServicioVolkswagen sv = new ServicioVolkswagen();
-            ServicioCirculoK sck = new ServicioCirculoK();
-            ServicioSherwin ssw = new ServicioSherwin();
-
-
+            ServicioKumon s_kummon = new ServicioKumon();
+            ServicioHonda s_honda = new ServicioHonda();
+            ServicioMichelin s_michelin = new ServicioMichelin();
+            ServicioSeat s_seat = new ServicioSeat();
+            ServicioStarBucks s_starbuck = new ServicioStarBucks();
+            ServicioAcura s_acura = new ServicioAcura();
+            ServicioVolkswagen s_volkswagen = new ServicioVolkswagen();
+            ServicioCirculoK s_circulok = new ServicioCirculoK();
+            ServicioSherwin s_sherwin = new ServicioSherwin();
 
             if (args.Length > 0)  // Parametro desde la tarea programada  
             {
-
                 switch (args[0])
                 {
                     case "leerDropbox":
-                        // 9 p.m de la noche Solo las ordenes de Kumon
-                        sk.LlenarInfoDB();
-
-                        
+                        // Solo las ordenes de Kumon y Sherwin                       
+                        s_kummon.RegistrarPrefacturacionIntelisis("15 DIAS", "U.D.P.");
+                        s_sherwin.RegistrarPrefacturacionIntelisis("15 DIAS","L.R.P.");
+                        //Moned Facturacion
                         Console.WriteLine("Leyendo la carpeta de Dropbox");
                         // Lectura de la Carpeta en Dropbox
                         Lector lector = new Lector();
@@ -44,72 +43,57 @@ namespace ConsoleApplication2
                         if (ordenes_kumon.ToList().Count > 0)
                         {
                             Console.WriteLine(string.Join(",", ordenes_kumon));
-                            sk.CambiarEstatusOrdenes(string.Join(",", ordenes_kumon));
+                            s_kummon.CambiarEstatusOrdenes(string.Join(",", ordenes_kumon));
                         }
                         break;
-                    // 12:00 de la noche //Actualiza el estado de las ordenes  en la base de datos Goepower 192.168.2.209
+                    //  //Actualiza el estado de las ordenes  en la base de datos Goepower 192.168.2.209
                     case "Sincronizar":
                         Console.WriteLine("Sincronizando WorkOrders de GoPower");
-                        ssw.LlenarInfoDB();
-                        sk.LlenarInfoGoePower();
-                        mc.LlenarInfoGoePower();
-                        sseat.LlenarInfoGoePower();
-                        sstar.LlenarInfoGoePower();
-                        sv.LlenarInfoGoePower();
-                        sacura.LlenarInfoGoePower();
-                        ch.LlenarInfoGoePower();
-                        sck.LlenarInfoGoePower();
-
+                        s_circulok.LlenarInfoGoePower();
+                        s_sherwin.LlenarInfoGoePower();
+                        s_kummon.LlenarInfoGoePower();
+                        s_michelin.LlenarInfoGoePower();
+                        s_seat.LlenarInfoGoePower();
+                        s_starbuck.LlenarInfoGoePower();
+                        s_volkswagen.LlenarInfoGoePower();
+                        s_acura.LlenarInfoGoePower();
+                        s_honda.LlenarInfoGoePower();
+                        
                         break;
 
                 }
 
 
+
                 return;
             }
-            //sk.CambiarEstatusOrdenes("694929");
 
 
-            // Este se corre manual
-            //ServicioHonda h = new ServicioHonda();
-            //h.LLenarInfoDB();
 
-            
+
+
+            //ssw.ProcesarOrden(714503);
+            // Este se corre manual            
+            //s_honda.RegistrarPrefacturacionIntelisis("7 DIAS","A.L.P.");
+
+
+
+            //
+
+
             #region Descarga de Archivos
-            sk.DescargarArchivos();
-            sck.DescargarArchivos();
-            mc.DescargarArchivos();
-            ssw.DescargarArchivos();
+            s_seat.DescargarArchivos();
+            s_kummon.DescargarArchivos();
+            s_circulok.DescargarArchivos();
+            s_michelin.DescargarArchivos();
+            s_sherwin.DescargarArchivos();
             #endregion
 
 
-            Console.ReadLine();
-
-            //Console.Read();
+            
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //Console.Read();
 
         }
 

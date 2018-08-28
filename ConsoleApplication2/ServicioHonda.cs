@@ -10,25 +10,27 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplication2
 {
-   public class ServicioHonda:Servicio
+    public class ServicioHonda : Servicio
     {
 
         public ServicioHonda()
         {
             this._nombreTienda = "honda";
-            this._conexion = Credenciales.Honda();          
+            this._conexion = Credenciales.Honda();
             this._parametroOrden = new AuthHeaderOrder()
             {
                 MasterKey = _conexion.MasterKey,
                 CompanyID = _conexion.CompanyID,
                 Username = _conexion.Username,
                 ProducerID = _conexion.ProducerID
-            };             
+            };
+
+            
         }
-        
 
-        
 
-        
+
+
+
     }
 }

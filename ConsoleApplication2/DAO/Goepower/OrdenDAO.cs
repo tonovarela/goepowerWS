@@ -44,5 +44,9 @@ namespace ConsoleApplication2.DAO.Goepower
                 Console.WriteLine("Se actualiza el pago");
             }
         }
+
+
+
+
     }
 }

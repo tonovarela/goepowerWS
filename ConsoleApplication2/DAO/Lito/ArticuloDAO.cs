@@ -11,8 +11,9 @@ namespace ConsoleApplication2.DAO.Lito
         
         public bool EstaDadodeAltaHonda(string SKU)
         {
-            return true;           
-       //     return this.ctx.Art.AsQueryable().Any(articulo => articulo.Articulo == SKU); 
+
+            return true;
+           // return this.ctx.Art.AsQueryable().Any(articulo => articulo.Articulo == SKU); 
         }
 
 

@@ -11,9 +11,10 @@ namespace ConsoleApplication2.DAO.Lito
         
         public bool Buscar(string idOrden)
         {
-            this.ctx.Log = Console.Out;            
-            var result = ctx.Venta.Where(venta => venta.OrdenID == idOrden && venta.Estatus != "Cancelado");
-            return result==null?false:true;
+            //this.ctx.Log = Console.Out;            
+            var result = ctx.Venta.AsQueryable().Any(venta => venta.OrdenID == idOrden && venta.Estatus != "Cancelado");
+            return result;
+            
         }
 
         public int Insertar(Venta venta)

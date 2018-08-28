@@ -139,7 +139,7 @@ namespace ConsoleApplication2.Class
                 PartnerID = 4996,
                 Username = "sistemassherwin",
                 OrderStatus = OrderStatuses.Released,
-                StartDate = DateTime.Today.AddDays(-15),
+                StartDate = DateTime.Today.AddDays(-5),
                 EndDate = DateTime.Now,
                 ProducerID = _PRODUCERID
             };

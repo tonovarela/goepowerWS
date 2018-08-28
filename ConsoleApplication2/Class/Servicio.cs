@@ -1,5 +1,4 @@
-﻿using ConsoleApplication2.DAO;
-using ConsoleApplication2.DAO.Goepower;
+﻿using ConsoleApplication2.DAO.Goepower;
 using ConsoleApplication2.DAO.Lito;
 using ConsoleApplication2.Model;
 using ConsoleApplication2.OrdenChangeStatus;
@@ -11,7 +10,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
 
 
 namespace ConsoleApplication2.Class
@@ -21,11 +19,13 @@ namespace ConsoleApplication2.Class
         protected string _nombreTienda;
         protected string _workspace = "Z:\\";        
         protected string fullMonthName = String.Empty;
-
         protected OrderInfoSoapClient client;
         protected productioncallsSoapClient client_production;
         protected AuthHeaderOrders _conexion;
         protected AuthHeaderOrder _parametroOrden;
+        protected string condiciones;
+        protected string agente ;
+
 
         public Servicio()
         {
@@ -64,6 +64,7 @@ namespace ConsoleApplication2.Class
             }
             return _ordenes;
         }
+
         protected void DownloadFile(string origenArchivo, string destinoCarpeta, string nombreArchivo)
         {
             WebClient client = new WebClient();
@@ -93,115 +94,7 @@ namespace ConsoleApplication2.Class
             a[0] = char.ToUpper(a[0]);
             return new string(a);
         }
-        public virtual void ProcesarOrden(int idOrden)
-        {
-            this._parametroOrden = new AuthHeaderOrder()
-            {
-                CompanyID = this._conexion.CompanyID,
-                MasterKey = this._conexion.MasterKey,
-                OrderID = idOrden,
-                ProducerID = this._conexion.ProducerID,
-                Username = this._conexion.Username
-            };
-
-            //this._parametroOrden.OrderID = idOrden;          
-            AuthReturnOrder result = this.client.GetOrder(this._parametroOrden);
-            Order orden = result.Order;
-            Job[] jobs = result.Jobs;
-            VentaDAO venta_dao = new VentaDAO();
-
-            bool existeVenta = venta_dao.Buscar(orden.OrderID.ToString());
-            
-            if (existeVenta)
-            {
-                Console.WriteLine("La orden {0} ya existe", orden.OrderID.ToString());
-                return;
-            }
-            ClienteDAO cliente_dao = new ClienteDAO();
-            //CteHonda cte = cliente_dao.BuscarCliente(orden.WebUserID.ToString());
-            CtoCampoExtra cte = cliente_dao.BuscarClienteCampoExtra(orden.WebUserID.ToString());
-
-            DateTime time = DateTime.Now;
-            DateTime timeVencimiento = time.AddDays(7);
-            #region Llenado de Venta
-            Venta venta = new Venta()
-            {
-                Empresa = "LITO",
-                Mov = "Factura Electronica",
-                FechaEmision = new DateTime(time.Year, time.Month, time.Day),
-                Concepto = $"SAAM {this._nombreTienda.ToUpper()}",
-                Moneda = "Pesos",
-                TipoCambio = 1.0,
-                Usuario = "MTOVAR",
-                Referencia = orden.OrderID.ToString(),
-                OrdenCompra = "",
-                Estatus = "SINAFECTAR",
-                Cliente = cte != null ? cte.Clave : "16776",
-                Almacen = "AL PT",
-                Observaciones = $"SAAM {this._nombreTienda.ToUpper()}",
-                Condicion = "7 DIAS",
-                Vencimiento = new DateTime(timeVencimiento.Year, timeVencimiento.Month, timeVencimiento.Day),
-                Agente = "A.L.P.",
-                //Importe = Decimal.Parse((orden.TotalPrice + orden.ShippingPrice).ToString()),
-                //Impuestos = Decimal.Parse(orden.Tax1.ToString()),
-                Sucursal = 0,
-                SucursalOrigen = 0,
-                Atencion = "",
-                AtencionTelefono = "",
-                Clase = "",
-                Directo = true,
-                OrdenID = orden.OrderID.ToString()
-
-            };
-            #endregion
-            
-            int id_venta = venta_dao.Insertar(venta);
-            int x = 1;
-
-            #region  Llenado de VentaD
-            foreach (Job job in jobs)
-            {
-                VentaD ventad = new VentaD()
-                {
-                    ID = id_venta,
-                    Renglon = x * 2048,
-                    RenglonID = x++,
-                    
-                    Cantidad = job.Quantity,
-                    Almacen = "AL PT",
-                    Articulo = job.SKU,
-                    Unidad = "pza",
-                    Precio = (job.TotalPrice / job.Quantity),
-                    Impuesto1 = 16,
-                    DescripcionExtra = job.JobName,
-                    RenglonTipo = 'N'
-                };
-                venta_dao.InsertarDetalle(ventad);
-            }
-            #endregion
-
-            #region Envio
-            if (orden.ShippingPrice > 0)
-            {
-                VentaD detalleEnvio = new VentaD()
-                {
-                    ID = id_venta,
-                    DescripcionExtra = "Gastos de Envio",
-                    RenglonID = x,
-                    RenglonTipo='N',
-                    Renglon = x * 2048,
-                    Articulo = "EN",
-                    Precio = orden.ShippingPrice,
-                    Cantidad = 1,
-                    Impuesto1 = 16,
-                    Unidad = "Servicio",
-                    Almacen="AL PT"
-                };
-                venta_dao.InsertarDetalle(detalleEnvio);
-            }
-            #endregion
-
-        }
+       
         protected  void CambiarEstatusOrdenes(string ordenes)
         {
             AuthHeader header = null;
@@ -236,17 +129,27 @@ namespace ConsoleApplication2.Class
             Console.WriteLine($" Mensaje  {result.Message}");
             Console.WriteLine("----------------------------------------------");
         }
+
         protected int[] GetListaOrdenes(OrderStatuses status)
         {            
             this._conexion.OrderStatus =status;
             int[] ordenes_id = this.client.GetOrdersList(_conexion).OrdersList;
             return ordenes_id;
         }
-
-       
-
-        public void LlenarInfoDB()
+ 
+        public void RegistrarPrefacturacionIntelisis(string condiciones,string agente,int? idOrden=null)
         {
+            this.condiciones = condiciones;
+            this.agente = agente;
+
+            
+            if (idOrden.HasValue)
+            {                
+                this.ProcesarOrden(idOrden.Value);
+                return;
+            }
+
+
             int[] ordenes_id = this.GetListaOrdenes(OrderStatuses.Pending);
             if (ordenes_id == null)
             {
@@ -257,18 +160,135 @@ namespace ConsoleApplication2.Class
             foreach (int orden_id in ordenes_id)
             {
                 Console.WriteLine("Procesando la orden " + orden_id);
+
+
                 this.ProcesarOrden(orden_id);
             }
 
          
         }
 
+        protected virtual void ProcesarOrden(int idOrden)
+        {
+            this._parametroOrden = new AuthHeaderOrder()
+            {
+                CompanyID = this._conexion.CompanyID,
+                MasterKey = this._conexion.MasterKey,
+                OrderID = idOrden,
+                ProducerID = this._conexion.ProducerID,
+                Username = this._conexion.Username
+            };
+
+            //this._parametroOrden.OrderID = idOrden;          
+            AuthReturnOrder result = this.client.GetOrder(this._parametroOrden);
+            Order orden = result.Order;
+            Job[] jobs = result.Jobs;
+            VentaDAO venta_dao = new VentaDAO();
+
+            bool existeVenta = venta_dao.Buscar(orden.OrderID.ToString());
+
+            if (existeVenta)
+            {
+                Console.WriteLine("La orden {0} ya existe", orden.OrderID.ToString());
+                return;
+            }
+            ClienteDAO cliente_dao = new ClienteDAO();
+            //CteHonda cte = cliente_dao.BuscarCliente(orden.WebUserID.ToString());
+            CtoCampoExtra cte = cliente_dao.BuscarClienteCampoExtra(orden.WebUserID.ToString());
+
+            DateTime time = DateTime.Now;
+            DateTime timeVencimiento = time.AddDays(7);
+            #region Llenado de Venta
+            Venta venta = new Venta()
+            {
+                Empresa = "LITO",
+                Mov = "Factura Electronica",
+                FechaEmision = new DateTime(time.Year, time.Month, time.Day),
+                Concepto = $"SAAM {this._nombreTienda.ToUpper()}",
+                Moneda = "Pesos",
+                TipoCambio = 1.0,
+                Usuario = "MTOVAR",
+                Referencia = orden.OrderID.ToString(),
+                OrdenCompra = "",
+                Estatus = "SINAFECTAR",
+                Cliente = cte != null ? cte.Clave : "16776",
+                Almacen = "AL PT",
+                Observaciones = $"SAAM {this._nombreTienda.ToUpper()}",
+                Condicion = this.condiciones,//7 dias kumon
+                Vencimiento = new DateTime(timeVencimiento.Year, timeVencimiento.Month, timeVencimiento.Day),
+                Agente = this.agente, //"A.L.P.",
+                //Importe = Decimal.Parse((orden.TotalPrice + orden.ShippingPrice).ToString()),
+                //Impuestos = Decimal.Parse(orden.Tax1.ToString()),
+                Sucursal = 0,
+                SucursalOrigen = 0,
+                Atencion = "",
+                AtencionTelefono = "",
+                Clase = "",
+                Directo = true,
+                OrdenID = orden.OrderID.ToString()
+
+            };
+            #endregion
+
+            int id_venta = venta_dao.Insertar(venta);
+            int x = 1;
+
+            #region  Llenado de VentaD
+            foreach (Job job in jobs)
+            {
+
+                int _cantidad = job.Quantity;
+                if (job.Records > 1)
+                {
+                    _cantidad = job.Records;
+                }
+                VentaD ventad = new VentaD()
+                {
+                    ID = id_venta,
+                    Renglon = x * 2048,
+                    RenglonID = x++,
+
+                    Cantidad = _cantidad,
+                    Almacen = "AL PT",
+                    Articulo = job.SKU,
+                    Unidad = "pza",
+                    Precio = (job.TotalPrice / _cantidad),
+                    Impuesto1 = 16,
+                    DescripcionExtra = job.JobName,
+                    RenglonTipo = 'N'
+                };
+                venta_dao.InsertarDetalle(ventad);
+            }
+            #endregion
+
+            #region Envio
+            if (orden.ShippingPrice > 0)
+            {
+                VentaD detalleEnvio = new VentaD()
+                {
+                    ID = id_venta,
+                    DescripcionExtra = "Gastos de Envio",
+                    RenglonID = x,
+                    RenglonTipo = 'N',
+                    Renglon = x * 2048,
+                    Articulo = "EN",
+                    Precio = Math.Round(orden.ShippingPrice, 2),
+                    Cantidad = 1,
+                    Impuesto1 = 16,
+                    Unidad = "Servicio",
+                    Almacen = "AL PT"
+                };
+                venta_dao.InsertarDetalle(detalleEnvio);
+            }
+            #endregion
+
+        }
 
         public void LlenarInfoGoePower()
         {
-            //this._conexion.StartDate = DateTime.Today.AddDays(-50);
+            this._conexion.StartDate = DateTime.Today.AddDays(-30);
             this._conexion.StartDate = new DateTime(2018, 1, 1);
-            this._conexion.EndDate = DateTime.Now;
+            //this._conexion.EndDate = DateTime.Now;
             int[] ordenes = this.GetListaOrdenes(OrderStatuses.All);
             if (ordenes == null)
             {
@@ -281,10 +301,9 @@ namespace ConsoleApplication2.Class
             {
                 OrdenDAO ordenDao = new OrdenDAO();
                 ItemDAO itemDao = new ItemDAO();
+                ClienteDAO clienteDAO = new ClienteDAO();
 
                 string __ordenID = $"{this._nombreTienda}_{orden}";
-
-
 
                 this._parametroOrden = new AuthHeaderOrder()
                 {
@@ -300,19 +319,19 @@ namespace ConsoleApplication2.Class
                 Order order = result.Order;
                 Job[] jobs = result.Jobs;
 
+                var cte=clienteDAO.BuscarClienteCampoExtra(order.WebUserID.ToString());
                 Orden ordendDto = new Orden()
                 {
                     tienda = this._nombreTienda,
-                    ordenID = __ordenID,
+                    ordenID =__ordenID,
                     status = order.OrderStatus,
                     webUserID = order.WebUserID,
                     completeDate = order.CompletedDate,
                     orderDate = order.OrderDate,
                     releaseDate = order.ReleaseDate,
                     shippingDate = order.ShippingDate,
-                    Total= (float)order.TotalPrice
-                  
-
+                    Total= (float)order.TotalPrice ,
+                    clienteIntelisis= cte != null ? cte.Clave : "16776"
                 };
 
                 var o = ordenDao.existe(__ordenID);
@@ -322,7 +341,7 @@ namespace ConsoleApplication2.Class
                     if (o.status!= order.OrderStatus)
                     {
                         Console.WriteLine("Es diferente");
-                        Console.WriteLine($"La orden {__ordenID} {o.status}  {order.OrderStatus} ya existe y cambio de estatus");
+                        Console.WriteLine($"La orden {orden} cambio de  {o.status}  a {order.OrderStatus}");
                         ordenDao.Actualiza(ordendDto);
                         
                     }                    
@@ -330,20 +349,27 @@ namespace ConsoleApplication2.Class
                     continue;
                 }
                 
-                Console.WriteLine($"Insertando la orden {__ordenID}");
+                Console.WriteLine($"Insertando la orden {orden} de la tienda {this._nombreTienda}");
                 ordenDao.Agregar(ordendDto);
                 foreach (Job job in jobs)
                 {
                     Console.WriteLine($"Insertando el job {job.JobID}");
-                    int cantidad = job.Quantity == job.Records ? job.Quantity : job.Records;
+                    int cantidad = job.Quantity ;
+                    int _cantidad = cantidad;
+                    if ( job.Records > 1)
+                    {
+                        _cantidad = job.Records;
+                    }
                     Item itemDto = new Item()
                     {
-                        cantidad = cantidad,
+                        cantidad = job.Quantity,
                         descripcion = job.JobName,
                         ordenID = __ordenID,
-                        precio = (job.TotalPrice / cantidad),
+                        precio = (job.Price /_cantidad),
+                        records=job.Records,
                         sku = job.SKU,
-
+                       setSize=job.SetSize
+                       
                     };
                     itemDao.Agregar(itemDto);
                 }
@@ -356,7 +382,9 @@ namespace ConsoleApplication2.Class
                         descripcion = "Gastos de Envio",
                         cantidad = 1,
                         precio = order.ShippingPrice,
-                        ordenID = __ordenID
+                        ordenID = __ordenID,
+                        setSize = 1,
+                        records = 1
                     };
                     itemDao.Agregar(envio);
                 }

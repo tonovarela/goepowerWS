@@ -120,27 +120,6 @@
       <Column Name="ProcesadoID" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.CteHonda" Member="CteHonda">
-    <Type Name="CteHonda">
-      <Column Name="CteHonda" Member="CteHonda1" Type="System.String" DbType="Char(10)" CanBeNull="true" />
-      <Column Name="NombreHonda" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="CteIntelisis" Type="System.String" DbType="Char(10)" CanBeNull="true" />
-      <Column Name="NombreIntelisis" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Concesionaria" Type="System.String" DbType="Char(10)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.CtoCampoExtra" Member="CtoCampoExtra">
-    <Type Name="CtoCampoExtra">
-      <Column Name="Tipo" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="SubTipo" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Clave" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="CampoExtra" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Valor" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="Puntos" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="SincroID" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
-      <Column Name="SincroC" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Venta" Member="Venta">
     <Type Name="Venta">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -474,6 +453,27 @@
       <Column Name="usocfdi" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
       <Column Name="AnticipoFacturadoTipoServicio" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="OrdenID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CteHonda" Member="CteHonda">
+    <Type Name="CteHonda">
+      <Column Name="CteHonda" Member="CteHonda1" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="NombreHonda" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CteIntelisis" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="NombreIntelisis" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Concesionaria" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CtoCampoExtra" Member="CtoCampoExtra">
+    <Type Name="CtoCampoExtra">
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SubTipo" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CampoExtra" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Valor" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Puntos" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SincroID" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Column Name="SincroC" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

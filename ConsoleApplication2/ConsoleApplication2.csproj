@@ -216,7 +216,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="README.md" />
     <None Include="Service References\OrdenChangeStatus\ConsoleApplication2.OrdenChangeStatus.AuthReturn.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

@@ -2,16 +2,16 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Goepower">
   <DataContextMoniker Name="/GoepowerDataContext" />
   <nestedChildShapes>
-    <classShape Id="ecd9c259-43b9-4178-b5c5-f3e5a219c8fe" absoluteBounds="2.25, 1.25, 2, 1.9631982421875">
+    <classShape Id="9b2b6203-9677-4764-bf48-9d8b0e00e00f" absoluteBounds="3, 1.375, 2, 2.3478011067708335">
       <DataClassMoniker Name="/GoepowerDataContext/Item" />
       <nestedChildShapes>
-        <elementListCompartment Id="2c1a223a-fcf0-4d17-9858-f883caa701cd" absoluteBounds="2.265, 1.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="f14bd86c-651c-42c2-a1db-67f1bf333f77" absoluteBounds="3.015, 1.835, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="564caa04-403e-4fdc-b9e9-508de6dee23a" absoluteBounds="4.5, 1.25, 2, 2.7324039713541666">
+    <classShape Id="c2b9313b-f341-4150-b3df-cb258ccbf7aa" absoluteBounds="0.5, 2, 2, 2.9247054036458331">
       <DataClassMoniker Name="/GoepowerDataContext/Orden" />
       <nestedChildShapes>
-        <elementListCompartment Id="74f8557d-5fbc-4f51-abd4-80770b255b28" absoluteBounds="4.515, 1.71, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7b502e09-8ea3-4003-acc6-cee3763843da" absoluteBounds="0.51500000000000012, 2.46, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

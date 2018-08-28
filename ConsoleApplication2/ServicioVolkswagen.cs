@@ -14,7 +14,7 @@ namespace ConsoleApplication2
         {
             this._nombreTienda = "volkswagen";
             this._workspace += _nombreTienda;
-            this._conexion = Credenciales.Starbucks();
+            this._conexion = Credenciales.Volkswagen();
         }
     }
 }

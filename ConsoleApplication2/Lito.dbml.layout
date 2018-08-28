@@ -1,29 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.125, 68.875" name="Lito">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 65.375" name="Lito">
   <DataContextMoniker Name="/LitoDataContext" />
   <nestedChildShapes>
-    <classShape Id="03da7d02-5c0a-4e66-b1d8-c2548571f383" absoluteBounds="5.75, 3, 2, 23.116355794270834">
+    <classShape Id="5ff850a0-7204-4552-bea5-efcb51a43e79" absoluteBounds="0.5, 0.75, 2, 23.116355794270834">
       <DataClassMoniker Name="/LitoDataContext/VentaD" />
       <nestedChildShapes>
-        <elementListCompartment Id="99cd6c65-2b2f-4753-88c5-54676b329cbc" absoluteBounds="5.765, 3.46, 1.9700000000000002, 22.556355794270832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="9b5c64d5-b92f-4cde-b660-cd60c9821de4" absoluteBounds="0.51500000000000012, 1.21, 1.9700000000000002, 22.556355794270832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="4ff19fee-4e94-47a7-8aff-4810dc6b2535" absoluteBounds="0.625, 2.375, 2, 1.7708968098958331">
-      <DataClassMoniker Name="/LitoDataContext/CteHonda" />
-      <nestedChildShapes>
-        <elementListCompartment Id="335b9a43-f9a7-4bb8-8d08-c85b31b9441b" absoluteBounds="0.64000000000000012, 2.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="d0d424fc-5d39-4a21-9b5d-2fa802b9958c" absoluteBounds="8.875, 1.75, 2, 2.3478011067708335">
-      <DataClassMoniker Name="/LitoDataContext/CtoCampoExtra" />
-      <nestedChildShapes>
-        <elementListCompartment Id="7920c1e2-1aeb-445d-9475-9c2f4b34166d" absoluteBounds="8.89, 2.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="c9600f72-3527-4e81-b9e3-3ac5d4a239cd" absoluteBounds="3.25, 4.125, 2, 64.461163736979159">
+    <classShape Id="80e8631c-0e91-4808-8ec1-638583a9bb42" absoluteBounds="2.75, 0.625, 2, 64.461163736979159">
       <DataClassMoniker Name="/LitoDataContext/Venta" />
       <nestedChildShapes>
-        <elementListCompartment Id="28389344-e3ca-4b98-bec9-63fe8d4cb00a" absoluteBounds="3.265, 4.585, 1.9700000000000002, 63.901163736979164" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="b6e4092f-fb18-4d5e-adfa-453f20b2b0c2" absoluteBounds="2.7650000000000006, 1.085, 1.9700000000000002, 63.901163736979164" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="da19732d-d937-44d0-8b9d-9861438b33ad" absoluteBounds="5.625, 2.5, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/LitoDataContext/CteHonda" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7ab421ab-1012-40c5-a626-34e00a7603f6" absoluteBounds="5.64, 2.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="549dfe37-dc32-4201-8ff6-4a2721d2e2a4" absoluteBounds="5.375, 5.125, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/LitoDataContext/CtoCampoExtra" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d9f6d531-a6ec-4c41-9580-f148df872d6b" absoluteBounds="5.39, 5.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

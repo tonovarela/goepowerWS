@@ -103,6 +103,10 @@ namespace ConsoleApplication2
 		
 		private int _itemID;
 		
+		private System.Nullable<int> _records;
+		
+		private System.Nullable<int> _setSize;
+		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -119,6 +123,10 @@ namespace ConsoleApplication2
     partial void OncantidadChanged();
     partial void OnitemIDChanging(int value);
     partial void OnitemIDChanged();
+    partial void OnrecordsChanging(System.Nullable<int> value);
+    partial void OnrecordsChanged();
+    partial void OnsetSizeChanging(System.Nullable<int> value);
+    partial void OnsetSizeChanged();
     #endregion
 		
 		public Item()
@@ -246,6 +254,46 @@ namespace ConsoleApplication2
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_records", DbType="Int")]
+		public System.Nullable<int> records
+		{
+			get
+			{
+				return this._records;
+			}
+			set
+			{
+				if ((this._records != value))
+				{
+					this.OnrecordsChanging(value);
+					this.SendPropertyChanging();
+					this._records = value;
+					this.SendPropertyChanged("records");
+					this.OnrecordsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_setSize", DbType="Int")]
+		public System.Nullable<int> setSize
+		{
+			get
+			{
+				return this._setSize;
+			}
+			set
+			{
+				if ((this._setSize != value))
+				{
+					this.OnsetSizeChanging(value);
+					this.SendPropertyChanging();
+					this._setSize = value;
+					this.SendPropertyChanged("setSize");
+					this.OnsetSizeChanged();
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -293,6 +341,8 @@ namespace ConsoleApplication2
 		
 		private System.Nullable<double> _Total;
 		
+		private string _clienteIntelisis;
+		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -317,6 +367,8 @@ namespace ConsoleApplication2
     partial void OnpagadoChanged();
     partial void OnTotalChanging(System.Nullable<double> value);
     partial void OnTotalChanged();
+    partial void OnclienteIntelisisChanging(string value);
+    partial void OnclienteIntelisisChanged();
     #endregion
 		
 		public Orden()
@@ -520,6 +572,26 @@ namespace ConsoleApplication2
 					this._Total = value;
 					this.SendPropertyChanged("Total");
 					this.OnTotalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_clienteIntelisis", DbType="VarChar(50)")]
+		public string clienteIntelisis
+		{
+			get
+			{
+				return this._clienteIntelisis;
+			}
+			set
+			{
+				if ((this._clienteIntelisis != value))
+				{
+					this.OnclienteIntelisisChanging(value);
+					this.SendPropertyChanging();
+					this._clienteIntelisis = value;
+					this.SendPropertyChanged("clienteIntelisis");
+					this.OnclienteIntelisisChanged();
 				}
 			}
 		}
