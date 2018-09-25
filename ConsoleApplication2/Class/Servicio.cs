@@ -1,8 +1,10 @@
 ﻿using ConsoleApplication2.DAO.Goepower;
 using ConsoleApplication2.DAO.Lito;
 using ConsoleApplication2.Model;
+using ConsoleApplication2.Model.Crece;
 using ConsoleApplication2.OrdenChangeStatus;
 using ConsoleApplication2.OrdenService;
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -15,16 +17,19 @@ using System.Security.Cryptography.X509Certificates;
 namespace ConsoleApplication2.Class
 {
     public class Servicio
-    {        
+    {
         protected string _nombreTienda;
-        protected string _workspace = "Z:\\";        
+        protected string _workspace = "Z:\\";
         protected string fullMonthName = String.Empty;
         protected OrderInfoSoapClient client;
         protected productioncallsSoapClient client_production;
         protected AuthHeaderOrders _conexion;
         protected AuthHeaderOrder _parametroOrden;
         protected string condiciones;
-        protected string agente ;
+        protected string agente;
+
+
+        
 
 
         public Servicio()
@@ -33,11 +38,11 @@ namespace ConsoleApplication2.Class
             this.client = new OrderInfoSoapClient();
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
             this.client.ClientCredentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.Root, X509FindType.FindBySubjectName, "Starfield Root Certificate Authority");
-            this.client_production.ClientCredentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.Root, X509FindType.FindBySubjectName, "Starfield Root Certificate Authority");                        
-        }        
+            this.client_production.ClientCredentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.Root, X509FindType.FindBySubjectName, "Starfield Root Certificate Authority");
+        }
         protected virtual List<OrdenDTO> GetOrdenesConArchivos()
         {
-            List<OrdenDTO> _ordenes = new List<OrdenDTO>();            
+            List<OrdenDTO> _ordenes = new List<OrdenDTO>();
             var data = this.client.GetOrdersWithProductionFiles(this._conexion);
             try
             {
@@ -53,9 +58,9 @@ namespace ConsoleApplication2.Class
                        NombreArchivo = $"{orden.OrderID}_{job.JobID}_{job.JobSKU}",
                        FileExcelURL = job.CustomDatas.First().Value,
                        FileXMLURL = job.JobTicketXML,
-                       CustomData = job.CustomDatas.ToList()
-                   })).ToList();                
-                this.fullMonthName= this.UppercaseFirst(DateTime.Now.ToString("MMMM", CultureInfo.CreateSpecificCulture("es")));                
+                       CustomData = job.CustomDatas.ToList(),
+                   })).ToList();
+                this.fullMonthName = this.UppercaseFirst(DateTime.Now.ToString("MMMM", CultureInfo.CreateSpecificCulture("es")));
                 _ordenes = orders;
             }
             catch (ArgumentNullException e)
@@ -63,6 +68,7 @@ namespace ConsoleApplication2.Class
                 //  Console.Write("No hay ordenes");
             }
             return _ordenes;
+
         }
 
         protected void DownloadFile(string origenArchivo, string destinoCarpeta, string nombreArchivo)
@@ -83,7 +89,7 @@ namespace ConsoleApplication2.Class
                 Console.WriteLine(String.Format("No se puede descargar el archivo por la siguiente razon {0}", e.Message));
             }
 
-        }        
+        }
         protected string UppercaseFirst(string s)
         {
             if (string.IsNullOrEmpty(s))
@@ -94,8 +100,8 @@ namespace ConsoleApplication2.Class
             a[0] = char.ToUpper(a[0]);
             return new string(a);
         }
-       
-        protected  void CambiarEstatusOrdenes(string ordenes)
+
+        protected void CambiarEstatusOrdenes(string ordenes)
         {
             AuthHeader header = null;
             switch (this._nombreTienda.ToUpper())
@@ -108,14 +114,14 @@ namespace ConsoleApplication2.Class
                         MasterKey = credenciales.MasterKey,
                         ProducerID = credenciales.ProducerID,
                         Status = ePowerOrderStatus.Release,
-                        OrderIDs = ordenes                         
+                        OrderIDs = ordenes
                     };
                     break;
                 case "CIRCLEK":
                     AuthHeaderOrders credencialesk = Credenciales.CirculoK();
                     header = new AuthHeader()
                     {
-                        CompanyID =credencialesk.CompanyID,
+                        CompanyID = credencialesk.CompanyID,
                         MasterKey = credencialesk.MasterKey,
                         ProducerID = credencialesk.ProducerID,
                         Status = ePowerOrderStatus.Release,
@@ -131,24 +137,25 @@ namespace ConsoleApplication2.Class
         }
 
         protected int[] GetListaOrdenes(OrderStatuses status)
-        {            
-            this._conexion.OrderStatus =status;
+        {
+            this._conexion.OrderStatus = status;
             int[] ordenes_id = this.client.GetOrdersList(_conexion).OrdersList;
             return ordenes_id;
         }
- 
-        public void RegistrarPrefacturacionIntelisis(string condiciones,string agente,int? idOrden=null)
+
+
+        public void RegistrarPrefacturacionIntelisis(string condiciones, string agente, int? idOrden = null)
         {
             this.condiciones = condiciones;
             this.agente = agente;
 
-            
+
             if (idOrden.HasValue)
-            {                
+            {
                 this.ProcesarOrden(idOrden.Value);
                 return;
             }
-
+        
 
             int[] ordenes_id = this.GetListaOrdenes(OrderStatuses.Pending);
             if (ordenes_id == null)
@@ -165,7 +172,7 @@ namespace ConsoleApplication2.Class
                 this.ProcesarOrden(orden_id);
             }
 
-         
+
         }
 
         protected virtual void ProcesarOrden(int idOrden)
@@ -287,8 +294,8 @@ namespace ConsoleApplication2.Class
         public void LlenarInfoGoePower()
         {
             this._conexion.StartDate = DateTime.Today.AddDays(-30);
-            this._conexion.StartDate = new DateTime(2018, 1, 1);
-            //this._conexion.EndDate = DateTime.Now;
+            //this._conexion.StartDate = new DateTime(2018, 1, 1);
+            this._conexion.EndDate = DateTime.Now;
             int[] ordenes = this.GetListaOrdenes(OrderStatuses.All);
             if (ordenes == null)
             {
@@ -296,7 +303,7 @@ namespace ConsoleApplication2.Class
                 return;
             }
             Console.WriteLine($"Total de ordenes {ordenes.Length} en la tienda {this._nombreTienda}");
-            
+
             foreach (int orden in ordenes)
             {
                 OrdenDAO ordenDao = new OrdenDAO();
@@ -319,44 +326,44 @@ namespace ConsoleApplication2.Class
                 Order order = result.Order;
                 Job[] jobs = result.Jobs;
 
-                var cte=clienteDAO.BuscarClienteCampoExtra(order.WebUserID.ToString());
+                var cte = clienteDAO.BuscarClienteCampoExtra(order.WebUserID.ToString());
                 Orden ordendDto = new Orden()
                 {
                     tienda = this._nombreTienda,
-                    ordenID =__ordenID,
+                    ordenID = __ordenID,
                     status = order.OrderStatus,
                     webUserID = order.WebUserID,
                     completeDate = order.CompletedDate,
                     orderDate = order.OrderDate,
                     releaseDate = order.ReleaseDate,
                     shippingDate = order.ShippingDate,
-                    Total= (float)order.TotalPrice ,
-                    clienteIntelisis= cte != null ? cte.Clave : "16776"
+                    Total = (float)order.TotalPrice,
+                    clienteIntelisis = cte != null ? cte.Clave : "16776"
                 };
 
                 var o = ordenDao.existe(__ordenID);
-                if (o!=null )
+                if (o != null)
                 {
 
-                    if (o.status!= order.OrderStatus)
+                    if (o.status != order.OrderStatus)
                     {
                         Console.WriteLine("Es diferente");
                         Console.WriteLine($"La orden {orden} cambio de  {o.status}  a {order.OrderStatus}");
                         ordenDao.Actualiza(ordendDto);
-                        
-                    }                    
-                    
+
+                    }
+
                     continue;
                 }
-                
+
                 Console.WriteLine($"Insertando la orden {orden} de la tienda {this._nombreTienda}");
                 ordenDao.Agregar(ordendDto);
                 foreach (Job job in jobs)
                 {
                     Console.WriteLine($"Insertando el job {job.JobID}");
-                    int cantidad = job.Quantity ;
+                    int cantidad = job.Quantity;
                     int _cantidad = cantidad;
-                    if ( job.Records > 1)
+                    if (job.Records > 1)
                     {
                         _cantidad = job.Records;
                     }
@@ -365,11 +372,11 @@ namespace ConsoleApplication2.Class
                         cantidad = job.Quantity,
                         descripcion = job.JobName,
                         ordenID = __ordenID,
-                        precio = (job.Price /_cantidad),
-                        records=job.Records,
+                        precio = (job.Price / _cantidad),
+                        records = job.Records,
                         sku = job.SKU,
-                       setSize=job.SetSize
-                       
+                        setSize = job.SetSize
+
                     };
                     itemDao.Agregar(itemDto);
                 }
@@ -397,6 +404,109 @@ namespace ConsoleApplication2.Class
 
         }
 
+
+
+
+        //public void TraerInfo(int idOrden)
+        //{
+        //    this._parametroOrden = new AuthHeaderOrder()
+        //    {
+        //        CompanyID = this._conexion.CompanyID,
+        //        MasterKey = this._conexion.MasterKey,
+        //        OrderID = idOrden,
+        //        ProducerID = this._conexion.ProducerID,
+        //        Username = this._conexion.Username
+        //    };
+
+        //    //this._parametroOrden.OrderID = idOrden;          
+        //    AuthReturnOrder result = this.client.GetOrder(this._parametroOrden);
+        //    Order orden = result.Order;
+        //    Job[] jobs = result.Jobs;
+
+        //    jobs.ToList().ForEach(x => Console.WriteLine(x.ProductType));
+
+
+        //}
+
+
+        //public void TraerInfoCrece()
+        //{
+
+        //    //List<OrdenViewModel> ordenesVM = new List<OrdenViewModel>();
+        //    this._conexion.StartDate = DateTime.Today.AddDays(-30);
+        //    this._conexion.EndDate = DateTime.Now;
+        //    int[] ordenes = this.GetListaOrdenes(OrderStatuses.Released);
+        //    if (ordenes == null)
+        //    {
+        //        Console.WriteLine($"No hay ordenes por procesar en la tienda {this._nombreTienda}");
+        //        return;
+        //    }
+        //    Console.WriteLine($"Total de ordenes {ordenes.Length} en la tienda {this._nombreTienda}");
+
+        //    foreach (int orden in ordenes)
+        //    {
+        //        this._parametroOrden = new AuthHeaderOrder()
+        //        {
+        //            CompanyID = this._conexion.CompanyID,
+        //            MasterKey = this._conexion.MasterKey,
+        //            OrderID = orden,
+        //            ProducerID = this._conexion.ProducerID,
+        //            Username = this._conexion.Username
+        //        };
+        //        AuthReturnOrder result = this.client.GetOrder(this._parametroOrden);
+        //        Order order = result.Order;
+        //        Job[] jobs = result.Jobs;
+
+        //        OrderShipingDetail shipingDetail = result.ShippingAddress;
+
+        //        ClienteViewModel _cliente = new ClienteViewModel
+        //        {
+        //            Apellidos = shipingDetail.LastName,
+        //            Nombre = shipingDetail.FirstName,
+        //            CustomerID = shipingDetail.AddressID,
+        //        };
+
+        //        List<ItemViewModel> _items = jobs.Select(job => new ItemViewModel()
+        //        {
+        //            CantidadOrdenada = job.SetSize * job.Quantity * job.Records,
+        //            ItemID = job.JobID,
+        //            ProductoID = job.ProductID,
+        //            sku = job.SKU,
+        //            SourceFile = job.Thumbnail,
+        //            Records = job.Records,
+        //            SetSize = job.SetSize,
+        //            totalPeso = result.Products.Where(product => product.ProductID == job.ProductID).FirstOrDefault().Weight
+        //        })
+        //            .ToList();
+
+        //        OrdenViewModel _orden = new OrdenViewModel()
+        //        {
+        //            Tienda = this._nombreTienda,
+        //            NumeroOrden = order.OrderID.ToString(),
+        //            FechaRegistro = order.OrderDate,
+        //            Status = order.OrderStatus,
+        //            TipoEnvio = shipingDetail.ServiceCode,
+        //            CodigoPostal = shipingDetail.PostalCode,
+        //            DireccionEnvio = shipingDetail.Address1 + ' ' + shipingDetail.Address2 + ' ' + shipingDetail.Address3,
+        //            Ciudad = shipingDetail.City,
+        //            Estado = shipingDetail.Province,
+        //            Calle = shipingDetail.Address1,
+        //            Telefono = shipingDetail.Phone,
+        //            Cliente = _cliente,
+        //            Items = _items,
+        //            Email = shipingDetail.Email
+        //        };
+
+        //        _orden.Imprimir();
+        //        //ordenesVM.Add(_v);
+
+
+
+
+        //    }
+
+
+        //}
 
 
 

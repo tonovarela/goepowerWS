@@ -1,5 +1,4 @@
 ﻿using ConsoleApplication2.Class;
-using ConsoleApplication2.DAO.Lito;
 using ConsoleApplication2.Model;
 using ConsoleApplication2.OrdenService;
 using System;
@@ -7,13 +6,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApplication2
 {
- public class ServicioMichelin:Servicio
+    public class ServicioMichelin:Servicio
     {
         public ServicioMichelin()
         {
@@ -37,10 +33,7 @@ namespace ConsoleApplication2
                        SKU = job.JobSKU,
                        FilePdfURL = job.CustomProductionFileUrl,
                        NombreArchivo = $"{orden.OrderID}_{job.JobID}_{job.JobSKU}",
-                       customDatas = job.CustomDatas.Select(x => new { x.Name, x.Value })
-                                                    .ToDictionary(x=>x.Name,x=>x.Value.Replace("<nextline>", "  ")),
-
-                             
+                       CustomData = job.CustomDatas.Select(x => new CustomData{ Name= x.Name,  Value= x.Value.Replace("<nextline>", "  ") }).ToList(),                                                    
                    })).ToList();
 
 
@@ -83,18 +76,23 @@ namespace ConsoleApplication2
                 Console.WriteLine(_ordenFolder);
                 orden.Imprimir();
                 FileExcel cfile = new FileExcel();
-                orden.CustomData.ForEach(x => cfile.AgregarRow(x.Name,x.Value));
-                string urlLogoDistribuidor = orden.CustomData
-                                                  .Where(x => x.Name == "Logo Distribuidor")
-                                                   .Select(x=>x.Value).FirstOrDefault();
-                //orden.customDatas.ToList().ForEach(x => cfile.AgregarRow(x.Key, x.Value));
-                //string urlLogoDistribuidor = orden.customDatas.Where(x => x.Key == "Logo Distribuidor")
-                //                                              .Select(x => x.Value)
-                //                                              .FirstOrDefault();
-                string extension =Path.GetExtension(urlLogoDistribuidor);
-                this.DownloadFile(orden.FilePdfURL, _ordenFolder, $"{orden.NombreArchivo}.pdf");
-                this.DownloadFile(urlLogoDistribuidor, _ordenFolder, $"{orden.NombreArchivo}{extension}");
-                cfile.SalvarExcel($"{_ordenFolder}\\{orden.NombreArchivo}.xlsx");
+                try
+                {
+                    orden.CustomData.ForEach(x => cfile.AgregarRow(x.Name, x.Value));
+                    string urlLogoDistribuidor = orden.CustomData
+                                                      .Where(x => x.Name.Contains("Logo"))
+                                                       .Select(x => x.Value).FirstOrDefault();
+                    string extension = Path.GetExtension(urlLogoDistribuidor);
+                    this.DownloadFile(urlLogoDistribuidor, _ordenFolder, $"{orden.NombreArchivo}{extension}");
+                    cfile.SalvarExcel($"{_ordenFolder}\\{orden.NombreArchivo}.xlsx");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("No se pudo crear el archivo excel");
+                }
+                                
+                this.DownloadFile(orden.FilePdfURL, _ordenFolder, $"{orden.NombreArchivo}.pdf");                
+                
 
 
 

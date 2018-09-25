@@ -1,14 +1,7 @@
 ﻿using ConsoleApplication2.Class;
-using ConsoleApplication2.DAO;
-using ConsoleApplication2.DAO.Goepower;
-using ConsoleApplication2.DAO.Lito;
 using ConsoleApplication2.Model;
-using ConsoleApplication2.OrdenChangeStatus;
-using ConsoleApplication2.OrdenService;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
 namespace ConsoleApplication2
 {
@@ -22,6 +15,12 @@ namespace ConsoleApplication2
 
          
         }
+
+
+   
+
+
+
         public new void CambiarEstatusOrdenes(string ordenes)
         {
             base.CambiarEstatusOrdenes(ordenes);

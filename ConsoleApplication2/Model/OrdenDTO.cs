@@ -23,7 +23,7 @@ namespace ConsoleApplication2.Model
 
         public String FileXMLURL { get; set; }
 
-        public Dictionary<string, string> customDatas;
+        //public Dictionary<string, string> customDatas;
 
         public List<CustomData> CustomData;
 

@@ -1,10 +1,10 @@
 ﻿using ConsoleApplication2.Class;
-using ConsoleApplication2.DAO.Goepower;
-using ConsoleApplication2.DAO.Lito;
 using ConsoleApplication2.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
+
 
 namespace ConsoleApplication2
 
@@ -14,7 +14,6 @@ namespace ConsoleApplication2
 
         static void Main(string[] args)
         {
-
             ServicioKumon s_kummon = new ServicioKumon();
             ServicioHonda s_honda = new ServicioHonda();
             ServicioMichelin s_michelin = new ServicioMichelin();
@@ -24,16 +23,24 @@ namespace ConsoleApplication2
             ServicioVolkswagen s_volkswagen = new ServicioVolkswagen();
             ServicioCirculoK s_circulok = new ServicioCirculoK();
             ServicioSherwin s_sherwin = new ServicioSherwin();
-
             if (args.Length > 0)  // Parametro desde la tarea programada  
             {
                 switch (args[0])
                 {
-                    case "leerDropbox":
+                    case "DescargaPrintTemplate":
+                        s_seat.DescargarArchivos();
+                        s_kummon.DescargarArchivos();
+                        s_circulok.DescargarArchivos();
+                        s_michelin.DescargarArchivos();
+                        s_sherwin.DescargarArchivos();
+                        break;
+                    case "PrefacturacionIntelisis":
                         // Solo las ordenes de Kumon y Sherwin                       
                         s_kummon.RegistrarPrefacturacionIntelisis("15 DIAS", "U.D.P.");
-                        s_sherwin.RegistrarPrefacturacionIntelisis("15 DIAS","L.R.P.");
-                        //Moned Facturacion
+                        s_sherwin.RegistrarPrefacturacionIntelisis("15 DIAS", "L.R.P.");
+                        break;
+                    case "leerDropbox":
+                        //Monedero Electronico y Facturacion
                         Console.WriteLine("Leyendo la carpeta de Dropbox");
                         // Lectura de la Carpeta en Dropbox
                         Lector lector = new Lector();
@@ -49,6 +56,7 @@ namespace ConsoleApplication2
                     //  //Actualiza el estado de las ordenes  en la base de datos Goepower 192.168.2.209
                     case "Sincronizar":
                         Console.WriteLine("Sincronizando WorkOrders de GoPower");
+                        s_honda.LlenarInfoGoePower();
                         s_circulok.LlenarInfoGoePower();
                         s_sherwin.LlenarInfoGoePower();
                         s_kummon.LlenarInfoGoePower();
@@ -57,44 +65,19 @@ namespace ConsoleApplication2
                         s_starbuck.LlenarInfoGoePower();
                         s_volkswagen.LlenarInfoGoePower();
                         s_acura.LlenarInfoGoePower();
-                        s_honda.LlenarInfoGoePower();
-                        
                         break;
 
+                    case "HondaPrefacturacion": // se corre Manual  -- 
+                       s_honda.RegistrarPrefacturacionIntelisis("7 DIAS", "A.L.P.");
+                        break;
                 }
-
-
-
                 return;
             }
-
-
-
-
-
-            //ssw.ProcesarOrden(714503);
-            // Este se corre manual            
-            //s_honda.RegistrarPrefacturacionIntelisis("7 DIAS","A.L.P.");
-
-
-
-            //
-
-
-            #region Descarga de Archivos
-            s_seat.DescargarArchivos();
-            s_kummon.DescargarArchivos();
-            s_circulok.DescargarArchivos();
-            s_michelin.DescargarArchivos();
-            s_sherwin.DescargarArchivos();
-            #endregion
-
-
+        
             
-
-
-
-
+            
+            Console.ReadLine();
+            
         }
 
 
@@ -102,11 +85,19 @@ namespace ConsoleApplication2
 
 
 
+       
 
 
 
 
 
 
-    }
+
+
+
+
+
+
+
+}
 }

@@ -8,6 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.IO;
+using System.Xml.Serialization;
+
 namespace ConsoleApplication2.OrdenService {
     
     
@@ -8237,9 +8240,22 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         public ConsoleApplication2.OrdenService.AuthReturnOrder GetOrder(ConsoleApplication2.OrdenService.AuthHeaderOrder AuthHeaderOrder) {
+
             ConsoleApplication2.OrdenService.GetOrderRequest inValue = new ConsoleApplication2.OrdenService.GetOrderRequest();
             inValue.AuthHeaderOrder = AuthHeaderOrder;
+
+
             ConsoleApplication2.OrdenService.GetOrderResponse retVal = ((ConsoleApplication2.OrdenService.OrderInfoSoap)(this)).GetOrder(inValue);
+
+            //using (StreamWriter myWriter = new StreamWriter($"C:\\Desarrollo\\salidaIbjeto.xml", false))
+            //{
+            //    XmlSerializer mySerializer = new XmlSerializer(typeof(GetOrderResponse));
+            //    mySerializer.Serialize(myWriter, retVal);
+            //}
+
+
+
+
             return retVal.GetOrderResult;
         }
         

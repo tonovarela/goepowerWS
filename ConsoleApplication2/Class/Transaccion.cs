@@ -11,27 +11,37 @@ namespace ConsoleApplication2.Class
     {
 
 
-        public String Fecha { get; set; }
+        //public String Fecha { get; set; }
         public String Concepto { get; set; }
-        public String Cargo { get; set; }
-        public String Abono { get; set; }
-        public String Saldo { get; set; }
+        //public String Cargo { get; set; }
+        //public String Abono { get; set; }
+        //public String Saldo { get; set; }
 
       
 
         public Transaccion(String line)
         {
-            this.Fecha = line.Split('\t')[0];
-            this.Concepto = line.Split('\t')[1];
-            this.Cargo = line.Split('\t')[2];
-            this.Abono = line.Split('\t')[3];
-            this.Saldo = line.Split('\t')[4];                       
+            this.Concepto = "";
+            int index = line.IndexOf("C");
+            if (index != -1)
+            {
+                this.Concepto = line.Substring(index, 8);                
+            }
+            
+
+
+
+            //this.Fecha = line.Split('\t')[0];
+            //this.Concepto = line.Split('\t')[1];
+            //this.Cargo = line.Split('\t')[2];
+            //this.Abono = line.Split('\t')[3];
+            //this.Saldo = line.Split('\t')[4];                       
         }
 
         
         public bool esTransaccion()
         {
-            return this.Concepto.StartsWith("CE") ? true : false;
+            return this.Concepto.StartsWith("C") ? true : false;
         }
         public String WorkOrder
         {
@@ -45,8 +55,8 @@ namespace ConsoleApplication2.Class
         {
             Console.WriteLine("------------------------------");
             Console.WriteLine($"Concepto :[{this.Concepto}]");
-            Console.WriteLine($"WorkOrden :[{this.WorkOrder}]");
-            Console.WriteLine($"Abono :[{this.Abono}]");
+            //Console.WriteLine($"WorkOrden :[{this.WorkOrder}]");
+            //Console.WriteLine($"Abono :[{this.Abono}]");
             Console.WriteLine("------------------------------");
         }
     }

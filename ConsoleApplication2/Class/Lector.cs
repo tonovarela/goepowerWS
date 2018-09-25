@@ -24,7 +24,7 @@ namespace ConsoleApplication2.Class
         public Lector()
         {            
             this._bitacoraExcel = new FileExcel();
-            this._archivos = new DirectoryInfo(_directorio).GetFiles("*.txt");
+            this._archivos = new DirectoryInfo(_directorio).GetFiles("*.exp");
             this._directorio_bitacora = "Z:\\kumon\\reportes";
         }
 
@@ -38,24 +38,25 @@ namespace ConsoleApplication2.Class
                 string[] lines = File.ReadAllLines(archivo.FullName);
                 foreach (string line in lines)
                 {
+                                       
                     Transaccion tr = new Transaccion(line);
-                    if (line.Split('\t').Length > 5 || !tr.esTransaccion())
+                    if (!tr.esTransaccion())
                         continue;
                     VentaDAO dao = new VentaDAO();
-                    OrdenDAO _ordenDao = new OrdenDAO();
-                    _ordenDao.ActualizaPago(tr.WorkOrder);
+                    OrdenDAO _ordenDao = new OrdenDAO();                    
                     string tienda = dao.obtenerTienda(tr.WorkOrder);
-                    
-                    transacciones.Add(new TransaccionDTO() {                                         
-                                           WorkOrden = tr.WorkOrder,
-                                           Tienda = tienda
-                                          }
+                    _ordenDao.ActualizaPago(tr.WorkOrder);
+                    transacciones.Add(new TransaccionDTO()
+                    {
+                        WorkOrden = tr.WorkOrder,
+                        Tienda = tienda
+                    }
                                        );
                     this._bitacoraExcel.AgregarRow(tr.WorkOrder, tienda);
-                    //tr.Imprimir();
+                    tr.Imprimir();
                 }
                 File.Delete(archivo.FullName);
-            }            
+            }
             if (transacciones.Count > 0)
             {
                 String fecha = String.Format("{0:dd-MM-yyyy_HH_mm_ss}", DateTime.Now);

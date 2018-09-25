@@ -11,7 +11,7 @@ namespace ConsoleApplication2.DAO.Goepower
 
         public Orden existe(string ordenID)
         {
-            return this.ctx.Orden.AsQueryable().Where(x => x.ordenID == ordenID).FirstOrDefault() ;
+            return this.ctx.Orden.AsQueryable().Where(x => x.ordenID.Contains(ordenID)).FirstOrDefault() ;
             
         }
         
