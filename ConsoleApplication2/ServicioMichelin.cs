@@ -1,6 +1,7 @@
 ﻿using ConsoleApplication2.Class;
 using ConsoleApplication2.Model;
 using ConsoleApplication2.OrdenService;
+using DocumentFormat.OpenXml.Spreadsheet;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -84,7 +85,16 @@ namespace ConsoleApplication2
                                                        .Select(x => x.Value).FirstOrDefault();
                     string extension = Path.GetExtension(urlLogoDistribuidor);
                     this.DownloadFile(urlLogoDistribuidor, _ordenFolder, $"{orden.NombreArchivo}{extension}");
-                    cfile.SalvarExcel($"{_ordenFolder}\\{orden.NombreArchivo}.xlsx");
+                    
+                    Row cabecera = new Row();
+                    cabecera.Append(
+                        cfile.ConstructCell("Valor", CellValues.String),
+                        cfile.ConstructCell("Campo", CellValues.String)
+                        );
+
+
+                    cfile.SalvarExcel($"{_ordenFolder}\\{orden.NombreArchivo}.xlsx", "Michelin", cabecera);
+                    
                 }
                 catch (Exception e)
                 {

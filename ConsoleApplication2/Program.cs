@@ -73,9 +73,18 @@ namespace ConsoleApplication2
                 }
                 return;
             }
-        
-            
-            
+
+
+            //FileExcel ex =new FileExcel();
+            //ex.CrearExcelPrimerColumna(@"C:\Desarrollo\test.xlsx");
+
+            s_seat.DescargarArchivos();
+            //s_kummon.TraerInfo(731819);
+            //728224
+
+
+
+
             Console.ReadLine();
             
         }

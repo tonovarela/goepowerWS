@@ -48,8 +48,8 @@ namespace ConsoleApplication2.Class
                 CompanyID = 5104,
                 PartnerID = 5104,
                 Username = "sistemaskumon",
-                OrderStatus = OrderStatuses.Released,
-                StartDate = DateTime.Today.AddDays(-5),
+                OrderStatus = OrderStatuses.InProduction,
+                StartDate = DateTime.Today.AddDays(-7),
                 EndDate = DateTime.Now,
                 ProducerID = _PRODUCERID
             };
@@ -123,7 +123,7 @@ namespace ConsoleApplication2.Class
                 CompanyID = 1299,
                 PartnerID = 1299,
                 Username = "sistemasseat",
-                OrderStatus = OrderStatuses.Released,
+                OrderStatus = OrderStatuses.InProduction,
                 StartDate = DateTime.Today.AddDays(-5),
                 EndDate = DateTime.Now,
                 ProducerID = _PRODUCERID

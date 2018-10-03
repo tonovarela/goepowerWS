@@ -407,26 +407,30 @@ namespace ConsoleApplication2.Class
 
 
 
-        //public void TraerInfo(int idOrden)
-        //{
-        //    this._parametroOrden = new AuthHeaderOrder()
-        //    {
-        //        CompanyID = this._conexion.CompanyID,
-        //        MasterKey = this._conexion.MasterKey,
-        //        OrderID = idOrden,
-        //        ProducerID = this._conexion.ProducerID,
-        //        Username = this._conexion.Username
-        //    };
+        public void TraerInfo(int idOrden)
+        {
+            this._parametroOrden = new AuthHeaderOrder()
+            {
+                CompanyID = this._conexion.CompanyID,
+                MasterKey = this._conexion.MasterKey,
+                OrderID = idOrden,
+                ProducerID = this._conexion.ProducerID,
+                Username = this._conexion.Username
+            };
 
-        //    //this._parametroOrden.OrderID = idOrden;          
-        //    AuthReturnOrder result = this.client.GetOrder(this._parametroOrden);
-        //    Order orden = result.Order;
-        //    Job[] jobs = result.Jobs;
+            //this._parametroOrden.OrderID = idOrden;          
+            AuthReturnOrder result = this.client.GetOrder(this._parametroOrden);
+            Order orden = result.Order;
+            Job[] jobs = result.Jobs;
 
-        //    jobs.ToList().ForEach(x => Console.WriteLine(x.ProductType));
+            
+
+            jobs.ToList().ForEach(x => {
+                Console.WriteLine(x.ProductType);
+                });
 
 
-        //}
+        }
 
 
         //public void TraerInfoCrece()

@@ -41,7 +41,13 @@ namespace ConsoleApplication2
                 Console.WriteLine(_ordenFolder);
                 orden.Imprimir();
                 this.DownloadFile(orden.FilePdfURL, _ordenFolder, orden.NombreArchivo + ".pdf");
+                // Se descarga el Documento Excel
                 this.DownloadFile(orden.FileExcelURL, _ordenFolder, orden.NombreArchivo + ".xlsx");
+                
+                FileExcel excel = new FileExcel();
+                // Se crea un nuevo Excel unicamente con la informacion de la primera columna (el archivo original es borrado)
+                excel.CrearArchivoPrimerColumna(_ordenFolder + "\\"+orden.NombreArchivo+".xlsx");
+                
 
             });
         }

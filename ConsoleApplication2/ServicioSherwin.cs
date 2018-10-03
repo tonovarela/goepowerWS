@@ -2,6 +2,7 @@
 using ConsoleApplication2.DAO.Lito;
 using ConsoleApplication2.Model;
 using ConsoleApplication2.OrdenService;
+using DocumentFormat.OpenXml.Spreadsheet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -178,8 +179,14 @@ namespace ConsoleApplication2
 
                 FileExcel cfile = new FileExcel();
                 orden.CustomData.ForEach( custom=>cfile.AgregarRow(custom.Name,custom.Value.Replace("<nextline>"," ")) );                               
-                this.DownloadFile(orden.FilePdfURL, _ordenFolder, $"{orden.NombreArchivo}.pdf");                
-                cfile.SalvarExcel($"{_ordenFolder}\\{orden.NombreArchivo}.xlsx");
+                this.DownloadFile(orden.FilePdfURL, _ordenFolder, $"{orden.NombreArchivo}.pdf");
+
+                Row cabecera = new Row();
+                cabecera.Append(
+                    cfile.ConstructCell("Valor", CellValues.String),
+                    cfile.ConstructCell("Campo", CellValues.String));
+
+                cfile.SalvarExcel($"{_ordenFolder}\\{orden.NombreArchivo}.xlsx",this._nombreTienda,cabecera);
               
             }
             );

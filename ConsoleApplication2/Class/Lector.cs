@@ -2,6 +2,7 @@
 using ConsoleApplication2.DAO.Goepower;
 using ConsoleApplication2.DAO.Lito;
 using ConsoleApplication2.Model;
+using DocumentFormat.OpenXml.Spreadsheet;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -64,10 +65,14 @@ namespace ConsoleApplication2.Class
                 String directory = $@"{this._directorio_bitacora}\{mes}";
                 if (!Directory.Exists(directory))
                 {
-                    Directory.CreateDirectory(directory);
+                    Directory.CreateDirectory(directory);                
                 }
+                Row cabecera = new Row();
+                cabecera.Append(
+                    _bitacoraExcel.ConstructCell("WorkOrder", CellValues.String),
+                    _bitacoraExcel.ConstructCell("Tienda", CellValues.String));
 
-                _bitacoraExcel.SalvarExcel($@"{directory}\{fecha}.xlsx", "informacion");
+                _bitacoraExcel.SalvarExcel($@"{directory}\{fecha}.xlsx", "informacion",cabecera);
             }
 
             return transacciones;
