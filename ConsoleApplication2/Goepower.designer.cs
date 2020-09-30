@@ -36,6 +36,12 @@ namespace ConsoleApplication2
     partial void InsertOrden(Orden instance);
     partial void UpdateOrden(Orden instance);
     partial void DeleteOrden(Orden instance);
+    partial void InsertOrdenArchivos(OrdenArchivos instance);
+    partial void UpdateOrdenArchivos(OrdenArchivos instance);
+    partial void DeleteOrdenArchivos(OrdenArchivos instance);
+    partial void InsertOrdenFacturacion(OrdenFacturacion instance);
+    partial void UpdateOrdenFacturacion(OrdenFacturacion instance);
+    partial void DeleteOrdenFacturacion(OrdenFacturacion instance);
     #endregion
 		
 		public GoepowerDataContext() : 
@@ -81,6 +87,22 @@ namespace ConsoleApplication2
 			get
 			{
 				return this.GetTable<Orden>();
+			}
+		}
+		
+		public System.Data.Linq.Table<OrdenArchivos> OrdenArchivos
+		{
+			get
+			{
+				return this.GetTable<OrdenArchivos>();
+			}
+		}
+		
+		public System.Data.Linq.Table<OrdenFacturacion> OrdenFacturacion
+		{
+			get
+			{
+				return this.GetTable<OrdenFacturacion>();
 			}
 		}
 	}
@@ -343,6 +365,8 @@ namespace ConsoleApplication2
 		
 		private string _clienteIntelisis;
 		
+		private System.Xml.Linq.XElement _detalle;
+		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -369,6 +393,8 @@ namespace ConsoleApplication2
     partial void OnTotalChanged();
     partial void OnclienteIntelisisChanging(string value);
     partial void OnclienteIntelisisChanged();
+    partial void OndetalleChanging(System.Xml.Linq.XElement value);
+    partial void OndetalleChanged();
     #endregion
 		
 		public Orden()
@@ -592,6 +618,366 @@ namespace ConsoleApplication2
 					this._clienteIntelisis = value;
 					this.SendPropertyChanged("clienteIntelisis");
 					this.OnclienteIntelisisChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_detalle", DbType="Xml", UpdateCheck=UpdateCheck.Never)]
+		public System.Xml.Linq.XElement detalle
+		{
+			get
+			{
+				return this._detalle;
+			}
+			set
+			{
+				if ((this._detalle != value))
+				{
+					this.OndetalleChanging(value);
+					this.SendPropertyChanging();
+					this._detalle = value;
+					this.SendPropertyChanged("detalle");
+					this.OndetalleChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OrdenArchivos")]
+	public partial class OrdenArchivos : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_ordenArchivos;
+		
+		private string _ordenID;
+		
+		private System.Nullable<byte> _plantillasDescargadas;
+		
+		private string _tienda;
+		
+		private System.Xml.Linq.XElement _detalle;
+		
+		private System.Nullable<System.DateTime> _fecha_descarga;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_ordenArchivosChanging(int value);
+    partial void Onid_ordenArchivosChanged();
+    partial void OnordenIDChanging(string value);
+    partial void OnordenIDChanged();
+    partial void OnplantillasDescargadasChanging(System.Nullable<byte> value);
+    partial void OnplantillasDescargadasChanged();
+    partial void OntiendaChanging(string value);
+    partial void OntiendaChanged();
+    partial void OndetalleChanging(System.Xml.Linq.XElement value);
+    partial void OndetalleChanged();
+    partial void Onfecha_descargaChanging(System.Nullable<System.DateTime> value);
+    partial void Onfecha_descargaChanged();
+    #endregion
+		
+		public OrdenArchivos()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_ordenArchivos", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_ordenArchivos
+		{
+			get
+			{
+				return this._id_ordenArchivos;
+			}
+			set
+			{
+				if ((this._id_ordenArchivos != value))
+				{
+					this.Onid_ordenArchivosChanging(value);
+					this.SendPropertyChanging();
+					this._id_ordenArchivos = value;
+					this.SendPropertyChanged("id_ordenArchivos");
+					this.Onid_ordenArchivosChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ordenID", DbType="VarChar(50)")]
+		public string ordenID
+		{
+			get
+			{
+				return this._ordenID;
+			}
+			set
+			{
+				if ((this._ordenID != value))
+				{
+					this.OnordenIDChanging(value);
+					this.SendPropertyChanging();
+					this._ordenID = value;
+					this.SendPropertyChanged("ordenID");
+					this.OnordenIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_plantillasDescargadas", DbType="TinyInt")]
+		public System.Nullable<byte> plantillasDescargadas
+		{
+			get
+			{
+				return this._plantillasDescargadas;
+			}
+			set
+			{
+				if ((this._plantillasDescargadas != value))
+				{
+					this.OnplantillasDescargadasChanging(value);
+					this.SendPropertyChanging();
+					this._plantillasDescargadas = value;
+					this.SendPropertyChanged("plantillasDescargadas");
+					this.OnplantillasDescargadasChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tienda", DbType="VarChar(50)")]
+		public string tienda
+		{
+			get
+			{
+				return this._tienda;
+			}
+			set
+			{
+				if ((this._tienda != value))
+				{
+					this.OntiendaChanging(value);
+					this.SendPropertyChanging();
+					this._tienda = value;
+					this.SendPropertyChanged("tienda");
+					this.OntiendaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_detalle", DbType="Xml", UpdateCheck=UpdateCheck.Never)]
+		public System.Xml.Linq.XElement detalle
+		{
+			get
+			{
+				return this._detalle;
+			}
+			set
+			{
+				if ((this._detalle != value))
+				{
+					this.OndetalleChanging(value);
+					this.SendPropertyChanging();
+					this._detalle = value;
+					this.SendPropertyChanged("detalle");
+					this.OndetalleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_descarga", DbType="DateTime")]
+		public System.Nullable<System.DateTime> fecha_descarga
+		{
+			get
+			{
+				return this._fecha_descarga;
+			}
+			set
+			{
+				if ((this._fecha_descarga != value))
+				{
+					this.Onfecha_descargaChanging(value);
+					this.SendPropertyChanging();
+					this._fecha_descarga = value;
+					this.SendPropertyChanged("fecha_descarga");
+					this.Onfecha_descargaChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OrdenFacturacion")]
+	public partial class OrdenFacturacion : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _numero_orden;
+		
+		private System.Nullable<System.DateTime> _fecha_registro;
+		
+		private System.Xml.Linq.XElement _detalle;
+		
+		private string _tienda;
+		
+		private System.Nullable<decimal> _Importe;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onnumero_ordenChanging(int value);
+    partial void Onnumero_ordenChanged();
+    partial void Onfecha_registroChanging(System.Nullable<System.DateTime> value);
+    partial void Onfecha_registroChanged();
+    partial void OndetalleChanging(System.Xml.Linq.XElement value);
+    partial void OndetalleChanged();
+    partial void OntiendaChanging(string value);
+    partial void OntiendaChanged();
+    partial void OnImporteChanging(System.Nullable<decimal> value);
+    partial void OnImporteChanged();
+    #endregion
+		
+		public OrdenFacturacion()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numero_orden", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int numero_orden
+		{
+			get
+			{
+				return this._numero_orden;
+			}
+			set
+			{
+				if ((this._numero_orden != value))
+				{
+					this.Onnumero_ordenChanging(value);
+					this.SendPropertyChanging();
+					this._numero_orden = value;
+					this.SendPropertyChanged("numero_orden");
+					this.Onnumero_ordenChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_registro", DbType="DateTime")]
+		public System.Nullable<System.DateTime> fecha_registro
+		{
+			get
+			{
+				return this._fecha_registro;
+			}
+			set
+			{
+				if ((this._fecha_registro != value))
+				{
+					this.Onfecha_registroChanging(value);
+					this.SendPropertyChanging();
+					this._fecha_registro = value;
+					this.SendPropertyChanged("fecha_registro");
+					this.Onfecha_registroChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_detalle", DbType="Xml", UpdateCheck=UpdateCheck.Never)]
+		public System.Xml.Linq.XElement detalle
+		{
+			get
+			{
+				return this._detalle;
+			}
+			set
+			{
+				if ((this._detalle != value))
+				{
+					this.OndetalleChanging(value);
+					this.SendPropertyChanging();
+					this._detalle = value;
+					this.SendPropertyChanged("detalle");
+					this.OndetalleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tienda", DbType="VarChar(100)")]
+		public string tienda
+		{
+			get
+			{
+				return this._tienda;
+			}
+			set
+			{
+				if ((this._tienda != value))
+				{
+					this.OntiendaChanging(value);
+					this.SendPropertyChanging();
+					this._tienda = value;
+					this.SendPropertyChanged("tienda");
+					this.OntiendaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Importe", DbType="Money")]
+		public System.Nullable<decimal> Importe
+		{
+			get
+			{
+				return this._Importe;
+			}
+			set
+			{
+				if ((this._Importe != value))
+				{
+					this.OnImporteChanging(value);
+					this.SendPropertyChanging();
+					this._Importe = value;
+					this.SendPropertyChanged("Importe");
+					this.OnImporteChanged();
 				}
 			}
 		}

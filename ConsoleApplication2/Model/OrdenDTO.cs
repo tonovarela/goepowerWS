@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ConsoleApplication2.Model
 {
@@ -11,6 +12,9 @@ namespace ConsoleApplication2.Model
     {
 
         public int OrdenId { get; set; }
+
+
+        public string TipoProducto { get; set; }
 
         public int JobId { get; set; }
 
@@ -26,6 +30,9 @@ namespace ConsoleApplication2.Model
         //public Dictionary<string, string> customDatas;
 
         public List<CustomData> CustomData;
+
+
+        public XElement Detalle { get; set; }
 
         public void Imprimir()
         {

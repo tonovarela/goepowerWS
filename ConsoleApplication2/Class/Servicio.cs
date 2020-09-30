@@ -1,9 +1,11 @@
 ﻿using ConsoleApplication2.DAO.Goepower;
 using ConsoleApplication2.DAO.Lito;
+using ConsoleApplication2.Entity;
 using ConsoleApplication2.Model;
 using ConsoleApplication2.Model.Crece;
 using ConsoleApplication2.OrdenChangeStatus;
 using ConsoleApplication2.OrdenService;
+using ConsoleApplication2.ProductosService;
 
 using System;
 using System.Collections.Generic;
@@ -12,11 +14,13 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
-
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace ConsoleApplication2.Class
 {
-    public class Servicio
+    public  class Servicio
     {
         protected string _nombreTienda;
         protected string _workspace = "Z:\\";
@@ -25,29 +29,97 @@ namespace ConsoleApplication2.Class
         protected productioncallsSoapClient client_production;
         protected AuthHeaderOrders _conexion;
         protected AuthHeaderOrder _parametroOrden;
-        protected string condiciones;
+        public string condiciones;
         protected string agente;
-
+        protected double? agenteComision;
+        protected Cte Cliente;
 
         
 
-
+        public bool esTransferencia=false;
+         
         public Servicio()
         {
             this.client_production = new productioncallsSoapClient();
+            this.condiciones = "";
             this.client = new OrderInfoSoapClient();
+            //var time = new TimeSpan(1,0, 0,0);
+            //this.client.Endpoint.Binding.CloseTimeout = time;
+            //this.client.Endpoint.Binding.OpenTimeout = time;
+            //this.client.Endpoint.Binding.ReceiveTimeout = time;
+            //this.client.Endpoint.Binding.SendTimeout = time;
+
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
             this.client.ClientCredentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.Root, X509FindType.FindBySubjectName, "Starfield Root Certificate Authority");
             this.client_production.ClientCredentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.Root, X509FindType.FindBySubjectName, "Starfield Root Certificate Authority");
         }
+        protected void CargarDetalleCliente(string cte)
+        {
+            ClienteDAO clienteDAO = new ClienteDAO();
+            this.Cliente = clienteDAO.ObtenerDetalle(cte);
+            if (this.Cliente == null)
+            {
+                this.Cliente = new Cte()
+                {
+                    Concepto = "",
+                    Agente = "",
+                    Condicion = "",
+                    DiasVencimiento = 0
+                };
+            }
+            if (esTransferencia)
+            {
+                this.Cliente.Condicion = "Contado Transferencia";
+            }
+        }
+        protected void RegistrarBitacoraPrintTemplate(List<OrdenDTO> orden)
+        {
+            OrdenDAO dao = new OrdenDAO();
+            var ordenes = orden.GroupBy(x =>new{ x.OrdenId })
+                               .Select(g => new { ordenID = g.Key.OrdenId,
+                                                items = g.Count(),
+                                                detalle = g.ToList().First().Detalle })
+                                .ToList();
+            try
+            {
+                ordenes.ForEach(_orden=>
+                {
+                    OrdenArchivos dto = new OrdenArchivos()
+                    {
+                        detalle = _orden.detalle,
+                        ordenID = _orden.ordenID.ToString(),
+                        plantillasDescargadas = (byte)orden.ToList().Count(),                         
+                         tienda= this._nombreTienda,
+                         fecha_descarga= DateTime.Now                        
+                    };
+                    dao.registrarOrdenconArchivos(dto);
+                });
+                
+            }catch(Exception e)
+            {
+                Console.WriteLine("error en la insercion de la bitacora");
+            }
+           
+
+
+        }
         protected virtual List<OrdenDTO> GetOrdenesConArchivos()
         {
+            //is._conexion.StartDate = DateTime.Today.AddDays(-9);
+            //Console.WriteLine(this._conexion.EndDate);
             List<OrdenDTO> _ordenes = new List<OrdenDTO>();
+            Console.WriteLine("Ordenes desde  " + this._conexion.StartDate);
+            Console.WriteLine("hasta " + this._conexion.EndDate);
+            
             var data = this.client.GetOrdersWithProductionFiles(this._conexion);
+            
+            Console.WriteLine(data.Count);
+
             try
             {
                 var orders = data.Orders.SelectMany(
-                  orden => orden.Jobs.Where(job => job.ProductType == "Blocks")
+                  orden => orden.Jobs
+                  .Where(job => job.ProductType == "Blocks")
                   .Select(job =>
                    new OrdenDTO
                    {
@@ -59,9 +131,15 @@ namespace ConsoleApplication2.Class
                        FileExcelURL = job.CustomDatas.First().Value,
                        FileXMLURL = job.JobTicketXML,
                        CustomData = job.CustomDatas.ToList(),
+                       Detalle = orden.ToXElement<AuthReturnOrderWithProductionFiles>()
                    })).ToList();
                 this.fullMonthName = this.UppercaseFirst(DateTime.Now.ToString("MMMM", CultureInfo.CreateSpecificCulture("es")));
+
+                
+
                 _ordenes = orders;
+                // Registro Bitacora 
+                this.RegistrarBitacoraPrintTemplate(_ordenes);
             }
             catch (ArgumentNullException e)
             {
@@ -70,7 +148,6 @@ namespace ConsoleApplication2.Class
             return _ordenes;
 
         }
-
         protected void DownloadFile(string origenArchivo, string destinoCarpeta, string nombreArchivo)
         {
             WebClient client = new WebClient();
@@ -80,9 +157,16 @@ namespace ConsoleApplication2.Class
                 Download d = new Download();
                 if (!Directory.Exists(destinoCarpeta))
                     Directory.CreateDirectory(destinoCarpeta);
-                Descarga f = new Descarga();
-                f.DownloadFile(origenArchivo, destinoCarpeta + "\\" + nombreArchivo);
-
+                string destinoArchivo = destinoCarpeta + "\\" + nombreArchivo;
+                if (File.Exists(destinoArchivo))
+                {
+                    Console.WriteLine($"El arhivo {destinoArchivo} ya existe no se descargara");
+                }
+                else
+                {
+                    Descarga f = new Descarga();
+                    f.DownloadFile(origenArchivo, destinoArchivo);                    
+                }                                              
             }
             catch (Exception e)
             {
@@ -100,82 +184,95 @@ namespace ConsoleApplication2.Class
             a[0] = char.ToUpper(a[0]);
             return new string(a);
         }
-
-        protected void CambiarEstatusOrdenes(string ordenes)
+        public void CambiarEstatusOrdenes(string ordenes, ePowerOrderStatus status)
         {
             AuthHeader header = null;
-            switch (this._nombreTienda.ToUpper())
+            AuthHeaderOrders credenciales = Credenciales.Kumon();
+            header = new AuthHeader()
             {
-                case "KUMON":
-                    AuthHeaderOrders credenciales = Credenciales.Kumon();
-                    header = new AuthHeader()
-                    {
-                        CompanyID = credenciales.CompanyID,
-                        MasterKey = credenciales.MasterKey,
-                        ProducerID = credenciales.ProducerID,
-                        Status = ePowerOrderStatus.Release,
-                        OrderIDs = ordenes
-                    };
-                    break;
-                case "CIRCLEK":
-                    AuthHeaderOrders credencialesk = Credenciales.CirculoK();
-                    header = new AuthHeader()
-                    {
-                        CompanyID = credencialesk.CompanyID,
-                        MasterKey = credencialesk.MasterKey,
-                        ProducerID = credencialesk.ProducerID,
-                        Status = ePowerOrderStatus.Release,
-                        OrderIDs = ordenes
-                    };
-                    break;
-            }
-            var result = client_production.ChangeStatus(header);
+                CompanyID = credenciales.CompanyID,
+                MasterKey = credenciales.MasterKey,
+                ProducerID = credenciales.ProducerID,
+                Status = status,
+                OrderIDs = ordenes
+            };
+               
+                var result = client_production.ChangeStatus(header);
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine($"Se actualizo {result.IsSuccessful}");
             Console.WriteLine($" Mensaje  {result.Message}");
             Console.WriteLine("----------------------------------------------");
         }
-
         protected int[] GetListaOrdenes(OrderStatuses status)
         {
             this._conexion.OrderStatus = status;
             int[] ordenes_id = this.client.GetOrdersList(_conexion).OrdersList;
             return ordenes_id;
         }
-
-
-        public void RegistrarPrefacturacionIntelisis(string condiciones, string agente, int? idOrden = null)
+        public void RegistrarPrefacturacionIntelisis(string condiciones, string agente, int? idOrden = null,double? agenteComision= null, OrderStatuses? status= OrderStatuses.Pending)
         {
             this.condiciones = condiciones;
             this.agente = agente;
-
-
+            this.agenteComision = agenteComision;
+            
             if (idOrden.HasValue)
             {
                 this.ProcesarOrden(idOrden.Value);
                 return;
             }
-        
-
-            int[] ordenes_id = this.GetListaOrdenes(OrderStatuses.Pending);
+            //OrderStatuses status = OrderStatuses.Pending;                       
+            int[] ordenes_id = this.GetListaOrdenes(status.Value);
             if (ordenes_id == null)
             {
                 Console.WriteLine($"No hay ordenes por procesar en la tienda {this._nombreTienda}");
                 return;
             }
+            
             Console.WriteLine($"Total de ordenes {ordenes_id.Length} en la tienda {this._nombreTienda}");
             foreach (int orden_id in ordenes_id)
             {
                 Console.WriteLine("Procesando la orden " + orden_id);
-
-
                 this.ProcesarOrden(orden_id);
             }
 
 
         }
-
-        protected virtual void ProcesarOrden(int idOrden)
+        protected virtual bool CumplePoliticas(AuthReturnOrder  result)
+        {
+            return true;
+        }
+        protected bool esFacturable(AuthReturnOrder result)
+        {
+            
+            if (result.Order.TotalPrice > 0 && (result.Order.BillingMethodName.Contains("Convenio CIE") || result.Order.BillingMethodID==5845 || result.Order.BillingMethodID == 5708))
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine($"{result.Order.OrderID} No se registra porque NO cuenta con el método de pago Convenio CIE");
+                return false;
+            }
+            
+        }
+        protected void registrarEnBitacoraFacturacion(AuthReturnOrder result)
+        {
+            Order orden = result.Order;
+            XElement detalleOrdenXML = result.ToXElement<AuthReturnOrder>();
+            OrdenFacturacionDAO ordenFacturacionDAO = new OrdenFacturacionDAO();
+            if (!ordenFacturacionDAO.Existe(orden.OrderID))
+            {
+                ordenFacturacionDAO.Registrar(new OrdenFacturacion()
+                {
+                    numero_orden = orden.OrderID,
+                    fecha_registro = DateTime.Now,
+                    Importe = Decimal.Parse((orden.TotalPrice + orden.ShippingPrice).ToString()),
+                    tienda = this._nombreTienda,
+                    detalle= detalleOrdenXML
+                });
+            }
+        }
+        protected  void ProcesarOrden(int idOrden)
         {
             this._parametroOrden = new AuthHeaderOrder()
             {
@@ -185,9 +282,20 @@ namespace ConsoleApplication2.Class
                 ProducerID = this._conexion.ProducerID,
                 Username = this._conexion.Username
             };
-
-            //this._parametroOrden.OrderID = idOrden;          
+           
+            //this._parametroOrden.OrderID = idOrden; 
+            
             AuthReturnOrder result = this.client.GetOrder(this._parametroOrden);
+
+            //if (!this.esFacturable(result))
+            //{
+            //    return;
+            //}
+
+            if (!this.CumplePoliticas(result)) {
+                return;
+            }
+
             Order orden = result.Order;
             Job[] jobs = result.Jobs;
             VentaDAO venta_dao = new VentaDAO();
@@ -200,18 +308,58 @@ namespace ConsoleApplication2.Class
                 return;
             }
             ClienteDAO cliente_dao = new ClienteDAO();
-            //CteHonda cte = cliente_dao.BuscarCliente(orden.WebUserID.ToString());
             CtoCampoExtra cte = cliente_dao.BuscarClienteCampoExtra(orden.WebUserID.ToString());
+            string nombreContacto = string.Empty;
+
+
+            if (this._nombreTienda == "KIA" && orden.TotalPrice<=10)
+            {
+                Console.WriteLine($"Orden {orden.OrderID} de KIA con subtotal igual o menor de 10 no se registra en Intelisis");
+                return;
+            }
+
+            if (this._nombreTienda == "kfc")
+            {
+                cte = new CtoCampoExtra();
+                cte.Clave = "18933";
+                CteCto contacto = cliente_dao.BuscarContacto(orden.WebUserID);               
+                if (contacto != null)                
+                    nombreContacto = contacto.Nombre;
+                this.Cliente = new Cte()
+                {
+                    Concepto = "SAAM KFC",
+                    Agente = "C.R.C",
+                    Condicion = "60 DIAS",
+                    DiasVencimiento = 60,                    
+                   
+                    
+                    
+                };
+            }
+            else
+            {               
+                this.CargarDetalleCliente(cte != null ? cte.Clave : "16776");
+            }
+            
+
 
             DateTime time = DateTime.Now;
-            DateTime timeVencimiento = time.AddDays(7);
+            DateTime timeVencimiento = time.AddDays(this.Cliente.DiasVencimiento);
+
+            #region RegistrarEnBitacoraFacturacion
+            this.registrarEnBitacoraFacturacion(result);
+            #endregion
+
             #region Llenado de Venta
             Venta venta = new Venta()
             {
                 Empresa = "LITO",
+                Contacto = orden.WebUserID,
+                ContactoNombre = nombreContacto.Length > 0 ? nombreContacto : null,
                 Mov = "Factura Electronica",
                 FechaEmision = new DateTime(time.Year, time.Month, time.Day),
-                Concepto = $"SAAM {this._nombreTienda.ToUpper()}",
+                //Concepto = $"SAAM {this._nombreTienda.ToUpper()}",
+                Concepto = this.Cliente.Concepto,
                 Moneda = "Pesos",
                 TipoCambio = 1.0,
                 Usuario = "MTOVAR",
@@ -220,10 +368,15 @@ namespace ConsoleApplication2.Class
                 Estatus = "SINAFECTAR",
                 Cliente = cte != null ? cte.Clave : "16776",
                 Almacen = "AL PT",
-                Observaciones = $"SAAM {this._nombreTienda.ToUpper()}",
-                Condicion = this.condiciones,//7 dias kumon
+                //Observaciones = $"SAAM {this._nombreTienda.ToUpper()}",
+                Observaciones = this.Cliente.Concepto,
+                //Condicion = this.condiciones,
+                Condicion = this.esTransferencia ? "Contado Transferencia" : this.Cliente.Condicion,
+                //this.Cliente.Condicion,
                 Vencimiento = new DateTime(timeVencimiento.Year, timeVencimiento.Month, timeVencimiento.Day),
-                Agente = this.agente, //"A.L.P.",
+                AgenteComision = agenteComision.HasValue ? agenteComision : null,
+                Agente = this.Cliente.Agente,
+                //Agente = this.agente, //"A.L.P.",
                 //Importe = Decimal.Parse((orden.TotalPrice + orden.ShippingPrice).ToString()),
                 //Impuestos = Decimal.Parse(orden.Tax1.ToString()),
                 Sucursal = 0,
@@ -233,10 +386,9 @@ namespace ConsoleApplication2.Class
                 Clase = "",
                 Directo = true,
                 OrdenID = orden.OrderID.ToString()
-
             };
             #endregion
-
+            
             int id_venta = venta_dao.Insertar(venta);
             int x = 1;
 
@@ -253,8 +405,8 @@ namespace ConsoleApplication2.Class
                 {
                     ID = id_venta,
                     Renglon = x * 2048,
-                    RenglonID = x++,
-
+                    RenglonID = x,
+                    SubCuenta  =$"P{x++}",
                     Cantidad = _cantidad,
                     Almacen = "AL PT",
                     Articulo = job.SKU,
@@ -268,6 +420,28 @@ namespace ConsoleApplication2.Class
             }
             #endregion
 
+            #region Costo por pedido cuando aplique 
+            //if (orden.OrderFee > 0)
+            //{
+            //    VentaD detalleEnvio = new VentaD()
+            //    {
+            //        ID = id_venta,
+            //        DescripcionExtra = "Costo por pedido",
+            //        RenglonID = x,
+            //        RenglonTipo = 'N',
+            //        Renglon = x * 2048,
+            //        SubCuenta = $"P{x++}",
+            //        Articulo = "CostoPedido",
+            //        Precio =  Math.Round(orden.OrderFee, 2),
+            //        Cantidad = 1,
+            //        Impuesto1 = 16,
+            //        Unidad = "Servicio",
+            //        Almacen = "AL PT"
+            //    };
+            //    venta_dao.InsertarDetalle(detalleEnvio);
+            //}
+            #endregion
+
             #region Envio
             if (orden.ShippingPrice > 0)
             {
@@ -278,6 +452,7 @@ namespace ConsoleApplication2.Class
                     RenglonID = x,
                     RenglonTipo = 'N',
                     Renglon = x * 2048,
+                    SubCuenta = $"P{x}",
                     Articulo = "EN",
                     Precio = Math.Round(orden.ShippingPrice, 2),
                     Cantidad = 1,
@@ -288,12 +463,27 @@ namespace ConsoleApplication2.Class
                 venta_dao.InsertarDetalle(detalleEnvio);
             }
             #endregion
+            this.CambioStatusOrden(orden.OrderID.ToString());
 
+            
+
+
+        }
+
+
+        private void CambioStatusOrden(string numero_orden)
+        {
+            #region Cambio de estatus en KFC
+            if (this._nombreTienda == "kfc")
+            {
+                this.CambiarEstatusOrdenes(numero_orden, ePowerOrderStatus.ToProduction);
+            }
+            #endregion
         }
 
         public void LlenarInfoGoePower()
         {
-            this._conexion.StartDate = DateTime.Today.AddDays(-30);
+            this._conexion.StartDate = DateTime.Today.AddDays(-320);
             //this._conexion.StartDate = new DateTime(2018, 1, 1);
             this._conexion.EndDate = DateTime.Now;
             int[] ordenes = this.GetListaOrdenes(OrderStatuses.All);
@@ -327,6 +517,18 @@ namespace ConsoleApplication2.Class
                 Job[] jobs = result.Jobs;
 
                 var cte = clienteDAO.BuscarClienteCampoExtra(order.WebUserID.ToString());
+                XElement detalleOrdenXML;
+                // Convertir La respuesta en XML para Guardarlo en la Base de Datos
+                try
+                {
+                     detalleOrdenXML = result.ToXElement<AuthReturnOrder>();
+                }
+                catch(Exception e)
+                {
+                    detalleOrdenXML = null;
+                }
+                
+
                 Orden ordendDto = new Orden()
                 {
                     tienda = this._nombreTienda,
@@ -338,26 +540,28 @@ namespace ConsoleApplication2.Class
                     releaseDate = order.ReleaseDate,
                     shippingDate = order.ShippingDate,
                     Total = (float)order.TotalPrice,
-                    clienteIntelisis = cte != null ? cte.Clave : "16776"
+                    clienteIntelisis = cte != null ? cte.Clave : "16776",
+                    detalle=detalleOrdenXML                   
                 };
+
 
                 var o = ordenDao.existe(__ordenID);
                 if (o != null)
                 {
-
                     if (o.status != order.OrderStatus)
                     {
                         Console.WriteLine("Es diferente");
                         Console.WriteLine($"La orden {orden} cambio de  {o.status}  a {order.OrderStatus}");
                         ordenDao.Actualiza(ordendDto);
-
                     }
-
                     continue;
                 }
 
+                                           
                 Console.WriteLine($"Insertando la orden {orden} de la tienda {this._nombreTienda}");
                 ordenDao.Agregar(ordendDto);
+                
+
                 foreach (Job job in jobs)
                 {
                     Console.WriteLine($"Insertando el job {job.JobID}");
@@ -402,12 +606,8 @@ namespace ConsoleApplication2.Class
 
             }
 
-        }
-
-
-
-
-        public void TraerInfo(int idOrden)
+        }    
+        public AuthReturnOrder TraerInfo(int idOrden)
         {
             this._parametroOrden = new AuthHeaderOrder()
             {
@@ -420,22 +620,44 @@ namespace ConsoleApplication2.Class
 
             //this._parametroOrden.OrderID = idOrden;          
             AuthReturnOrder result = this.client.GetOrder(this._parametroOrden);
-            Order orden = result.Order;
-            Job[] jobs = result.Jobs;
-
+            //result.Jobs.ToList().ForEach(job =>
+            //{
+            //    var j=this.client.GetJob(new AuthHeaderJob()
+            //    {
+            //         CompanyID= this._conexion.CompanyID,
+            //         JobID= job.JobID,
+            //         MasterKey= this._conexion.MasterKey,
+            //         ProducerID= this._conexion.ProducerID,
+            //         Username= this._conexion.Username
+            //    });
+            //    if (j.JobExtras.Length > 0)
+            //    {
+            //        Console.WriteLine("Tiene configuracion extra");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("No tiene configuracion extra");
+            //    }
+                
+            //});
             
 
-            jobs.ToList().ForEach(x => {
-                Console.WriteLine(x.ProductType);
-                });
+            return result;
+            //Order orden = result.Order;
+            //Job[] jobs = result.Jobs;
+            //Console.WriteLine($"Limite de credito:{result.UserProfile.CreditLimit}");
+            //Console.WriteLine($"Own Credit:{result.UserProfile.OwnCredit}");
+            //Console.WriteLine($"Billing Method {result.Order.BillingMethodName}");
+            
+
+            //jobs.ToList().ForEach(x => {
+            //    Console.WriteLine(x.Quantity +"     " +x.SKU +"   "+x.JobName);
+            //    });
 
 
         }
-
-
         //public void TraerInfoCrece()
         //{
-
         //    //List<OrdenViewModel> ordenesVM = new List<OrdenViewModel>();
         //    this._conexion.StartDate = DateTime.Today.AddDays(-30);
         //    this._conexion.EndDate = DateTime.Now;

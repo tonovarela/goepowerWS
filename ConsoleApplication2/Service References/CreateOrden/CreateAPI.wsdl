@@ -1,0 +1,1423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://goepower.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://goepower.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://goepower.com/">
+      <s:element name="GetOrderIDsByExternalID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExternalID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderIDsByExternalIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrderIDsByExternalIDResult" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ApiLogIn" type="tns:ApiLogIn" />
+      <s:complexType name="ApiLogIn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MasterKey" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LoginProducerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LoginCompanyID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="DoesExternalIDExist">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExternalID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoesExternalIDExistResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DoesExternalIDExistResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWebUserPropertyNames">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetWebUserPropertyNamesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWebUserPropertyNamesResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateOrder">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateOrderResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Result">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OrderID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="APIOrder" type="tns:APIOrder" />
+      <s:complexType name="APIOrder">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MasterKey" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProducerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderNote" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailToNotify" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderExternalID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryDate" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NotifyGatekeeper" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Province" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderFields" type="tns:ArrayOfData" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:complexType name="ArrayOfItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Item" nillable="true" type="tns:Item" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Item">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ProductID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="JobName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemExternalID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Source" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Datas" type="tns:ArrayOfData" />
+          <s:element minOccurs="1" maxOccurs="1" name="CustomID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data" nillable="true" type="tns:Data" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Data">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FieldName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldValue" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateOrderWithMethods">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateOrderWithMethodsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateOrderWithMethodsResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="APIOrderWithMethods" type="tns:APIOrderWithMethods" />
+      <s:complexType name="APIOrderWithMethods">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MasterKey" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProducerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderNote" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailToNotify" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderExternalID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryDate" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SendNotifications" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="UseDefaultAddress" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Province" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AddressID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfItemWithExtras" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderFields" type="tns:ArrayOfData" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShippingMethodID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ShippingMethodName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShippingPrice" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="BillingMethodID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillingMethodName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillingMethodValue" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UseFirstStoreCreditBillingMethod" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CostCentreID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="InstructionFileUrl" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:complexType name="ArrayOfItemWithExtras">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ItemWithExtras" nillable="true" type="tns:ItemWithExtras" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ItemWithExtras">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Item">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Extras" type="tns:ArrayOfItemPriceExtra" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfItemPriceExtra">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ItemPriceExtra" nillable="true" type="tns:ItemPriceExtra" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ItemPriceExtra">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ExtraID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtraName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExtraDetailID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtraDetailName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtraDetailValue" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateQuote">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateQuoteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateQuoteResult" type="tns:QuoteResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="QuoteResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="QuoteID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Quotes" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="APIQuote" type="tns:APIQuote" />
+      <s:complexType name="APIQuote">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MasterKey" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProducerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailToNotify" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfQuoteItem" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:complexType name="ArrayOfQuoteItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="QuoteItem" nillable="true" type="tns:QuoteItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QuoteItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ProductID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="JobName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemExternalID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Source" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Datas" type="tns:ArrayOfQuoteData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfQuoteData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="QuoteData" nillable="true" type="tns:QuoteData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QuoteData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FieldName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldValue" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="QuoteQty" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateUser">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateUserResult" type="tns:UserResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrefixedUsername" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="WebUserID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSuccessful" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="APIUser" type="tns:APIUser" />
+      <s:complexType name="APIUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MasterKey" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LoginProducerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LoginCompanyID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExternalID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProducerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PartnerID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProducerNote" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Province" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="County" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TollFree" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Web" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Extension" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mobile" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Groups" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Roles" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RemoveExistingRoles" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CatalogueID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserTaxExempt" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserField1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserField2" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="CreateNewUser">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateNewUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateNewUserResult" type="tns:UserResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="APIWebUser" type="tns:APIWebUser" />
+      <s:complexType name="APIWebUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MasterKey" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LoginProducerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LoginCompanyID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExternalID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProducerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PartnerID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProducerNote" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Province" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="County" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TollFree" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Web" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Extension" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mobile" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Groups" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RemoveExistingGroups" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Roles" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RemoveExistingRoles" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CatalogueXMLID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserTaxExempt" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Account" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserField1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserField2" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdatePartnerIDOnUpdate" type="s:boolean" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="UpdateExistingUser">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateExistingUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateExistingUserResult" type="tns:UserResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateExistingUserProperties">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Properties" type="tns:ArrayOfGeneralPropertry" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGeneralPropertry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GeneralPropertry" nillable="true" type="tns:GeneralPropertry" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GeneralPropertry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PropertyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PropertyValue" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateExistingUserPropertiesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateExistingUserPropertiesResult" type="tns:UserResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateOrderFromThirdParty">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateOrderFromThirdPartyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateOrderFromThirdPartyResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="APIOrderThirdParty" type="tns:APIOrderThirdParty" />
+      <s:complexType name="APIOrderThirdParty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MasterKey" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProducerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderNote" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailToNotify" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderExternalID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryDate" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NotifyGatekeeper" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Province" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfItemThirdParty" />
+          <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShippingPrice" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxName1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxName2" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tax1" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tax2" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalPrice" type="s:double" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:complexType name="ArrayOfItemThirdParty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ItemThirdParty" nillable="true" type="tns:ItemThirdParty" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ItemThirdParty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProductName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProductID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="JobType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SKU" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemExternalID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="SetupPrice" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalPrice" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="DesignFileName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PDFFileName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PNGFileName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Thumbnail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Datas" type="tns:ArrayOfData" />
+          <s:element minOccurs="1" maxOccurs="1" name="CustomID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateOrderFromThirdPartyWithAssembly">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateOrderFromThirdPartyWithAssemblyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateOrderFromThirdPartyWithAssemblyResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="APIOrderThirdPartyWithAssembly" type="tns:APIOrderThirdPartyWithAssembly" />
+      <s:complexType name="APIOrderThirdPartyWithAssembly">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MasterKey" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProducerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderNote" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailToNotify" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderExternalID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryDate" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NotifyGatekeeper" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Province" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfItemThirdPartyWithAssembly" />
+          <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShippingPrice" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxName1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxName2" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaxRate1" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaxRate2" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tax1" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tax2" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalPrice" type="s:double" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:complexType name="ArrayOfItemThirdPartyWithAssembly">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ItemThirdPartyWithAssembly" nillable="true" type="tns:ItemThirdPartyWithAssembly" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ItemThirdPartyWithAssembly">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProductName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProductID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="JobType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SKU" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemExternalID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="SetupPrice" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalPrice" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="DesignFileName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PDFFileName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PNGFileName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Thumbnail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Datas" type="tns:ArrayOfData" />
+          <s:element minOccurs="1" maxOccurs="1" name="CustomID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AssemblyID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StationID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateOrderFromThirdPartyWithAddressID">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateOrderFromThirdPartyWithAddressIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateOrderFromThirdPartyWithAddressIDResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="APIOrderThirdPartyWithAddressID" type="tns:APIOrderThirdPartyWithAddressID" />
+      <s:complexType name="APIOrderThirdPartyWithAddressID">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MasterKey" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProducerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderNote" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailToNotify" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderExternalID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryDate" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NotifyGatekeeper" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AddressID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfItemThirdParty" />
+          <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShippingPrice" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxName1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxName2" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaxRate1" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaxRate2" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tax1" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tax2" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalPrice" type="s:double" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetJobTypesByProducerID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProducerID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJobTypesByProducerIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetJobTypesByProducerIDResult" type="tns:JobTypesResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="JobTypesResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ProducerID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSuccessful" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="JobTypes" type="tns:ArrayOfProducerJobType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProducerJobType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProducerJobType" nillable="true" type="tns:ProducerJobType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProducerJobType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="JobTypeID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="JobType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="JobTypeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="JobTypeDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEstimatorXml">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="JobTypeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEstimatorXmlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEstimatorXmlResult" type="tns:EstimatorResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EstimatorResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="JobTypeID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="JobType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSuccessful" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetProductIDsBySKU">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SKU" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsExactMatch" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductIDsBySKUResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductIDsBySKUResult" type="tns:ProductResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProductResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSuccessful" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductInfos" type="tns:ArrayOfProductInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProductInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProductInfo" nillable="true" type="tns:ProductInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProductInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ProductID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SKU" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductType" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetProductIDsByProductName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProductName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsExactMatch" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductIDsByProductNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductIDsByProductNameResult" type="tns:ProductResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductIDsByProductStyle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProductStyle" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsExactMatch" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductIDsByProductStyleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductIDsByProductStyleResult" type="tns:ProductResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductIDsByProductCustomField">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CustomFieldName" type="tns:ProductCustomField" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomFieldValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsExactMatch" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="ProductCustomField">
+        <s:restriction base="s:string">
+          <s:enumeration value="ProductAccountID" />
+          <s:enumeration value="ProductCustomNote" />
+          <s:enumeration value="ProductCustomField1" />
+          <s:enumeration value="ProductCustomField2" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetProductIDsByProductCustomFieldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductIDsByProductCustomFieldResult" type="tns:ProductResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetOrderIDsByExternalIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrderIDsByExternalID" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderIDsByExternalIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrderIDsByExternalIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderIDsByExternalIDApiLogIn">
+    <wsdl:part name="ApiLogIn" element="tns:ApiLogIn" />
+  </wsdl:message>
+  <wsdl:message name="DoesExternalIDExistSoapIn">
+    <wsdl:part name="parameters" element="tns:DoesExternalIDExist" />
+  </wsdl:message>
+  <wsdl:message name="DoesExternalIDExistSoapOut">
+    <wsdl:part name="parameters" element="tns:DoesExternalIDExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="DoesExternalIDExistApiLogIn">
+    <wsdl:part name="ApiLogIn" element="tns:ApiLogIn" />
+  </wsdl:message>
+  <wsdl:message name="GetWebUserPropertyNamesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetWebUserPropertyNames" />
+  </wsdl:message>
+  <wsdl:message name="GetWebUserPropertyNamesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetWebUserPropertyNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWebUserPropertyNamesApiLogIn">
+    <wsdl:part name="ApiLogIn" element="tns:ApiLogIn" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateOrder" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderAPIOrder">
+    <wsdl:part name="APIOrder" element="tns:APIOrder" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderWithMethodsSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateOrderWithMethods" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderWithMethodsSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateOrderWithMethodsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderWithMethodsAPIOrderWithMethods">
+    <wsdl:part name="APIOrderWithMethods" element="tns:APIOrderWithMethods" />
+  </wsdl:message>
+  <wsdl:message name="CreateQuoteSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateQuote" />
+  </wsdl:message>
+  <wsdl:message name="CreateQuoteSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateQuoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateQuoteAPIQuote">
+    <wsdl:part name="APIQuote" element="tns:APIQuote" />
+  </wsdl:message>
+  <wsdl:message name="CreateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateUser" />
+  </wsdl:message>
+  <wsdl:message name="CreateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateUserAPIUser">
+    <wsdl:part name="APIUser" element="tns:APIUser" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewUserSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateNewUser" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewUserSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateNewUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewUserAPIWebUser">
+    <wsdl:part name="APIWebUser" element="tns:APIWebUser" />
+  </wsdl:message>
+  <wsdl:message name="UpdateExistingUserSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateExistingUser" />
+  </wsdl:message>
+  <wsdl:message name="UpdateExistingUserSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateExistingUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateExistingUserAPIWebUser">
+    <wsdl:part name="APIWebUser" element="tns:APIWebUser" />
+  </wsdl:message>
+  <wsdl:message name="UpdateExistingUserPropertiesSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateExistingUserProperties" />
+  </wsdl:message>
+  <wsdl:message name="UpdateExistingUserPropertiesSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateExistingUserPropertiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateExistingUserPropertiesApiLogIn">
+    <wsdl:part name="ApiLogIn" element="tns:ApiLogIn" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderFromThirdPartySoapIn">
+    <wsdl:part name="parameters" element="tns:CreateOrderFromThirdParty" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderFromThirdPartySoapOut">
+    <wsdl:part name="parameters" element="tns:CreateOrderFromThirdPartyResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderFromThirdPartyAPIOrderThirdParty">
+    <wsdl:part name="APIOrderThirdParty" element="tns:APIOrderThirdParty" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderFromThirdPartyWithAssemblySoapIn">
+    <wsdl:part name="parameters" element="tns:CreateOrderFromThirdPartyWithAssembly" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderFromThirdPartyWithAssemblySoapOut">
+    <wsdl:part name="parameters" element="tns:CreateOrderFromThirdPartyWithAssemblyResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderFromThirdPartyWithAssemblyAPIOrderThirdPartyWithAssembly">
+    <wsdl:part name="APIOrderThirdPartyWithAssembly" element="tns:APIOrderThirdPartyWithAssembly" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderFromThirdPartyWithAddressIDSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateOrderFromThirdPartyWithAddressID" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderFromThirdPartyWithAddressIDSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateOrderFromThirdPartyWithAddressIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderFromThirdPartyWithAddressIDAPIOrderThirdPartyWithAddressID">
+    <wsdl:part name="APIOrderThirdPartyWithAddressID" element="tns:APIOrderThirdPartyWithAddressID" />
+  </wsdl:message>
+  <wsdl:message name="GetJobTypesByProducerIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetJobTypesByProducerID" />
+  </wsdl:message>
+  <wsdl:message name="GetJobTypesByProducerIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetJobTypesByProducerIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetJobTypesByProducerIDApiLogIn">
+    <wsdl:part name="ApiLogIn" element="tns:ApiLogIn" />
+  </wsdl:message>
+  <wsdl:message name="GetEstimatorXmlSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEstimatorXml" />
+  </wsdl:message>
+  <wsdl:message name="GetEstimatorXmlSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEstimatorXmlResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEstimatorXmlApiLogIn">
+    <wsdl:part name="ApiLogIn" element="tns:ApiLogIn" />
+  </wsdl:message>
+  <wsdl:message name="GetProductIDsBySKUSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProductIDsBySKU" />
+  </wsdl:message>
+  <wsdl:message name="GetProductIDsBySKUSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductIDsBySKUResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductIDsBySKUApiLogIn">
+    <wsdl:part name="ApiLogIn" element="tns:ApiLogIn" />
+  </wsdl:message>
+  <wsdl:message name="GetProductIDsByProductNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProductIDsByProductName" />
+  </wsdl:message>
+  <wsdl:message name="GetProductIDsByProductNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductIDsByProductNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductIDsByProductNameApiLogIn">
+    <wsdl:part name="ApiLogIn" element="tns:ApiLogIn" />
+  </wsdl:message>
+  <wsdl:message name="GetProductIDsByProductStyleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProductIDsByProductStyle" />
+  </wsdl:message>
+  <wsdl:message name="GetProductIDsByProductStyleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductIDsByProductStyleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductIDsByProductStyleApiLogIn">
+    <wsdl:part name="ApiLogIn" element="tns:ApiLogIn" />
+  </wsdl:message>
+  <wsdl:message name="GetProductIDsByProductCustomFieldSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProductIDsByProductCustomField" />
+  </wsdl:message>
+  <wsdl:message name="GetProductIDsByProductCustomFieldSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductIDsByProductCustomFieldResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductIDsByProductCustomFieldApiLogIn">
+    <wsdl:part name="ApiLogIn" element="tns:ApiLogIn" />
+  </wsdl:message>
+  <wsdl:portType name="CreateAPISoap">
+    <wsdl:operation name="GetOrderIDsByExternalID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get OrderIDs By ExternalID</wsdl:documentation>
+      <wsdl:input message="tns:GetOrderIDsByExternalIDSoapIn" />
+      <wsdl:output message="tns:GetOrderIDsByExternalIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DoesExternalIDExist">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Test if External ID exists or not (true/false)</wsdl:documentation>
+      <wsdl:input message="tns:DoesExternalIDExistSoapIn" />
+      <wsdl:output message="tns:DoesExternalIDExistSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWebUserPropertyNames">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get WebUser Property Names</wsdl:documentation>
+      <wsdl:input message="tns:GetWebUserPropertyNamesSoapIn" />
+      <wsdl:output message="tns:GetWebUserPropertyNamesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create ePower Order from Products in ePower (Pricing handled by ePower)</wsdl:documentation>
+      <wsdl:input message="tns:CreateOrderSoapIn" />
+      <wsdl:output message="tns:CreateOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderWithMethods">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create ePower Order from Products in ePower with Shipping and Billing Methods With Extras (Pricing handled by ePower)</wsdl:documentation>
+      <wsdl:input message="tns:CreateOrderWithMethodsSoapIn" />
+      <wsdl:output message="tns:CreateOrderWithMethodsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateQuote">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create ePower Quote from a Mapped Product in ePower</wsdl:documentation>
+      <wsdl:input message="tns:CreateQuoteSoapIn" />
+      <wsdl:output message="tns:CreateQuoteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add / Update User</wsdl:documentation>
+      <wsdl:input message="tns:CreateUserSoapIn" />
+      <wsdl:output message="tns:CreateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add New User</wsdl:documentation>
+      <wsdl:input message="tns:CreateNewUserSoapIn" />
+      <wsdl:output message="tns:CreateNewUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExistingUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update Existing User</wsdl:documentation>
+      <wsdl:input message="tns:UpdateExistingUserSoapIn" />
+      <wsdl:output message="tns:UpdateExistingUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExistingUserProperties">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update Existing User List of Properties</wsdl:documentation>
+      <wsdl:input message="tns:UpdateExistingUserPropertiesSoapIn" />
+      <wsdl:output message="tns:UpdateExistingUserPropertiesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderFromThirdParty">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create ePower Order Third Party Cart</wsdl:documentation>
+      <wsdl:input message="tns:CreateOrderFromThirdPartySoapIn" />
+      <wsdl:output message="tns:CreateOrderFromThirdPartySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderFromThirdPartyWithAssembly">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create ePower Order Third Party Cart With Assemblies and Stations</wsdl:documentation>
+      <wsdl:input message="tns:CreateOrderFromThirdPartyWithAssemblySoapIn" />
+      <wsdl:output message="tns:CreateOrderFromThirdPartyWithAssemblySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderFromThirdPartyWithAddressID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create ePower Order Third Party Cart with AddressID</wsdl:documentation>
+      <wsdl:input message="tns:CreateOrderFromThirdPartyWithAddressIDSoapIn" />
+      <wsdl:output message="tns:CreateOrderFromThirdPartyWithAddressIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobTypesByProducerID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Job Types by ProducerID</wsdl:documentation>
+      <wsdl:input message="tns:GetJobTypesByProducerIDSoapIn" />
+      <wsdl:output message="tns:GetJobTypesByProducerIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEstimatorXml">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Estimator Xml by JobTypeID</wsdl:documentation>
+      <wsdl:input message="tns:GetEstimatorXmlSoapIn" />
+      <wsdl:output message="tns:GetEstimatorXmlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductIDsBySKU">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get ProductIDs by SKU</wsdl:documentation>
+      <wsdl:input message="tns:GetProductIDsBySKUSoapIn" />
+      <wsdl:output message="tns:GetProductIDsBySKUSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductIDsByProductName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get ProductIDs by Product Name</wsdl:documentation>
+      <wsdl:input message="tns:GetProductIDsByProductNameSoapIn" />
+      <wsdl:output message="tns:GetProductIDsByProductNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductIDsByProductStyle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get ProductIDs by Product Style (info)</wsdl:documentation>
+      <wsdl:input message="tns:GetProductIDsByProductStyleSoapIn" />
+      <wsdl:output message="tns:GetProductIDsByProductStyleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductIDsByProductCustomField">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get ProductIDs by Product Custom Field (ProductAccountID, ProductCustomNote, ProductCustomField1, ProductCustomField2)</wsdl:documentation>
+      <wsdl:input message="tns:GetProductIDsByProductCustomFieldSoapIn" />
+      <wsdl:output message="tns:GetProductIDsByProductCustomFieldSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CreateAPISoap" type="tns:CreateAPISoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetOrderIDsByExternalID">
+      <soap:operation soapAction="http://goepower.com/GetOrderIDsByExternalID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetOrderIDsByExternalIDApiLogIn" part="ApiLogIn" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoesExternalIDExist">
+      <soap:operation soapAction="http://goepower.com/DoesExternalIDExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DoesExternalIDExistApiLogIn" part="ApiLogIn" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWebUserPropertyNames">
+      <soap:operation soapAction="http://goepower.com/GetWebUserPropertyNames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetWebUserPropertyNamesApiLogIn" part="ApiLogIn" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrder">
+      <soap:operation soapAction="http://goepower.com/CreateOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateOrderAPIOrder" part="APIOrder" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderWithMethods">
+      <soap:operation soapAction="http://goepower.com/CreateOrderWithMethods" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateOrderWithMethodsAPIOrderWithMethods" part="APIOrderWithMethods" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateQuote">
+      <soap:operation soapAction="http://goepower.com/CreateQuote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateQuoteAPIQuote" part="APIQuote" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap:operation soapAction="http://goepower.com/CreateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateUserAPIUser" part="APIUser" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewUser">
+      <soap:operation soapAction="http://goepower.com/CreateNewUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateNewUserAPIWebUser" part="APIWebUser" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExistingUser">
+      <soap:operation soapAction="http://goepower.com/UpdateExistingUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateExistingUserAPIWebUser" part="APIWebUser" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExistingUserProperties">
+      <soap:operation soapAction="http://goepower.com/UpdateExistingUserProperties" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateExistingUserPropertiesApiLogIn" part="ApiLogIn" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderFromThirdParty">
+      <soap:operation soapAction="http://goepower.com/CreateOrderFromThirdParty" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateOrderFromThirdPartyAPIOrderThirdParty" part="APIOrderThirdParty" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderFromThirdPartyWithAssembly">
+      <soap:operation soapAction="http://goepower.com/CreateOrderFromThirdPartyWithAssembly" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateOrderFromThirdPartyWithAssemblyAPIOrderThirdPartyWithAssembly" part="APIOrderThirdPartyWithAssembly" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderFromThirdPartyWithAddressID">
+      <soap:operation soapAction="http://goepower.com/CreateOrderFromThirdPartyWithAddressID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateOrderFromThirdPartyWithAddressIDAPIOrderThirdPartyWithAddressID" part="APIOrderThirdPartyWithAddressID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobTypesByProducerID">
+      <soap:operation soapAction="http://goepower.com/GetJobTypesByProducerID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetJobTypesByProducerIDApiLogIn" part="ApiLogIn" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEstimatorXml">
+      <soap:operation soapAction="http://goepower.com/GetEstimatorXml" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEstimatorXmlApiLogIn" part="ApiLogIn" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductIDsBySKU">
+      <soap:operation soapAction="http://goepower.com/GetProductIDsBySKU" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetProductIDsBySKUApiLogIn" part="ApiLogIn" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductIDsByProductName">
+      <soap:operation soapAction="http://goepower.com/GetProductIDsByProductName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetProductIDsByProductNameApiLogIn" part="ApiLogIn" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductIDsByProductStyle">
+      <soap:operation soapAction="http://goepower.com/GetProductIDsByProductStyle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetProductIDsByProductStyleApiLogIn" part="ApiLogIn" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductIDsByProductCustomField">
+      <soap:operation soapAction="http://goepower.com/GetProductIDsByProductCustomField" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetProductIDsByProductCustomFieldApiLogIn" part="ApiLogIn" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CreateAPISoap12" type="tns:CreateAPISoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetOrderIDsByExternalID">
+      <soap12:operation soapAction="http://goepower.com/GetOrderIDsByExternalID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetOrderIDsByExternalIDApiLogIn" part="ApiLogIn" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoesExternalIDExist">
+      <soap12:operation soapAction="http://goepower.com/DoesExternalIDExist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DoesExternalIDExistApiLogIn" part="ApiLogIn" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWebUserPropertyNames">
+      <soap12:operation soapAction="http://goepower.com/GetWebUserPropertyNames" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetWebUserPropertyNamesApiLogIn" part="ApiLogIn" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrder">
+      <soap12:operation soapAction="http://goepower.com/CreateOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateOrderAPIOrder" part="APIOrder" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderWithMethods">
+      <soap12:operation soapAction="http://goepower.com/CreateOrderWithMethods" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateOrderWithMethodsAPIOrderWithMethods" part="APIOrderWithMethods" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateQuote">
+      <soap12:operation soapAction="http://goepower.com/CreateQuote" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateQuoteAPIQuote" part="APIQuote" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap12:operation soapAction="http://goepower.com/CreateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateUserAPIUser" part="APIUser" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewUser">
+      <soap12:operation soapAction="http://goepower.com/CreateNewUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateNewUserAPIWebUser" part="APIWebUser" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExistingUser">
+      <soap12:operation soapAction="http://goepower.com/UpdateExistingUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateExistingUserAPIWebUser" part="APIWebUser" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExistingUserProperties">
+      <soap12:operation soapAction="http://goepower.com/UpdateExistingUserProperties" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateExistingUserPropertiesApiLogIn" part="ApiLogIn" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderFromThirdParty">
+      <soap12:operation soapAction="http://goepower.com/CreateOrderFromThirdParty" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateOrderFromThirdPartyAPIOrderThirdParty" part="APIOrderThirdParty" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderFromThirdPartyWithAssembly">
+      <soap12:operation soapAction="http://goepower.com/CreateOrderFromThirdPartyWithAssembly" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateOrderFromThirdPartyWithAssemblyAPIOrderThirdPartyWithAssembly" part="APIOrderThirdPartyWithAssembly" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderFromThirdPartyWithAddressID">
+      <soap12:operation soapAction="http://goepower.com/CreateOrderFromThirdPartyWithAddressID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateOrderFromThirdPartyWithAddressIDAPIOrderThirdPartyWithAddressID" part="APIOrderThirdPartyWithAddressID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobTypesByProducerID">
+      <soap12:operation soapAction="http://goepower.com/GetJobTypesByProducerID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetJobTypesByProducerIDApiLogIn" part="ApiLogIn" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEstimatorXml">
+      <soap12:operation soapAction="http://goepower.com/GetEstimatorXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEstimatorXmlApiLogIn" part="ApiLogIn" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductIDsBySKU">
+      <soap12:operation soapAction="http://goepower.com/GetProductIDsBySKU" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetProductIDsBySKUApiLogIn" part="ApiLogIn" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductIDsByProductName">
+      <soap12:operation soapAction="http://goepower.com/GetProductIDsByProductName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetProductIDsByProductNameApiLogIn" part="ApiLogIn" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductIDsByProductStyle">
+      <soap12:operation soapAction="http://goepower.com/GetProductIDsByProductStyle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetProductIDsByProductStyleApiLogIn" part="ApiLogIn" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductIDsByProductCustomField">
+      <soap12:operation soapAction="http://goepower.com/GetProductIDsByProductCustomField" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetProductIDsByProductCustomFieldApiLogIn" part="ApiLogIn" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CreateAPI">
+    <wsdl:port name="CreateAPISoap" binding="tns:CreateAPISoap">
+      <soap:address location="http://kumon.goepower.com/WebServices/CreateAPI.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CreateAPISoap12" binding="tns:CreateAPISoap12">
+      <soap12:address location="http://kumon.goepower.com/WebServices/CreateAPI.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

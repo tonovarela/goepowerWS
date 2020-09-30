@@ -11,6 +11,9 @@ namespace ConsoleApplication2.Model
 
         public String WorkOrden { get; set; }
         public String Tienda { get; set; }
+        public int  IdTienda { get; set; }
+
+        public bool  EsTransferencia { get; set; }
 
     }
 }

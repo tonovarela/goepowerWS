@@ -39,6 +39,9 @@ namespace ConsoleApplication2
     partial void InsertCtoCampoExtra(CtoCampoExtra instance);
     partial void UpdateCtoCampoExtra(CtoCampoExtra instance);
     partial void DeleteCtoCampoExtra(CtoCampoExtra instance);
+    partial void InsertCteCto(CteCto instance);
+    partial void UpdateCteCto(CteCto instance);
+    partial void DeleteCteCto(CteCto instance);
     #endregion
 		
 		public LitoDataContext() : 
@@ -100,6 +103,14 @@ namespace ConsoleApplication2
 			get
 			{
 				return this.GetTable<CtoCampoExtra>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CteCto> CteCto
+		{
+			get
+			{
+				return this.GetTable<CteCto>();
 			}
 		}
 	}
@@ -11212,6 +11223,1028 @@ namespace ConsoleApplication2
 					this._SincroC = value;
 					this.SendPropertyChanged("SincroC");
 					this.OnSincroCChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CteCto")]
+	public partial class CteCto : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Cliente;
+		
+		private int _ID;
+		
+		private string _Nombre;
+		
+		private string _ApellidoPaterno;
+		
+		private string _ApellidoMaterno;
+		
+		private string _Atencion;
+		
+		private string _Tratamiento;
+		
+		private string _Cargo;
+		
+		private string _Grupo;
+		
+		private System.Nullable<System.DateTime> _FechaNacimiento;
+		
+		private string _Telefonos;
+		
+		private string _Extencion;
+		
+		private string _eMail;
+		
+		private string _Fax;
+		
+		private System.Nullable<bool> _PedirTono;
+		
+		private System.Nullable<int> _EnviarA;
+		
+		private string _Tipo;
+		
+		private string _Sexo;
+		
+		private string _Usuario;
+		
+		private System.Data.Linq.Binary _SincroID;
+		
+		private System.Nullable<int> _SincroC;
+		
+		private System.Nullable<bool> _CFD_Enviar;
+		
+		private string _Notas;
+		
+		private System.Nullable<bool> _LITOInvitacion;
+		
+		private System.Nullable<bool> _LITOOtro;
+		
+		private string _LITOOtroTexto;
+		
+		private System.Nullable<bool> _LITORevistaSensaciones;
+		
+		private System.Nullable<bool> _LITORevistaalaModa;
+		
+		private System.Nullable<bool> _LITOFolleto;
+		
+		private string _LITOCelular;
+		
+		private string _Departamento;
+		
+		private string _Lada1;
+		
+		private string _LadaFax;
+		
+		private string _CodigoPais;
+		
+		private string _CodigoPaisFax;
+		
+		private string _ExtensionFax;
+		
+		private System.Nullable<bool> _FueraLinea;
+		
+		private System.Nullable<bool> _OPORTEnviar;
+		
+		private string _PrimaryContactId;
+		
+		private System.Nullable<System.Guid> _CRMObjectId;
+		
+		private System.Nullable<System.DateTime> _CRMLastUpdate;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnClienteChanging(string value);
+    partial void OnClienteChanged();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
+    partial void OnApellidoPaternoChanging(string value);
+    partial void OnApellidoPaternoChanged();
+    partial void OnApellidoMaternoChanging(string value);
+    partial void OnApellidoMaternoChanged();
+    partial void OnAtencionChanging(string value);
+    partial void OnAtencionChanged();
+    partial void OnTratamientoChanging(string value);
+    partial void OnTratamientoChanged();
+    partial void OnCargoChanging(string value);
+    partial void OnCargoChanged();
+    partial void OnGrupoChanging(string value);
+    partial void OnGrupoChanged();
+    partial void OnFechaNacimientoChanging(System.Nullable<System.DateTime> value);
+    partial void OnFechaNacimientoChanged();
+    partial void OnTelefonosChanging(string value);
+    partial void OnTelefonosChanged();
+    partial void OnExtencionChanging(string value);
+    partial void OnExtencionChanged();
+    partial void OneMailChanging(string value);
+    partial void OneMailChanged();
+    partial void OnFaxChanging(string value);
+    partial void OnFaxChanged();
+    partial void OnPedirTonoChanging(System.Nullable<bool> value);
+    partial void OnPedirTonoChanged();
+    partial void OnEnviarAChanging(System.Nullable<int> value);
+    partial void OnEnviarAChanged();
+    partial void OnTipoChanging(string value);
+    partial void OnTipoChanged();
+    partial void OnSexoChanging(string value);
+    partial void OnSexoChanged();
+    partial void OnUsuarioChanging(string value);
+    partial void OnUsuarioChanged();
+    partial void OnSincroIDChanging(System.Data.Linq.Binary value);
+    partial void OnSincroIDChanged();
+    partial void OnSincroCChanging(System.Nullable<int> value);
+    partial void OnSincroCChanged();
+    partial void OnCFD_EnviarChanging(System.Nullable<bool> value);
+    partial void OnCFD_EnviarChanged();
+    partial void OnNotasChanging(string value);
+    partial void OnNotasChanged();
+    partial void OnLITOInvitacionChanging(System.Nullable<bool> value);
+    partial void OnLITOInvitacionChanged();
+    partial void OnLITOOtroChanging(System.Nullable<bool> value);
+    partial void OnLITOOtroChanged();
+    partial void OnLITOOtroTextoChanging(string value);
+    partial void OnLITOOtroTextoChanged();
+    partial void OnLITORevistaSensacionesChanging(System.Nullable<bool> value);
+    partial void OnLITORevistaSensacionesChanged();
+    partial void OnLITORevistaalaModaChanging(System.Nullable<bool> value);
+    partial void OnLITORevistaalaModaChanged();
+    partial void OnLITOFolletoChanging(System.Nullable<bool> value);
+    partial void OnLITOFolletoChanged();
+    partial void OnLITOCelularChanging(string value);
+    partial void OnLITOCelularChanged();
+    partial void OnDepartamentoChanging(string value);
+    partial void OnDepartamentoChanged();
+    partial void OnLada1Changing(string value);
+    partial void OnLada1Changed();
+    partial void OnLadaFaxChanging(string value);
+    partial void OnLadaFaxChanged();
+    partial void OnCodigoPaisChanging(string value);
+    partial void OnCodigoPaisChanged();
+    partial void OnCodigoPaisFaxChanging(string value);
+    partial void OnCodigoPaisFaxChanged();
+    partial void OnExtensionFaxChanging(string value);
+    partial void OnExtensionFaxChanged();
+    partial void OnFueraLineaChanging(System.Nullable<bool> value);
+    partial void OnFueraLineaChanged();
+    partial void OnOPORTEnviarChanging(System.Nullable<bool> value);
+    partial void OnOPORTEnviarChanged();
+    partial void OnPrimaryContactIdChanging(string value);
+    partial void OnPrimaryContactIdChanged();
+    partial void OnCRMObjectIdChanging(System.Nullable<System.Guid> value);
+    partial void OnCRMObjectIdChanged();
+    partial void OnCRMLastUpdateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCRMLastUpdateChanged();
+    #endregion
+		
+		public CteCto()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cliente", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		public string Cliente
+		{
+			get
+			{
+				return this._Cliente;
+			}
+			set
+			{
+				if ((this._Cliente != value))
+				{
+					this.OnClienteChanging(value);
+					this.SendPropertyChanging();
+					this._Cliente = value;
+					this.SendPropertyChanged("Cliente");
+					this.OnClienteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100)", UpdateCheck=UpdateCheck.Never)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this.OnNombreChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApellidoPaterno", DbType="VarChar(30)", UpdateCheck=UpdateCheck.Never)]
+		public string ApellidoPaterno
+		{
+			get
+			{
+				return this._ApellidoPaterno;
+			}
+			set
+			{
+				if ((this._ApellidoPaterno != value))
+				{
+					this.OnApellidoPaternoChanging(value);
+					this.SendPropertyChanging();
+					this._ApellidoPaterno = value;
+					this.SendPropertyChanged("ApellidoPaterno");
+					this.OnApellidoPaternoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApellidoMaterno", DbType="VarChar(30)", UpdateCheck=UpdateCheck.Never)]
+		public string ApellidoMaterno
+		{
+			get
+			{
+				return this._ApellidoMaterno;
+			}
+			set
+			{
+				if ((this._ApellidoMaterno != value))
+				{
+					this.OnApellidoMaternoChanging(value);
+					this.SendPropertyChanging();
+					this._ApellidoMaterno = value;
+					this.SendPropertyChanged("ApellidoMaterno");
+					this.OnApellidoMaternoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Atencion", DbType="VarChar(50)", UpdateCheck=UpdateCheck.Never)]
+		public string Atencion
+		{
+			get
+			{
+				return this._Atencion;
+			}
+			set
+			{
+				if ((this._Atencion != value))
+				{
+					this.OnAtencionChanging(value);
+					this.SendPropertyChanging();
+					this._Atencion = value;
+					this.SendPropertyChanged("Atencion");
+					this.OnAtencionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tratamiento", DbType="VarChar(20)", UpdateCheck=UpdateCheck.Never)]
+		public string Tratamiento
+		{
+			get
+			{
+				return this._Tratamiento;
+			}
+			set
+			{
+				if ((this._Tratamiento != value))
+				{
+					this.OnTratamientoChanging(value);
+					this.SendPropertyChanging();
+					this._Tratamiento = value;
+					this.SendPropertyChanged("Tratamiento");
+					this.OnTratamientoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cargo", DbType="VarChar(50)", UpdateCheck=UpdateCheck.Never)]
+		public string Cargo
+		{
+			get
+			{
+				return this._Cargo;
+			}
+			set
+			{
+				if ((this._Cargo != value))
+				{
+					this.OnCargoChanging(value);
+					this.SendPropertyChanging();
+					this._Cargo = value;
+					this.SendPropertyChanged("Cargo");
+					this.OnCargoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Grupo", DbType="VarChar(50)", UpdateCheck=UpdateCheck.Never)]
+		public string Grupo
+		{
+			get
+			{
+				return this._Grupo;
+			}
+			set
+			{
+				if ((this._Grupo != value))
+				{
+					this.OnGrupoChanging(value);
+					this.SendPropertyChanging();
+					this._Grupo = value;
+					this.SendPropertyChanged("Grupo");
+					this.OnGrupoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaNacimiento", DbType="DateTime", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<System.DateTime> FechaNacimiento
+		{
+			get
+			{
+				return this._FechaNacimiento;
+			}
+			set
+			{
+				if ((this._FechaNacimiento != value))
+				{
+					this.OnFechaNacimientoChanging(value);
+					this.SendPropertyChanging();
+					this._FechaNacimiento = value;
+					this.SendPropertyChanged("FechaNacimiento");
+					this.OnFechaNacimientoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefonos", DbType="VarChar(100)", UpdateCheck=UpdateCheck.Never)]
+		public string Telefonos
+		{
+			get
+			{
+				return this._Telefonos;
+			}
+			set
+			{
+				if ((this._Telefonos != value))
+				{
+					this.OnTelefonosChanging(value);
+					this.SendPropertyChanging();
+					this._Telefonos = value;
+					this.SendPropertyChanged("Telefonos");
+					this.OnTelefonosChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Extencion", DbType="VarChar(4)", UpdateCheck=UpdateCheck.Never)]
+		public string Extencion
+		{
+			get
+			{
+				return this._Extencion;
+			}
+			set
+			{
+				if ((this._Extencion != value))
+				{
+					this.OnExtencionChanging(value);
+					this.SendPropertyChanging();
+					this._Extencion = value;
+					this.SendPropertyChanged("Extencion");
+					this.OnExtencionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eMail", DbType="VarChar(100)", UpdateCheck=UpdateCheck.Never)]
+		public string eMail
+		{
+			get
+			{
+				return this._eMail;
+			}
+			set
+			{
+				if ((this._eMail != value))
+				{
+					this.OneMailChanging(value);
+					this.SendPropertyChanging();
+					this._eMail = value;
+					this.SendPropertyChanged("eMail");
+					this.OneMailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fax", DbType="VarChar(50)", UpdateCheck=UpdateCheck.Never)]
+		public string Fax
+		{
+			get
+			{
+				return this._Fax;
+			}
+			set
+			{
+				if ((this._Fax != value))
+				{
+					this.OnFaxChanging(value);
+					this.SendPropertyChanging();
+					this._Fax = value;
+					this.SendPropertyChanged("Fax");
+					this.OnFaxChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PedirTono", DbType="Bit", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<bool> PedirTono
+		{
+			get
+			{
+				return this._PedirTono;
+			}
+			set
+			{
+				if ((this._PedirTono != value))
+				{
+					this.OnPedirTonoChanging(value);
+					this.SendPropertyChanging();
+					this._PedirTono = value;
+					this.SendPropertyChanged("PedirTono");
+					this.OnPedirTonoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EnviarA", DbType="Int", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<int> EnviarA
+		{
+			get
+			{
+				return this._EnviarA;
+			}
+			set
+			{
+				if ((this._EnviarA != value))
+				{
+					this.OnEnviarAChanging(value);
+					this.SendPropertyChanging();
+					this._EnviarA = value;
+					this.SendPropertyChanged("EnviarA");
+					this.OnEnviarAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(20)", UpdateCheck=UpdateCheck.Never)]
+		public string Tipo
+		{
+			get
+			{
+				return this._Tipo;
+			}
+			set
+			{
+				if ((this._Tipo != value))
+				{
+					this.OnTipoChanging(value);
+					this.SendPropertyChanging();
+					this._Tipo = value;
+					this.SendPropertyChanged("Tipo");
+					this.OnTipoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sexo", DbType="VarChar(20)", UpdateCheck=UpdateCheck.Never)]
+		public string Sexo
+		{
+			get
+			{
+				return this._Sexo;
+			}
+			set
+			{
+				if ((this._Sexo != value))
+				{
+					this.OnSexoChanging(value);
+					this.SendPropertyChanging();
+					this._Sexo = value;
+					this.SendPropertyChanged("Sexo");
+					this.OnSexoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="VarChar(10)", UpdateCheck=UpdateCheck.Never)]
+		public string Usuario
+		{
+			get
+			{
+				return this._Usuario;
+			}
+			set
+			{
+				if ((this._Usuario != value))
+				{
+					this.OnUsuarioChanging(value);
+					this.SendPropertyChanging();
+					this._Usuario = value;
+					this.SendPropertyChanged("Usuario");
+					this.OnUsuarioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SincroID", AutoSync=AutoSync.Always, DbType="rowversion", IsDbGenerated=true, IsVersion=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary SincroID
+		{
+			get
+			{
+				return this._SincroID;
+			}
+			set
+			{
+				if ((this._SincroID != value))
+				{
+					this.OnSincroIDChanging(value);
+					this.SendPropertyChanging();
+					this._SincroID = value;
+					this.SendPropertyChanged("SincroID");
+					this.OnSincroIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SincroC", DbType="Int", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<int> SincroC
+		{
+			get
+			{
+				return this._SincroC;
+			}
+			set
+			{
+				if ((this._SincroC != value))
+				{
+					this.OnSincroCChanging(value);
+					this.SendPropertyChanging();
+					this._SincroC = value;
+					this.SendPropertyChanged("SincroC");
+					this.OnSincroCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CFD_Enviar", DbType="Bit", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<bool> CFD_Enviar
+		{
+			get
+			{
+				return this._CFD_Enviar;
+			}
+			set
+			{
+				if ((this._CFD_Enviar != value))
+				{
+					this.OnCFD_EnviarChanging(value);
+					this.SendPropertyChanging();
+					this._CFD_Enviar = value;
+					this.SendPropertyChanged("CFD_Enviar");
+					this.OnCFD_EnviarChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Notas", DbType="VarChar(255)", UpdateCheck=UpdateCheck.Never)]
+		public string Notas
+		{
+			get
+			{
+				return this._Notas;
+			}
+			set
+			{
+				if ((this._Notas != value))
+				{
+					this.OnNotasChanging(value);
+					this.SendPropertyChanging();
+					this._Notas = value;
+					this.SendPropertyChanged("Notas");
+					this.OnNotasChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LITOInvitacion", DbType="Bit", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<bool> LITOInvitacion
+		{
+			get
+			{
+				return this._LITOInvitacion;
+			}
+			set
+			{
+				if ((this._LITOInvitacion != value))
+				{
+					this.OnLITOInvitacionChanging(value);
+					this.SendPropertyChanging();
+					this._LITOInvitacion = value;
+					this.SendPropertyChanged("LITOInvitacion");
+					this.OnLITOInvitacionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LITOOtro", DbType="Bit", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<bool> LITOOtro
+		{
+			get
+			{
+				return this._LITOOtro;
+			}
+			set
+			{
+				if ((this._LITOOtro != value))
+				{
+					this.OnLITOOtroChanging(value);
+					this.SendPropertyChanging();
+					this._LITOOtro = value;
+					this.SendPropertyChanged("LITOOtro");
+					this.OnLITOOtroChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LITOOtroTexto", DbType="VarChar(50)", UpdateCheck=UpdateCheck.Never)]
+		public string LITOOtroTexto
+		{
+			get
+			{
+				return this._LITOOtroTexto;
+			}
+			set
+			{
+				if ((this._LITOOtroTexto != value))
+				{
+					this.OnLITOOtroTextoChanging(value);
+					this.SendPropertyChanging();
+					this._LITOOtroTexto = value;
+					this.SendPropertyChanged("LITOOtroTexto");
+					this.OnLITOOtroTextoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LITORevistaSensaciones", DbType="Bit", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<bool> LITORevistaSensaciones
+		{
+			get
+			{
+				return this._LITORevistaSensaciones;
+			}
+			set
+			{
+				if ((this._LITORevistaSensaciones != value))
+				{
+					this.OnLITORevistaSensacionesChanging(value);
+					this.SendPropertyChanging();
+					this._LITORevistaSensaciones = value;
+					this.SendPropertyChanged("LITORevistaSensaciones");
+					this.OnLITORevistaSensacionesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LITORevistaalaModa", DbType="Bit", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<bool> LITORevistaalaModa
+		{
+			get
+			{
+				return this._LITORevistaalaModa;
+			}
+			set
+			{
+				if ((this._LITORevistaalaModa != value))
+				{
+					this.OnLITORevistaalaModaChanging(value);
+					this.SendPropertyChanging();
+					this._LITORevistaalaModa = value;
+					this.SendPropertyChanged("LITORevistaalaModa");
+					this.OnLITORevistaalaModaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LITOFolleto", DbType="Bit", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<bool> LITOFolleto
+		{
+			get
+			{
+				return this._LITOFolleto;
+			}
+			set
+			{
+				if ((this._LITOFolleto != value))
+				{
+					this.OnLITOFolletoChanging(value);
+					this.SendPropertyChanging();
+					this._LITOFolleto = value;
+					this.SendPropertyChanged("LITOFolleto");
+					this.OnLITOFolletoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LITOCelular", DbType="VarChar(50)", UpdateCheck=UpdateCheck.Never)]
+		public string LITOCelular
+		{
+			get
+			{
+				return this._LITOCelular;
+			}
+			set
+			{
+				if ((this._LITOCelular != value))
+				{
+					this.OnLITOCelularChanging(value);
+					this.SendPropertyChanging();
+					this._LITOCelular = value;
+					this.SendPropertyChanged("LITOCelular");
+					this.OnLITOCelularChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Departamento", DbType="VarChar(50)", UpdateCheck=UpdateCheck.Never)]
+		public string Departamento
+		{
+			get
+			{
+				return this._Departamento;
+			}
+			set
+			{
+				if ((this._Departamento != value))
+				{
+					this.OnDepartamentoChanging(value);
+					this.SendPropertyChanging();
+					this._Departamento = value;
+					this.SendPropertyChanged("Departamento");
+					this.OnDepartamentoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lada1", DbType="VarChar(4)", UpdateCheck=UpdateCheck.Never)]
+		public string Lada1
+		{
+			get
+			{
+				return this._Lada1;
+			}
+			set
+			{
+				if ((this._Lada1 != value))
+				{
+					this.OnLada1Changing(value);
+					this.SendPropertyChanging();
+					this._Lada1 = value;
+					this.SendPropertyChanged("Lada1");
+					this.OnLada1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LadaFax", DbType="VarChar(4)", UpdateCheck=UpdateCheck.Never)]
+		public string LadaFax
+		{
+			get
+			{
+				return this._LadaFax;
+			}
+			set
+			{
+				if ((this._LadaFax != value))
+				{
+					this.OnLadaFaxChanging(value);
+					this.SendPropertyChanging();
+					this._LadaFax = value;
+					this.SendPropertyChanged("LadaFax");
+					this.OnLadaFaxChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoPais", DbType="VarChar(3)", UpdateCheck=UpdateCheck.Never)]
+		public string CodigoPais
+		{
+			get
+			{
+				return this._CodigoPais;
+			}
+			set
+			{
+				if ((this._CodigoPais != value))
+				{
+					this.OnCodigoPaisChanging(value);
+					this.SendPropertyChanging();
+					this._CodigoPais = value;
+					this.SendPropertyChanged("CodigoPais");
+					this.OnCodigoPaisChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoPaisFax", DbType="VarChar(3)", UpdateCheck=UpdateCheck.Never)]
+		public string CodigoPaisFax
+		{
+			get
+			{
+				return this._CodigoPaisFax;
+			}
+			set
+			{
+				if ((this._CodigoPaisFax != value))
+				{
+					this.OnCodigoPaisFaxChanging(value);
+					this.SendPropertyChanging();
+					this._CodigoPaisFax = value;
+					this.SendPropertyChanged("CodigoPaisFax");
+					this.OnCodigoPaisFaxChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExtensionFax", DbType="VarChar(4)", UpdateCheck=UpdateCheck.Never)]
+		public string ExtensionFax
+		{
+			get
+			{
+				return this._ExtensionFax;
+			}
+			set
+			{
+				if ((this._ExtensionFax != value))
+				{
+					this.OnExtensionFaxChanging(value);
+					this.SendPropertyChanging();
+					this._ExtensionFax = value;
+					this.SendPropertyChanged("ExtensionFax");
+					this.OnExtensionFaxChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FueraLinea", DbType="Bit", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<bool> FueraLinea
+		{
+			get
+			{
+				return this._FueraLinea;
+			}
+			set
+			{
+				if ((this._FueraLinea != value))
+				{
+					this.OnFueraLineaChanging(value);
+					this.SendPropertyChanging();
+					this._FueraLinea = value;
+					this.SendPropertyChanged("FueraLinea");
+					this.OnFueraLineaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OPORTEnviar", DbType="Bit", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<bool> OPORTEnviar
+		{
+			get
+			{
+				return this._OPORTEnviar;
+			}
+			set
+			{
+				if ((this._OPORTEnviar != value))
+				{
+					this.OnOPORTEnviarChanging(value);
+					this.SendPropertyChanging();
+					this._OPORTEnviar = value;
+					this.SendPropertyChanged("OPORTEnviar");
+					this.OnOPORTEnviarChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimaryContactId", DbType="VarChar(36)", UpdateCheck=UpdateCheck.Never)]
+		public string PrimaryContactId
+		{
+			get
+			{
+				return this._PrimaryContactId;
+			}
+			set
+			{
+				if ((this._PrimaryContactId != value))
+				{
+					this.OnPrimaryContactIdChanging(value);
+					this.SendPropertyChanging();
+					this._PrimaryContactId = value;
+					this.SendPropertyChanged("PrimaryContactId");
+					this.OnPrimaryContactIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CRMObjectId", DbType="UniqueIdentifier", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<System.Guid> CRMObjectId
+		{
+			get
+			{
+				return this._CRMObjectId;
+			}
+			set
+			{
+				if ((this._CRMObjectId != value))
+				{
+					this.OnCRMObjectIdChanging(value);
+					this.SendPropertyChanging();
+					this._CRMObjectId = value;
+					this.SendPropertyChanged("CRMObjectId");
+					this.OnCRMObjectIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CRMLastUpdate", DbType="DateTime", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<System.DateTime> CRMLastUpdate
+		{
+			get
+			{
+				return this._CRMLastUpdate;
+			}
+			set
+			{
+				if ((this._CRMLastUpdate != value))
+				{
+					this.OnCRMLastUpdateChanging(value);
+					this.SendPropertyChanging();
+					this._CRMLastUpdate = value;
+					this.SendPropertyChanged("CRMLastUpdate");
+					this.OnCRMLastUpdateChanged();
 				}
 			}
 		}

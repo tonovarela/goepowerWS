@@ -22,20 +22,21 @@ namespace ConsoleApplication2.Class
         public Transaccion(String line)
         {
             this.Concepto = "";
-            int index = line.IndexOf("C");
-            if (index != -1)
+            int valor;
+            try
             {
-                this.Concepto = line.Substring(index, 8);                
+                if (Int32.TryParse(line.Substring(2, 1), out valor))  //Si el tercer Caracter es numerico y no es Cero
+                {
+                    if (valor > 0)
+                    {
+                        this.Concepto = line.Substring(0, 8);
+                    }
+                }
             }
-            
+            catch(Exception e)
+            {
 
-
-
-            //this.Fecha = line.Split('\t')[0];
-            //this.Concepto = line.Split('\t')[1];
-            //this.Cargo = line.Split('\t')[2];
-            //this.Abono = line.Split('\t')[3];
-            //this.Saldo = line.Split('\t')[4];                       
+            }                           
         }
 
         
@@ -54,9 +55,7 @@ namespace ConsoleApplication2.Class
         public void Imprimir()
         {
             Console.WriteLine("------------------------------");
-            Console.WriteLine($"Concepto :[{this.Concepto}]");
-            //Console.WriteLine($"WorkOrden :[{this.WorkOrder}]");
-            //Console.WriteLine($"Abono :[{this.Abono}]");
+            Console.WriteLine($"Concepto :[{this.Concepto}]");            
             Console.WriteLine("------------------------------");
         }
     }

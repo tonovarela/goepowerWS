@@ -8,9 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.IO;
-using System.Xml.Serialization;
-
 namespace ConsoleApplication2.OrdenService {
     
     
@@ -57,6 +54,22 @@ namespace ConsoleApplication2.OrdenService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://goepower.com/GetOrderInvoice", ReplyAction="*")]
         System.Threading.Tasks.Task<ConsoleApplication2.OrdenService.GetOrderInvoiceResponse> GetOrderInvoiceAsync(ConsoleApplication2.OrdenService.GetOrderInvoiceRequest request);
+        
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el mensaje GetWorkOrderRequest tiene encabezados.
+        [System.ServiceModel.OperationContractAttribute(Action="http://goepower.com/GetWorkOrder", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        ConsoleApplication2.OrdenService.GetWorkOrderResponse GetWorkOrder(ConsoleApplication2.OrdenService.GetWorkOrderRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://goepower.com/GetWorkOrder", ReplyAction="*")]
+        System.Threading.Tasks.Task<ConsoleApplication2.OrdenService.GetWorkOrderResponse> GetWorkOrderAsync(ConsoleApplication2.OrdenService.GetWorkOrderRequest request);
+        
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el mensaje GetShippingLabelRequest tiene encabezados.
+        [System.ServiceModel.OperationContractAttribute(Action="http://goepower.com/GetShippingLabel", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        ConsoleApplication2.OrdenService.GetShippingLabelResponse GetShippingLabel(ConsoleApplication2.OrdenService.GetShippingLabelRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://goepower.com/GetShippingLabel", ReplyAction="*")]
+        System.Threading.Tasks.Task<ConsoleApplication2.OrdenService.GetShippingLabelResponse> GetShippingLabelAsync(ConsoleApplication2.OrdenService.GetShippingLabelRequest request);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el mensaje GetOrderRequest tiene encabezados.
         [System.ServiceModel.OperationContractAttribute(Action="http://goepower.com/GetOrder", ReplyAction="*")]
@@ -172,7 +185,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -316,7 +329,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://goepower.com/")]
     public enum OrderStatuses {
@@ -350,7 +363,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -452,7 +465,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -960,7 +973,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://goepower.com/")]
     public enum ShipPartyOption {
@@ -991,7 +1004,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1051,7 +1064,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1139,7 +1152,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1227,7 +1240,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1287,7 +1300,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1389,7 +1402,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1519,7 +1532,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1545,6 +1558,10 @@ namespace ConsoleApplication2.OrdenService {
         private double priceExtraPercentageField;
         
         private double priceExtraTotalField;
+        
+        private bool isMainlineField;
+        
+        private int orderNoField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -1666,6 +1683,30 @@ namespace ConsoleApplication2.OrdenService {
             }
         }
         
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public bool IsMainline {
+            get {
+                return this.isMainlineField;
+            }
+            set {
+                this.isMainlineField = value;
+                this.RaisePropertyChanged("IsMainline");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
+        public int OrderNo {
+            get {
+                return this.orderNoField;
+            }
+            set {
+                this.orderNoField = value;
+                this.RaisePropertyChanged("OrderNo");
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -1677,7 +1718,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1821,7 +1862,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1941,6 +1982,26 @@ namespace ConsoleApplication2.OrdenService {
         private string trackUrlField;
         
         private int jobBitwiseSettingsField;
+        
+        private int jobPriorityField;
+        
+        private int partnerIDFromDataField;
+        
+        private double savingsField;
+        
+        private int specialCartWebUserIDField;
+        
+        private System.Guid kitUniqueIDField;
+        
+        private int kitProductIDField;
+        
+        private int kitOrderNoField;
+        
+        private int kitParentJobIDField;
+        
+        private double productCostField;
+        
+        private int priceSetID2Field;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -2626,6 +2687,126 @@ namespace ConsoleApplication2.OrdenService {
             }
         }
         
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=57)]
+        public int JobPriority {
+            get {
+                return this.jobPriorityField;
+            }
+            set {
+                this.jobPriorityField = value;
+                this.RaisePropertyChanged("JobPriority");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=58)]
+        public int PartnerIDFromData {
+            get {
+                return this.partnerIDFromDataField;
+            }
+            set {
+                this.partnerIDFromDataField = value;
+                this.RaisePropertyChanged("PartnerIDFromData");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=59)]
+        public double Savings {
+            get {
+                return this.savingsField;
+            }
+            set {
+                this.savingsField = value;
+                this.RaisePropertyChanged("Savings");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=60)]
+        public int SpecialCartWebUserID {
+            get {
+                return this.specialCartWebUserIDField;
+            }
+            set {
+                this.specialCartWebUserIDField = value;
+                this.RaisePropertyChanged("SpecialCartWebUserID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=61)]
+        public System.Guid KitUniqueID {
+            get {
+                return this.kitUniqueIDField;
+            }
+            set {
+                this.kitUniqueIDField = value;
+                this.RaisePropertyChanged("KitUniqueID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=62)]
+        public int KitProductID {
+            get {
+                return this.kitProductIDField;
+            }
+            set {
+                this.kitProductIDField = value;
+                this.RaisePropertyChanged("KitProductID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=63)]
+        public int KitOrderNo {
+            get {
+                return this.kitOrderNoField;
+            }
+            set {
+                this.kitOrderNoField = value;
+                this.RaisePropertyChanged("KitOrderNo");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=64)]
+        public int KitParentJobID {
+            get {
+                return this.kitParentJobIDField;
+            }
+            set {
+                this.kitParentJobIDField = value;
+                this.RaisePropertyChanged("KitParentJobID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=65)]
+        public double ProductCost {
+            get {
+                return this.productCostField;
+            }
+            set {
+                this.productCostField = value;
+                this.RaisePropertyChanged("ProductCost");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=66)]
+        public int PriceSetID2 {
+            get {
+                return this.priceSetID2Field;
+            }
+            set {
+                this.priceSetID2Field = value;
+                this.RaisePropertyChanged("PriceSetID2");
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -2637,7 +2818,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2815,6 +2996,16 @@ namespace ConsoleApplication2.OrdenService {
         private int productionOutputTypeField;
         
         private int productionOutputTypeDpiField;
+        
+        private int createdByWebUserIDField;
+        
+        private double shipPriceField;
+        
+        private SpecDetailNoName[] getStocksField;
+        
+        private SpecDetailNoName[] getInksField;
+        
+        private SpecDetailNoName[] getFinishesField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -3848,6 +4039,66 @@ namespace ConsoleApplication2.OrdenService {
             }
         }
         
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=86)]
+        public int CreatedByWebUserID {
+            get {
+                return this.createdByWebUserIDField;
+            }
+            set {
+                this.createdByWebUserIDField = value;
+                this.RaisePropertyChanged("CreatedByWebUserID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=87)]
+        public double ShipPrice {
+            get {
+                return this.shipPriceField;
+            }
+            set {
+                this.shipPriceField = value;
+                this.RaisePropertyChanged("ShipPrice");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=88)]
+        public SpecDetailNoName[] GetStocks {
+            get {
+                return this.getStocksField;
+            }
+            set {
+                this.getStocksField = value;
+                this.RaisePropertyChanged("GetStocks");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=89)]
+        public SpecDetailNoName[] GetInks {
+            get {
+                return this.getInksField;
+            }
+            set {
+                this.getInksField = value;
+                this.RaisePropertyChanged("GetInks");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=90)]
+        public SpecDetailNoName[] GetFinishes {
+            get {
+                return this.getFinishesField;
+            }
+            set {
+                this.getFinishesField = value;
+                this.RaisePropertyChanged("GetFinishes");
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -3859,7 +4110,67 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://goepower.com/")]
+    public partial class SpecDetailNoName : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private int idField;
+        
+        private double qtyField;
+        
+        private decimal upField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+                this.RaisePropertyChanged("id");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public double qty {
+            get {
+                return this.qtyField;
+            }
+            set {
+                this.qtyField = value;
+                this.RaisePropertyChanged("qty");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public decimal up {
+            get {
+                return this.upField;
+            }
+            set {
+                this.upField = value;
+                this.RaisePropertyChanged("up");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -4007,6 +4318,46 @@ namespace ConsoleApplication2.OrdenService {
         private string goPrint2KeyField;
         
         private string gatekeeperExternalEmailField;
+        
+        private int createdByWebUserIDField;
+        
+        private string createdByUserNameField;
+        
+        private int billToPartnerIDField;
+        
+        private double rushChargeField;
+        
+        private string deliveryOptionField;
+        
+        private System.DateTime productionDateField;
+        
+        private double refundAmountField;
+        
+        private double extraChargeField;
+        
+        private int payStatusField;
+        
+        private int orderBitwiseSettingsField;
+        
+        private bool dealerIsReleasedField;
+        
+        private bool archiveField;
+        
+        private string groupIDsField;
+        
+        private string campaignNameField;
+        
+        private int producerOrderIDField;
+        
+        private int companyOrderIDField;
+        
+        private string specialUseField;
+        
+        private string jobIDsField;
+        
+        private int noOfJobsField;
+        
+        private double remainingPriceField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -4860,6 +5211,246 @@ namespace ConsoleApplication2.OrdenService {
             }
         }
         
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=71)]
+        public int CreatedByWebUserID {
+            get {
+                return this.createdByWebUserIDField;
+            }
+            set {
+                this.createdByWebUserIDField = value;
+                this.RaisePropertyChanged("CreatedByWebUserID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=72)]
+        public string CreatedByUserName {
+            get {
+                return this.createdByUserNameField;
+            }
+            set {
+                this.createdByUserNameField = value;
+                this.RaisePropertyChanged("CreatedByUserName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=73)]
+        public int BillToPartnerID {
+            get {
+                return this.billToPartnerIDField;
+            }
+            set {
+                this.billToPartnerIDField = value;
+                this.RaisePropertyChanged("BillToPartnerID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=74)]
+        public double RushCharge {
+            get {
+                return this.rushChargeField;
+            }
+            set {
+                this.rushChargeField = value;
+                this.RaisePropertyChanged("RushCharge");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=75)]
+        public string DeliveryOption {
+            get {
+                return this.deliveryOptionField;
+            }
+            set {
+                this.deliveryOptionField = value;
+                this.RaisePropertyChanged("DeliveryOption");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=76)]
+        public System.DateTime ProductionDate {
+            get {
+                return this.productionDateField;
+            }
+            set {
+                this.productionDateField = value;
+                this.RaisePropertyChanged("ProductionDate");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=77)]
+        public double RefundAmount {
+            get {
+                return this.refundAmountField;
+            }
+            set {
+                this.refundAmountField = value;
+                this.RaisePropertyChanged("RefundAmount");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=78)]
+        public double ExtraCharge {
+            get {
+                return this.extraChargeField;
+            }
+            set {
+                this.extraChargeField = value;
+                this.RaisePropertyChanged("ExtraCharge");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=79)]
+        public int PayStatus {
+            get {
+                return this.payStatusField;
+            }
+            set {
+                this.payStatusField = value;
+                this.RaisePropertyChanged("PayStatus");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=80)]
+        public int OrderBitwiseSettings {
+            get {
+                return this.orderBitwiseSettingsField;
+            }
+            set {
+                this.orderBitwiseSettingsField = value;
+                this.RaisePropertyChanged("OrderBitwiseSettings");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=81)]
+        public bool DealerIsReleased {
+            get {
+                return this.dealerIsReleasedField;
+            }
+            set {
+                this.dealerIsReleasedField = value;
+                this.RaisePropertyChanged("DealerIsReleased");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=82)]
+        public bool Archive {
+            get {
+                return this.archiveField;
+            }
+            set {
+                this.archiveField = value;
+                this.RaisePropertyChanged("Archive");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=83)]
+        public string GroupIDs {
+            get {
+                return this.groupIDsField;
+            }
+            set {
+                this.groupIDsField = value;
+                this.RaisePropertyChanged("GroupIDs");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=84)]
+        public string CampaignName {
+            get {
+                return this.campaignNameField;
+            }
+            set {
+                this.campaignNameField = value;
+                this.RaisePropertyChanged("CampaignName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=85)]
+        public int ProducerOrderID {
+            get {
+                return this.producerOrderIDField;
+            }
+            set {
+                this.producerOrderIDField = value;
+                this.RaisePropertyChanged("ProducerOrderID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=86)]
+        public int CompanyOrderID {
+            get {
+                return this.companyOrderIDField;
+            }
+            set {
+                this.companyOrderIDField = value;
+                this.RaisePropertyChanged("CompanyOrderID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=87)]
+        public string SpecialUse {
+            get {
+                return this.specialUseField;
+            }
+            set {
+                this.specialUseField = value;
+                this.RaisePropertyChanged("SpecialUse");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=88)]
+        public string JobIDs {
+            get {
+                return this.jobIDsField;
+            }
+            set {
+                this.jobIDsField = value;
+                this.RaisePropertyChanged("JobIDs");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=89)]
+        public int NoOfJobs {
+            get {
+                return this.noOfJobsField;
+            }
+            set {
+                this.noOfJobsField = value;
+                this.RaisePropertyChanged("NoOfJobs");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=90)]
+        public double RemainingPrice {
+            get {
+                return this.remainingPriceField;
+            }
+            set {
+                this.remainingPriceField = value;
+                this.RaisePropertyChanged("RemainingPrice");
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -4871,7 +5462,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://goepower.com/")]
     public enum OrderSubStatus {
@@ -4893,7 +5484,169 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://goepower.com/")]
+    public partial class AuthReturnShippingLabel : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private int orderIDField;
+        
+        private byte[] shippingLabelField;
+        
+        private string shippingLabelUrlField;
+        
+        private bool isSuccessfulField;
+        
+        private string messageField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public int OrderID {
+            get {
+                return this.orderIDField;
+            }
+            set {
+                this.orderIDField = value;
+                this.RaisePropertyChanged("OrderID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=1)]
+        public byte[] ShippingLabel {
+            get {
+                return this.shippingLabelField;
+            }
+            set {
+                this.shippingLabelField = value;
+                this.RaisePropertyChanged("ShippingLabel");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string ShippingLabelUrl {
+            get {
+                return this.shippingLabelUrlField;
+            }
+            set {
+                this.shippingLabelUrlField = value;
+                this.RaisePropertyChanged("ShippingLabelUrl");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public bool IsSuccessful {
+            get {
+                return this.isSuccessfulField;
+            }
+            set {
+                this.isSuccessfulField = value;
+                this.RaisePropertyChanged("IsSuccessful");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public string Message {
+            get {
+                return this.messageField;
+            }
+            set {
+                this.messageField = value;
+                this.RaisePropertyChanged("Message");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://goepower.com/")]
+    public partial class AuthReturnWorkOrder : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private int orderIDField;
+        
+        private byte[] workOrderField;
+        
+        private bool isSuccessfulField;
+        
+        private string messageField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public int OrderID {
+            get {
+                return this.orderIDField;
+            }
+            set {
+                this.orderIDField = value;
+                this.RaisePropertyChanged("OrderID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=1)]
+        public byte[] WorkOrder {
+            get {
+                return this.workOrderField;
+            }
+            set {
+                this.workOrderField = value;
+                this.RaisePropertyChanged("WorkOrder");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public bool IsSuccessful {
+            get {
+                return this.isSuccessfulField;
+            }
+            set {
+                this.isSuccessfulField = value;
+                this.RaisePropertyChanged("IsSuccessful");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string Message {
+            get {
+                return this.messageField;
+            }
+            set {
+                this.messageField = value;
+                this.RaisePropertyChanged("Message");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -4967,7 +5720,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -5069,7 +5822,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -5129,7 +5882,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -5273,7 +6026,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -5319,7 +6072,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -5547,7 +6300,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -5859,7 +6612,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -5919,7 +6672,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -5984,6 +6737,8 @@ namespace ConsoleApplication2.OrdenService {
         
         private double creditLimitField;
         
+        private double defaultCreditLimitField;
+        
         private bool isAllowCompanyCreditField;
         
         private string emailField;
@@ -6036,9 +6791,9 @@ namespace ConsoleApplication2.OrdenService {
         
         private string associatedCompanyIDsField;
         
-        private string costCentreIDField;
+        private int costCentreIDField;
         
-        private string costCentreGroupIDField;
+        private int costCentreGroupIDField;
         
         private int catalogueXMLIDField;
         
@@ -6063,6 +6818,8 @@ namespace ConsoleApplication2.OrdenService {
         private int rolloutLocationIDField;
         
         private string userMessageField;
+        
+        private string favProductIDsField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -6414,6 +7171,18 @@ namespace ConsoleApplication2.OrdenService {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=29)]
+        public double DefaultCreditLimit {
+            get {
+                return this.defaultCreditLimitField;
+            }
+            set {
+                this.defaultCreditLimitField = value;
+                this.RaisePropertyChanged("DefaultCreditLimit");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=30)]
         public bool IsAllowCompanyCredit {
             get {
                 return this.isAllowCompanyCreditField;
@@ -6425,7 +7194,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=30)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=31)]
         public string Email {
             get {
                 return this.emailField;
@@ -6437,7 +7206,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=31)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=32)]
         public bool NotifyOnCancel {
             get {
                 return this.notifyOnCancelField;
@@ -6449,7 +7218,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=32)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=33)]
         public bool NotifyOnRelease {
             get {
                 return this.notifyOnReleaseField;
@@ -6461,7 +7230,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=33)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=34)]
         public bool NotifyInProduction {
             get {
                 return this.notifyInProductionField;
@@ -6473,7 +7242,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=34)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=35)]
         public bool NotifyInShipping {
             get {
                 return this.notifyInShippingField;
@@ -6485,7 +7254,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=35)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=36)]
         public bool NotifyOnCompleted {
             get {
                 return this.notifyOnCompletedField;
@@ -6497,7 +7266,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=36)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=37)]
         public bool NotifyIfGatekeeper {
             get {
                 return this.notifyIfGatekeeperField;
@@ -6509,7 +7278,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=37)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=38)]
         public int AgencyID {
             get {
                 return this.agencyIDField;
@@ -6521,7 +7290,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=38)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=39)]
         public int PartnerID {
             get {
                 return this.partnerIDField;
@@ -6533,7 +7302,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=39)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=40)]
         public string ProductsString {
             get {
                 return this.productsStringField;
@@ -6545,7 +7314,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=40)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=41)]
         public string Password {
             get {
                 return this.passwordField;
@@ -6557,7 +7326,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=41)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=42)]
         public bool ShipByPass {
             get {
                 return this.shipByPassField;
@@ -6569,7 +7338,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=42)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=43)]
         public int ShipAddByPass {
             get {
                 return this.shipAddByPassField;
@@ -6581,7 +7350,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=43)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=44)]
         public bool ShipAddBook {
             get {
                 return this.shipAddBookField;
@@ -6593,7 +7362,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=44)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=45)]
         public bool ShipManual {
             get {
                 return this.shipManualField;
@@ -6605,7 +7374,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=45)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=46)]
         public bool BillByPass {
             get {
                 return this.billByPassField;
@@ -6617,7 +7386,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=46)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=47)]
         public int ShippingOption {
             get {
                 return this.shippingOptionField;
@@ -6629,7 +7398,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=47)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=48)]
         public bool UseMyAccountData {
             get {
                 return this.useMyAccountDataField;
@@ -6641,7 +7410,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=48)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=49)]
         public bool GoToCheckout {
             get {
                 return this.goToCheckoutField;
@@ -6653,7 +7422,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=49)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=50)]
         public string ProducerNote {
             get {
                 return this.producerNoteField;
@@ -6665,7 +7434,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=50)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=51)]
         public string County {
             get {
                 return this.countyField;
@@ -6677,7 +7446,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=51)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=52)]
         public string ExternalID {
             get {
                 return this.externalIDField;
@@ -6689,7 +7458,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=52)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=53)]
         public int LocationID {
             get {
                 return this.locationIDField;
@@ -6701,7 +7470,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=53)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=54)]
         public string Culture {
             get {
                 return this.cultureField;
@@ -6713,7 +7482,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=54)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=55)]
         public string AssociatedCompanyIDs {
             get {
                 return this.associatedCompanyIDsField;
@@ -6725,8 +7494,8 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=55)]
-        public string CostCentreID {
+        [System.Xml.Serialization.XmlElementAttribute(Order=56)]
+        public int CostCentreID {
             get {
                 return this.costCentreIDField;
             }
@@ -6737,8 +7506,8 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=56)]
-        public string CostCentreGroupID {
+        [System.Xml.Serialization.XmlElementAttribute(Order=57)]
+        public int CostCentreGroupID {
             get {
                 return this.costCentreGroupIDField;
             }
@@ -6749,7 +7518,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=57)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=58)]
         public int CatalogueXMLID {
             get {
                 return this.catalogueXMLIDField;
@@ -6761,7 +7530,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=58)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=59)]
         public int TaxExempt {
             get {
                 return this.taxExemptField;
@@ -6773,7 +7542,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=59)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=60)]
         public string Account {
             get {
                 return this.accountField;
@@ -6785,7 +7554,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=60)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=61)]
         public int BitwiseSettings {
             get {
                 return this.bitwiseSettingsField;
@@ -6797,7 +7566,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=61)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=62)]
         public int StartupPage {
             get {
                 return this.startupPageField;
@@ -6809,7 +7578,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=62)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=63)]
         public int PriceDiscountID {
             get {
                 return this.priceDiscountIDField;
@@ -6821,7 +7590,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=63)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=64)]
         public string UserField1 {
             get {
                 return this.userField1Field;
@@ -6833,7 +7602,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=64)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=65)]
         public string UserField2 {
             get {
                 return this.userField2Field;
@@ -6845,7 +7614,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=65)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=66)]
         public int CalendarID {
             get {
                 return this.calendarIDField;
@@ -6857,7 +7626,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=66)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=67)]
         public string Photo {
             get {
                 return this.photoField;
@@ -6869,7 +7638,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=67)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=68)]
         public int RolloutLocationID {
             get {
                 return this.rolloutLocationIDField;
@@ -6881,7 +7650,7 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=68)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=69)]
         public string UserMessage {
             get {
                 return this.userMessageField;
@@ -6889,6 +7658,18 @@ namespace ConsoleApplication2.OrdenService {
             set {
                 this.userMessageField = value;
                 this.RaisePropertyChanged("UserMessage");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=70)]
+        public string FavProductIDs {
+            get {
+                return this.favProductIDsField;
+            }
+            set {
+                this.favProductIDsField = value;
+                this.RaisePropertyChanged("FavProductIDs");
             }
         }
         
@@ -6903,7 +7684,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -7257,7 +8038,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -7387,7 +8168,7 @@ namespace ConsoleApplication2.OrdenService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -7613,6 +8394,74 @@ namespace ConsoleApplication2.OrdenService {
         
         public GetOrderInvoiceResponse(ConsoleApplication2.OrdenService.AuthReturnOrderInvoice GetOrderInvoiceResult) {
             this.GetOrderInvoiceResult = GetOrderInvoiceResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetWorkOrder", WrapperNamespace="http://goepower.com/", IsWrapped=true)]
+    public partial class GetWorkOrderRequest {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://goepower.com/")]
+        public ConsoleApplication2.OrdenService.AuthHeaderOrder AuthHeaderOrder;
+        
+        public GetWorkOrderRequest() {
+        }
+        
+        public GetWorkOrderRequest(ConsoleApplication2.OrdenService.AuthHeaderOrder AuthHeaderOrder) {
+            this.AuthHeaderOrder = AuthHeaderOrder;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetWorkOrderResponse", WrapperNamespace="http://goepower.com/", IsWrapped=true)]
+    public partial class GetWorkOrderResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://goepower.com/", Order=0)]
+        public ConsoleApplication2.OrdenService.AuthReturnWorkOrder GetWorkOrderResult;
+        
+        public GetWorkOrderResponse() {
+        }
+        
+        public GetWorkOrderResponse(ConsoleApplication2.OrdenService.AuthReturnWorkOrder GetWorkOrderResult) {
+            this.GetWorkOrderResult = GetWorkOrderResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetShippingLabel", WrapperNamespace="http://goepower.com/", IsWrapped=true)]
+    public partial class GetShippingLabelRequest {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://goepower.com/")]
+        public ConsoleApplication2.OrdenService.AuthHeaderOrder AuthHeaderOrder;
+        
+        public GetShippingLabelRequest() {
+        }
+        
+        public GetShippingLabelRequest(ConsoleApplication2.OrdenService.AuthHeaderOrder AuthHeaderOrder) {
+            this.AuthHeaderOrder = AuthHeaderOrder;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetShippingLabelResponse", WrapperNamespace="http://goepower.com/", IsWrapped=true)]
+    public partial class GetShippingLabelResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://goepower.com/", Order=0)]
+        public ConsoleApplication2.OrdenService.AuthReturnShippingLabel GetShippingLabelResult;
+        
+        public GetShippingLabelResponse() {
+        }
+        
+        public GetShippingLabelResponse(ConsoleApplication2.OrdenService.AuthReturnShippingLabel GetShippingLabelResult) {
+            this.GetShippingLabelResult = GetShippingLabelResult;
         }
     }
     
@@ -8235,27 +9084,60 @@ namespace ConsoleApplication2.OrdenService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        ConsoleApplication2.OrdenService.GetWorkOrderResponse ConsoleApplication2.OrdenService.OrderInfoSoap.GetWorkOrder(ConsoleApplication2.OrdenService.GetWorkOrderRequest request) {
+            return base.Channel.GetWorkOrder(request);
+        }
+        
+        public ConsoleApplication2.OrdenService.AuthReturnWorkOrder GetWorkOrder(ConsoleApplication2.OrdenService.AuthHeaderOrder AuthHeaderOrder) {
+            ConsoleApplication2.OrdenService.GetWorkOrderRequest inValue = new ConsoleApplication2.OrdenService.GetWorkOrderRequest();
+            inValue.AuthHeaderOrder = AuthHeaderOrder;
+            ConsoleApplication2.OrdenService.GetWorkOrderResponse retVal = ((ConsoleApplication2.OrdenService.OrderInfoSoap)(this)).GetWorkOrder(inValue);
+            return retVal.GetWorkOrderResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<ConsoleApplication2.OrdenService.GetWorkOrderResponse> ConsoleApplication2.OrdenService.OrderInfoSoap.GetWorkOrderAsync(ConsoleApplication2.OrdenService.GetWorkOrderRequest request) {
+            return base.Channel.GetWorkOrderAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ConsoleApplication2.OrdenService.GetWorkOrderResponse> GetWorkOrderAsync(ConsoleApplication2.OrdenService.AuthHeaderOrder AuthHeaderOrder) {
+            ConsoleApplication2.OrdenService.GetWorkOrderRequest inValue = new ConsoleApplication2.OrdenService.GetWorkOrderRequest();
+            inValue.AuthHeaderOrder = AuthHeaderOrder;
+            return ((ConsoleApplication2.OrdenService.OrderInfoSoap)(this)).GetWorkOrderAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        ConsoleApplication2.OrdenService.GetShippingLabelResponse ConsoleApplication2.OrdenService.OrderInfoSoap.GetShippingLabel(ConsoleApplication2.OrdenService.GetShippingLabelRequest request) {
+            return base.Channel.GetShippingLabel(request);
+        }
+        
+        public ConsoleApplication2.OrdenService.AuthReturnShippingLabel GetShippingLabel(ConsoleApplication2.OrdenService.AuthHeaderOrder AuthHeaderOrder) {
+            ConsoleApplication2.OrdenService.GetShippingLabelRequest inValue = new ConsoleApplication2.OrdenService.GetShippingLabelRequest();
+            inValue.AuthHeaderOrder = AuthHeaderOrder;
+            ConsoleApplication2.OrdenService.GetShippingLabelResponse retVal = ((ConsoleApplication2.OrdenService.OrderInfoSoap)(this)).GetShippingLabel(inValue);
+            return retVal.GetShippingLabelResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<ConsoleApplication2.OrdenService.GetShippingLabelResponse> ConsoleApplication2.OrdenService.OrderInfoSoap.GetShippingLabelAsync(ConsoleApplication2.OrdenService.GetShippingLabelRequest request) {
+            return base.Channel.GetShippingLabelAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ConsoleApplication2.OrdenService.GetShippingLabelResponse> GetShippingLabelAsync(ConsoleApplication2.OrdenService.AuthHeaderOrder AuthHeaderOrder) {
+            ConsoleApplication2.OrdenService.GetShippingLabelRequest inValue = new ConsoleApplication2.OrdenService.GetShippingLabelRequest();
+            inValue.AuthHeaderOrder = AuthHeaderOrder;
+            return ((ConsoleApplication2.OrdenService.OrderInfoSoap)(this)).GetShippingLabelAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         ConsoleApplication2.OrdenService.GetOrderResponse ConsoleApplication2.OrdenService.OrderInfoSoap.GetOrder(ConsoleApplication2.OrdenService.GetOrderRequest request) {
             return base.Channel.GetOrder(request);
         }
         
         public ConsoleApplication2.OrdenService.AuthReturnOrder GetOrder(ConsoleApplication2.OrdenService.AuthHeaderOrder AuthHeaderOrder) {
-
             ConsoleApplication2.OrdenService.GetOrderRequest inValue = new ConsoleApplication2.OrdenService.GetOrderRequest();
             inValue.AuthHeaderOrder = AuthHeaderOrder;
-
-
             ConsoleApplication2.OrdenService.GetOrderResponse retVal = ((ConsoleApplication2.OrdenService.OrderInfoSoap)(this)).GetOrder(inValue);
-
-            //using (StreamWriter myWriter = new StreamWriter($"C:\\Desarrollo\\salidaIbjeto.xml", false))
-            //{
-            //    XmlSerializer mySerializer = new XmlSerializer(typeof(GetOrderResponse));
-            //    mySerializer.Serialize(myWriter, retVal);
-            //}
-
-
-
-
             return retVal.GetOrderResult;
         }
         

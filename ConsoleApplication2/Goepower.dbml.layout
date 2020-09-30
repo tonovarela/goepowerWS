@@ -2,16 +2,28 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Goepower">
   <DataContextMoniker Name="/GoepowerDataContext" />
   <nestedChildShapes>
-    <classShape Id="9b2b6203-9677-4764-bf48-9d8b0e00e00f" absoluteBounds="3, 1.375, 2, 2.3478011067708335">
+    <classShape Id="9b2b6203-9677-4764-bf48-9d8b0e00e00f" absoluteBounds="3.625, 0.5, 2, 2.3478011067708335">
       <DataClassMoniker Name="/GoepowerDataContext/Item" />
       <nestedChildShapes>
-        <elementListCompartment Id="f14bd86c-651c-42c2-a1db-67f1bf333f77" absoluteBounds="3.015, 1.835, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="f14bd86c-651c-42c2-a1db-67f1bf333f77" absoluteBounds="3.64, 0.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="c2b9313b-f341-4150-b3df-cb258ccbf7aa" absoluteBounds="0.5, 2, 2, 2.9247054036458331">
+    <classShape Id="174ae267-fcb9-4102-9cdb-0876cea9206c" absoluteBounds="0.625, 0.5, 2, 3.1170068359375">
       <DataClassMoniker Name="/GoepowerDataContext/Orden" />
       <nestedChildShapes>
-        <elementListCompartment Id="7b502e09-8ea3-4003-acc6-cee3763843da" absoluteBounds="0.51500000000000012, 2.46, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="44358c1a-57d0-46fe-8149-f199967aaea6" absoluteBounds="0.64000000000000012, 0.96, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f7282399-85a9-4a72-8eee-b3960f4d9d29" absoluteBounds="6.875, 0.625, 2, 1.9631982421875">
+      <DataClassMoniker Name="/GoepowerDataContext/OrdenArchivos" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e2f03e59-b7ce-4158-9f12-4fdeda6203d8" absoluteBounds="6.89, 1.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6512722d-6836-4db7-9a32-8d75c1c73191" absoluteBounds="4.5, 4.125, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/GoepowerDataContext/OrdenFacturacion" />
+      <nestedChildShapes>
+        <elementListCompartment Id="406602ec-778c-4313-8ade-7d29300de4ef" absoluteBounds="4.515, 4.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

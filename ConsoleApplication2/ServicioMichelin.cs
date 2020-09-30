@@ -20,8 +20,8 @@ namespace ConsoleApplication2
         }
         protected override List<OrdenDTO> GetOrdenesConArchivos()
         {
-            List<OrdenDTO> _ordenes = new List<OrdenDTO>();          
-            var data = this.client.GetOrdersWithProductionFiles(this._conexion);
+            List<OrdenDTO> _ordenes = new List<OrdenDTO>();              
+            var data = this.client.GetOrdersWithProductionFiles(this._conexion);            
             try
             {
                 var orders = data.Orders.SelectMany(
@@ -31,18 +31,14 @@ namespace ConsoleApplication2
                    {
                        OrdenId = orden.OrderID,
                        JobId = job.JobID,
-                       SKU = job.JobSKU,
+                       SKU = job.JobSKU,                       
                        FilePdfURL = job.CustomProductionFileUrl,
                        NombreArchivo = $"{orden.OrderID}_{job.JobID}_{job.JobSKU}",
                        CustomData = job.CustomDatas.Select(x => new CustomData{ Name= x.Name,  Value= x.Value.Replace("<nextline>", "  ") }).ToList(),                                                    
                    })).ToList();
-
-
                 DateTime fechaOrden = data.Orders.FirstOrDefault().OrderDate;
                 this.fullMonthName = this.UppercaseFirst(fechaOrden.ToString("MMMM",
-                                                                             CultureInfo.CreateSpecificCulture("es")));
-
-
+                                                                             CultureInfo.CreateSpecificCulture("es")));           
                 _ordenes = orders;
 
             }
@@ -73,7 +69,7 @@ namespace ConsoleApplication2
             _ordenes.ForEach(orden =>
             {
 
-                string _ordenFolder = $"{ this._workspace}\\{ orden.OrdenId}";
+                string _ordenFolder = $"{ this._workspace}\\{ orden.OrdenId}";                
                 Console.WriteLine(_ordenFolder);
                 orden.Imprimir();
                 FileExcel cfile = new FileExcel();

@@ -1,21 +1,21 @@
 ﻿using ConsoleApplication2.Class;
 using ConsoleApplication2.Model;
+using ConsoleApplication2.OrdenChangeStatus;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace ConsoleApplication2
 {
     public  class ServicioSeat:Servicio
     {
-
         public ServicioSeat()
         {                       
             this._nombreTienda = "seat";
-            this._workspace += _nombreTienda;
+            this._workspace += _nombreTienda;            
             this._conexion = Credenciales.Seat();
         }
-
 
         public void DescargarArchivos()
         {
@@ -29,7 +29,7 @@ namespace ConsoleApplication2
             }
             _ordenes.ForEach(orden =>
             {                
-                string _ordenFolder = $"{this._workspace}\\{orden.OrdenId}";               
+                string _ordenFolder = $"{this._workspace}\\{orden.OrdenId}";                
                 orden.Imprimir();
                 
                 this.DownloadFile(orden.FilePdfURL, _ordenFolder, orden.NombreArchivo + ".pdf");
@@ -42,6 +42,28 @@ namespace ConsoleApplication2
             );
 
            
+
+        }
+
+        public void LiberarOrdenesReleaseToProduccion()
+        {
+
+            Console.WriteLine(this._conexion.StartDate);
+            Console.WriteLine(this._conexion.EndDate);
+            int[] numero_ordenes=this.GetListaOrdenes(OrdenService.OrderStatuses.Released);
+            //Cambiar ordenes de Pending a Produccion
+            if (numero_ordenes!=null)
+            {
+                this.CambiarEstatusOrdenes(string.Join(",", numero_ordenes), ePowerOrderStatus.Release);
+                this.CambiarEstatusOrdenes(string.Join(",", numero_ordenes), ePowerOrderStatus.ToProduction);
+            }
+            else
+            {
+                Console.Write("No hay ordenes para cambiar de pending a produccion");
+            }
+
+            
+
 
         }
     }

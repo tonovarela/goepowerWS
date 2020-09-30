@@ -10,6 +10,7 @@ namespace ConsoleApplication2.Class
     public  class Credenciales
     {
         private const int _PRODUCERID=100;
+        private const int _DIAS = -20;
         public static AuthHeaderOrders Michelin()
         {
             return new AuthHeaderOrders()
@@ -18,13 +19,26 @@ namespace ConsoleApplication2.Class
                 CompanyID = 4727,
                 PartnerID = 4727,
                 Username = "sistemasmichelin",
-                OrderStatus = OrderStatuses.Released,
-                StartDate = DateTime.Today.AddDays(-5),
+                OrderStatus = OrderStatuses.InProduction,
+                StartDate = DateTime.Today.AddDays(_DIAS),
                 EndDate = DateTime.Now,
                 ProducerID = _PRODUCERID
             };
         }
-
+        public static AuthHeaderOrders Axalta()
+        {
+            return new AuthHeaderOrders()
+            {
+                MasterKey = "c16d8c60-753e-481c-9335-ee88d5abeb7a",
+                CompanyID = 4681,
+                PartnerID = 4681,
+                Username = "sistemasaxalta",
+                OrderStatus = OrderStatuses.InProduction,
+                StartDate = DateTime.Today.AddDays(_DIAS),
+                EndDate = DateTime.Now,
+                ProducerID = _PRODUCERID
+            };
+        }
         public static AuthHeaderOrders Honda()
         {
             return new AuthHeaderOrders()
@@ -33,13 +47,12 @@ namespace ConsoleApplication2.Class
                 CompanyID = 1138,
                 PartnerID = 1138,
                 Username = "sistemashonda",
-                OrderStatus = OrderStatuses.Pending,
-                StartDate = DateTime.Today.AddDays(-6),
+                OrderStatus = OrderStatuses.InProduction,
+                StartDate = DateTime.Today.AddDays(_DIAS),
                 EndDate = DateTime.Now,
                 ProducerID = _PRODUCERID
             };
         }
-
         public static AuthHeaderOrders Kumon()
         {
             return new AuthHeaderOrders()
@@ -49,13 +62,12 @@ namespace ConsoleApplication2.Class
                 PartnerID = 5104,
                 Username = "sistemaskumon",
                 OrderStatus = OrderStatuses.InProduction,
-                StartDate = DateTime.Today.AddDays(-7),
+                StartDate = DateTime.Today.AddDays(-8),
                 EndDate = DateTime.Now,
                 ProducerID = _PRODUCERID
             };
         }
-
-        public static AuthHeaderOrders CirculoK()
+        public static AuthHeaderOrders KFC()
         {
             return new AuthHeaderOrders()
             {
@@ -63,13 +75,12 @@ namespace ConsoleApplication2.Class
                 CompanyID = 5100,
                 PartnerID = 5100,
                 Username = "sistemascirclek",
-                OrderStatus = OrderStatuses.Released,
-                StartDate = DateTime.Today.AddDays(-5),
+                OrderStatus = OrderStatuses.InProduction,
+                StartDate = DateTime.Today.AddDays(-2),
                 EndDate = DateTime.Now,
                 ProducerID = _PRODUCERID
             };
         }
-
         public static AuthHeaderOrders Starbucks()
         {
             return new AuthHeaderOrders()
@@ -78,13 +89,12 @@ namespace ConsoleApplication2.Class
                 CompanyID = 1582,
                 PartnerID = 1582,
                 Username = "sistemasstarbucks",
-                OrderStatus = OrderStatuses.Released,
-                StartDate = DateTime.Today.AddDays(-5),
+                OrderStatus = OrderStatuses.InProduction,
+                StartDate = DateTime.Today.AddDays(_DIAS),
                 EndDate = DateTime.Now,
                 ProducerID = _PRODUCERID
             };
         }
-
         public static AuthHeaderOrders Volkswagen()
         {
             return new AuthHeaderOrders()
@@ -93,13 +103,12 @@ namespace ConsoleApplication2.Class
                 CompanyID = 1181,
                 PartnerID = 1181,
                 Username = "sistemasvolkswagen",
-                OrderStatus = OrderStatuses.Released,
-                StartDate = DateTime.Today.AddDays(-5),
+                OrderStatus = OrderStatuses.InProduction,
+                StartDate = DateTime.Today.AddDays(_DIAS),
                 EndDate = DateTime.Now,
                 ProducerID = _PRODUCERID
             };
         }
-
         public static AuthHeaderOrders Acura()
         {
             return new AuthHeaderOrders()
@@ -108,13 +117,12 @@ namespace ConsoleApplication2.Class
                 CompanyID = 4373,
                 PartnerID = 4373,
                 Username = "sistemasacura",
-                OrderStatus = OrderStatuses.Released,
-                StartDate = DateTime.Today.AddDays(-5),
+                OrderStatus = OrderStatuses.InProduction,
+                StartDate = DateTime.Today.AddDays(_DIAS),
                 EndDate = DateTime.Now,
                 ProducerID = _PRODUCERID
             };
         }
-
         public static AuthHeaderOrders Seat()
         {
             return new AuthHeaderOrders()
@@ -124,12 +132,11 @@ namespace ConsoleApplication2.Class
                 PartnerID = 1299,
                 Username = "sistemasseat",
                 OrderStatus = OrderStatuses.InProduction,
-                StartDate = DateTime.Today.AddDays(-5),
+                StartDate = DateTime.Today.AddDays(_DIAS),
                 EndDate = DateTime.Now,
                 ProducerID = _PRODUCERID
             };
         }
-
         public static AuthHeaderOrders Sherwin()
         {
             return new AuthHeaderOrders()
@@ -138,19 +145,56 @@ namespace ConsoleApplication2.Class
                 CompanyID = 4996,
                 PartnerID = 4996,
                 Username = "sistemassherwin",
-                OrderStatus = OrderStatuses.Released,
-                StartDate = DateTime.Today.AddDays(-5),
+                OrderStatus = OrderStatuses.InProduction,
+                //StartDate = new DateTime(2019, 10,10),
+                //EndDate = new DateTime(2019, 10, 24),
+                StartDate = DateTime.Today.AddDays(_DIAS),
+                EndDate = DateTime.Now,
+                ProducerID = _PRODUCERID
+            };
+        }
+        public static AuthHeaderOrders Exitus()
+        {
+            return new AuthHeaderOrders()
+            {
+                MasterKey = "0d69d096-d446-49f5-8f12-c5d1b0dfeaa7",
+                CompanyID = 6363,
+                PartnerID = 6363,
+                Username = "sistemasexitus",
+                OrderStatus = OrderStatuses.InProduction,
+                StartDate = DateTime.Today.AddDays(_DIAS),
+                EndDate = DateTime.Now,
+                ProducerID = _PRODUCERID
+            };
+        }
+        public static AuthHeaderOrders KIA()
+        {
+            return new AuthHeaderOrders()
+            {
+                MasterKey = "85524d0d-e70a-4143-bf97-3b6b62e8ce05",
+                CompanyID = 6785,
+                PartnerID = 6785,
+                Username = "sistemaskia",
+                OrderStatus = OrderStatuses.InProduction,
+                StartDate = DateTime.Today.AddDays(_DIAS),
                 EndDate = DateTime.Now,
                 ProducerID = _PRODUCERID
             };
         }
 
-
-
-
-
-
-
-
+        public static AuthHeaderOrders Toyota()
+        {
+            return new AuthHeaderOrders()
+            {
+                MasterKey = "4c679eaf-2b92-4c66-b35a-5dac20ca5989",
+                CompanyID = 6377,
+                PartnerID = 6377,
+                Username = "sistemastoyota",
+                OrderStatus = OrderStatuses.InProduction,
+                StartDate = DateTime.Today.AddDays(_DIAS),
+                EndDate = DateTime.Now,
+                ProducerID = _PRODUCERID
+            };
+        }
     }
 }

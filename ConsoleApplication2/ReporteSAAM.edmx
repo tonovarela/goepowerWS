@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ReporteSAAMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="int" Nullable="false" />
+          <Property Name="concesionaria" Type="varchar" MaxLength="255" />
+          <Property Name="fullname" Type="varchar" MaxLength="255" />
+          <Property Name="direccion" Type="varchar" MaxLength="255" />
+          <Property Name="codigo_postal" Type="varchar" MaxLength="50" />
+          <Property Name="saldo" Type="money" />
+          <Property Name="numero_dealer" Type="int" />
+          <Property Name="credit_limit" Type="money" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="id_item" />
+          </Key>
+          <Property Name="id_item" Type="int" Nullable="false" />
+          <Property Name="id_producto" Type="int" />
+          <Property Name="numero_orden" Type="int" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="255" />
+          <Property Name="records" Type="int" />
+          <Property Name="setSize" Type="int" />
+          <Property Name="ImporteTotal" Type="money" />
+        </EntityType>
+        <EntityType Name="Orden">
+          <Key>
+            <PropertyRef Name="numero_orden" />
+          </Key>
+          <Property Name="numero_orden" Type="int" Nullable="false" />
+          <Property Name="total" Type="money" />
+          <Property Name="esCampana" Type="bit" />
+          <Property Name="BillingMethod" Type="varchar" MaxLength="255" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="estatus" Type="varchar" MaxLength="80" />
+          <Property Name="id_cliente" Type="int" />
+          <Property Name="ReleaseDate" Type="datetime" />
+          <Property Name="BillingDate" Type="datetime" />
+          <Property Name="CompleteDate" Type="datetime" />
+          <Property Name="GateAction" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="sku" Type="varchar" MaxLength="100" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" />
+          <Property Name="inventario" Type="int" />
+          <Property Name="proyeccion" Type="varchar" MaxLength="100" />
+          <Property Name="piezas_paquete" Type="int" />
+          <Property Name="img_miniatura" Type="varchar" MaxLength="255" />
+          <Property Name="id_tienda" Type="int" />
+          <Property Name="id_producto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tienda">
+          <Key>
+            <PropertyRef Name="id_tienda" />
+          </Key>
+          <Property Name="id_tienda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_Item_Orden">
+          <End Role="Orden" Type="Self.Orden" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orden">
+              <PropertyRef Name="numero_orden" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="numero_orden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orden_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Orden" Type="Self.Orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="Orden">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producto_Tienda">
+          <End Role="Tienda" Type="Self.Tienda" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tienda">
+              <PropertyRef Name="id_tienda" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="id_tienda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ReporteSAAMModelStoreContainer">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orden" EntityType="Self.Orden" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tienda" EntityType="Self.Tienda" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Item_Orden" Association="Self.FK_Item_Orden">
+            <End Role="Orden" EntitySet="Orden" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orden_Cliente" Association="Self.FK_Orden_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Orden" EntitySet="Orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto_Tienda" Association="Self.FK_Producto_Tienda">
+            <End Role="Tienda" EntitySet="Tienda" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ReporteSAAMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ReporteSAAMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="ReporteSAAMModel.ClienteSAAM" />
+          <EntitySet Name="Item" EntityType="ReporteSAAMModel.ItemSAAM" />
+          <EntitySet Name="Orden" EntityType="ReporteSAAMModel.OrdenSAAM" />
+          <EntitySet Name="Producto" EntityType="ReporteSAAMModel.ProductoSAAM" />
+          <EntitySet Name="Tienda" EntityType="ReporteSAAMModel.TiendaSAAM" />
+          <AssociationSet Name="FK_Orden_Cliente" Association="ReporteSAAMModel.FK_Orden_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Orden" EntitySet="Orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_Orden" Association="ReporteSAAMModel.FK_Item_Orden">
+            <End Role="Orden" EntitySet="Orden" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto_Tienda" Association="ReporteSAAMModel.FK_Producto_Tienda">
+            <End Role="Tienda" EntitySet="Tienda" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ClienteSAAM">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="Int32" Nullable="false" />
+          <Property Name="concesionaria" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="fullname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="codigo_postal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Orden" Relationship="ReporteSAAMModel.FK_Orden_Cliente" FromRole="Cliente" ToRole="Orden" />
+          <Property Name="saldo" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="numero_dealer" Type="Int32" />
+          <Property Name="credit_limit" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="ItemSAAM">
+          <Key>
+            <PropertyRef Name="id_item" />
+          </Key>
+          <Property Name="id_item" Type="Int32" Nullable="false" />
+          <Property Name="id_producto" Type="Int32" />
+          <Property Name="numero_orden" Type="Int32" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="records" Type="Int32" />
+          <Property Name="setSize" Type="Int32" />
+          <Property Name="ImporteTotal" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Orden" Relationship="ReporteSAAMModel.FK_Item_Orden" FromRole="Item" ToRole="Orden" />
+        </EntityType>
+        <EntityType Name="OrdenSAAM">
+          <Key>
+            <PropertyRef Name="numero_orden" />
+          </Key>
+          <Property Name="numero_orden" Type="Int32" Nullable="false" />
+          <Property Name="total" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="esCampana" Type="Boolean" />
+          <Property Name="BillingMethod" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="estatus" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="id_cliente" Type="Int32" />
+          <Property Name="ReleaseDate" Type="DateTime" Precision="3" />
+          <Property Name="BillingDate" Type="DateTime" Precision="3" />
+          <Property Name="CompleteDate" Type="DateTime" Precision="3" />
+          <Property Name="GateAction" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Cliente" Relationship="ReporteSAAMModel.FK_Orden_Cliente" FromRole="Orden" ToRole="Cliente" />
+          <NavigationProperty Name="Item" Relationship="ReporteSAAMModel.FK_Item_Orden" FromRole="Orden" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="ProductoSAAM">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="sku" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="inventario" Type="Int32" />
+          <Property Name="proyeccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="piezas_paquete" Type="Int32" />
+          <Property Name="img_miniatura" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="id_tienda" Type="Int32" />
+          <Property Name="id_producto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tienda" Relationship="ReporteSAAMModel.FK_Producto_Tienda" FromRole="Producto" ToRole="Tienda" />
+        </EntityType>
+        <EntityType Name="TiendaSAAM">
+          <Key>
+            <PropertyRef Name="id_tienda" />
+          </Key>
+          <Property Name="id_tienda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Producto" Relationship="ReporteSAAMModel.FK_Producto_Tienda" FromRole="Tienda" ToRole="Producto" />
+        </EntityType>
+        <Association Name="FK_Orden_Cliente">
+          <End Type="ReporteSAAMModel.ClienteSAAM" Role="Cliente" Multiplicity="0..1" />
+          <End Type="ReporteSAAMModel.OrdenSAAM" Role="Orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="Orden">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_Orden">
+          <End Type="ReporteSAAMModel.OrdenSAAM" Role="Orden" Multiplicity="0..1" />
+          <End Type="ReporteSAAMModel.ItemSAAM" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orden">
+              <PropertyRef Name="numero_orden" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="numero_orden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producto_Tienda">
+          <End Type="ReporteSAAMModel.TiendaSAAM" Role="Tienda" Multiplicity="0..1" />
+          <End Type="ReporteSAAMModel.ProductoSAAM" Role="Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tienda">
+              <PropertyRef Name="id_tienda" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="id_tienda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ReporteSAAMModelStoreContainer" CdmEntityContainer="ReporteSAAMEntities">
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="ReporteSAAMModel.ClienteSAAM">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="credit_limit" ColumnName="credit_limit" />
+                <ScalarProperty Name="numero_dealer" ColumnName="numero_dealer" />
+                <ScalarProperty Name="saldo" ColumnName="saldo" />
+                <ScalarProperty Name="codigo_postal" ColumnName="codigo_postal" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="fullname" ColumnName="fullname" />
+                <ScalarProperty Name="concesionaria" ColumnName="concesionaria" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item">
+            <EntityTypeMapping TypeName="ReporteSAAMModel.ItemSAAM">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
+                <ScalarProperty Name="setSize" ColumnName="setSize" />
+                <ScalarProperty Name="records" ColumnName="records" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="numero_orden" ColumnName="numero_orden" />
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="id_item" ColumnName="id_item" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orden">
+            <EntityTypeMapping TypeName="ReporteSAAMModel.OrdenSAAM">
+              <MappingFragment StoreEntitySet="Orden">
+                <ScalarProperty Name="GateAction" ColumnName="GateAction" />
+                <ScalarProperty Name="CompleteDate" ColumnName="CompleteDate" />
+                <ScalarProperty Name="BillingDate" ColumnName="BillingDate" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="BillingMethod" ColumnName="BillingMethod" />
+                <ScalarProperty Name="esCampana" ColumnName="esCampana" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="numero_orden" ColumnName="numero_orden" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="ReporteSAAMModel.ProductoSAAM">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="id_tienda" ColumnName="id_tienda" />
+                <ScalarProperty Name="img_miniatura" ColumnName="img_miniatura" />
+                <ScalarProperty Name="piezas_paquete" ColumnName="piezas_paquete" />
+                <ScalarProperty Name="proyeccion" ColumnName="proyeccion" />
+                <ScalarProperty Name="inventario" ColumnName="inventario" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="sku" ColumnName="sku" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tienda">
+            <EntityTypeMapping TypeName="ReporteSAAMModel.TiendaSAAM">
+              <MappingFragment StoreEntitySet="Tienda">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_tienda" ColumnName="id_tienda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

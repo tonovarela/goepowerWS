@@ -26,5 +26,11 @@
         <elementListCompartment Id="d9f6d531-a6ec-4c41-9580-f148df872d6b" absoluteBounds="5.39, 5.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="088c716a-db20-4681-9684-ca9f1d33a383" absoluteBounds="5.625, 0.75, 2, 8.6937483723958326">
+      <DataClassMoniker Name="/LitoDataContext/CteCto" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ad2c1c40-fb62-4f98-acc7-31f8b3502a8b" absoluteBounds="5.64, 1.21, 1.9700000000000002, 8.1337483723958321" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

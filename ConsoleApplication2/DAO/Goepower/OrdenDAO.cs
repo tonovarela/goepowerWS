@@ -8,17 +8,19 @@ namespace ConsoleApplication2.DAO.Goepower
 {
     public class OrdenDAO : DAO 
     {
-
         public Orden existe(string ordenID)
         {
-            return this.ctx.Orden.AsQueryable().Where(x => x.ordenID.Contains(ordenID)).FirstOrDefault() ;
-            
-        }
-        
+            return this.ctx.Orden.AsQueryable().Where(x => x.ordenID.Contains(ordenID)).FirstOrDefault() ;            
+        }        
         public void Agregar(Orden orden)
         {
             ctx.Orden.InsertOnSubmit(orden);
             
+            this.ctx.SubmitChanges();
+        }      
+        public void registrarOrdenconArchivos(OrdenArchivos orden)
+        {
+            ctx.OrdenArchivos.InsertOnSubmit(orden);
             this.ctx.SubmitChanges();
         }
         public void Actualiza(Orden orden)
@@ -38,15 +40,12 @@ namespace ConsoleApplication2.DAO.Goepower
         {
             Orden _orden = this.existe(idOrden);
             if (_orden != null)
-            {
+            {                
                 _orden.pagado = true;
                 ctx.SubmitChanges();
                 Console.WriteLine("Se actualiza el pago");
             }
         }
-
-
-
 
     }
 }

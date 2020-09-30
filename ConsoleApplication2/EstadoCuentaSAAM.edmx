@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EstadoCuentaSAAMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="numero_dealer" />
+          </Key>
+          <Property Name="numero_dealer" Type="int" Nullable="false" />
+          <Property Name="concesionaria" Type="varchar" MaxLength="255" />
+          <Property Name="fullname" Type="varchar" MaxLength="255" />
+          <Property Name="saldo" Type="money" />
+          <Property Name="ajuste" Type="money" />
+          <Property Name="webUserID" Type="int" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Orden">
+          <Key>
+            <PropertyRef Name="numero_orden" />
+          </Key>
+          <Property Name="numero_orden" Type="int" Nullable="false" />
+          <Property Name="total" Type="money" />
+          <Property Name="esCampana" Type="bit" />
+          <Property Name="BillingMethod" Type="varchar" MaxLength="255" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="estatus" Type="varchar" MaxLength="80" />
+          <Property Name="webUserID" Type="int" />
+          <Property Name="fecha_registro" Type="datetime" />
+          <Property Name="ReleaseDate" Type="datetime" />
+          <Property Name="BillingDate" Type="datetime" />
+          <Property Name="id_tienda" Type="int" />
+        </EntityType>
+        <EntityType Name="Tienda">
+          <Key>
+            <PropertyRef Name="id_tienda" />
+          </Key>
+          <Property Name="id_tienda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_Orden_Tienda">
+          <End Role="Tienda" Type="Self.Tienda" Multiplicity="0..1" />
+          <End Role="Orden" Type="Self.Orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tienda">
+              <PropertyRef Name="id_tienda" />
+            </Principal>
+            <Dependent Role="Orden">
+              <PropertyRef Name="id_tienda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EstadoCuentaSAAMModelStoreContainer">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orden" EntityType="Self.Orden" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tienda" EntityType="Self.Tienda" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Orden_Tienda" Association="Self.FK_Orden_Tienda">
+            <End Role="Tienda" EntitySet="Tienda" />
+            <End Role="Orden" EntitySet="Orden" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EstadoCuentaSAAMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EstadoCuentaSAAMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="EstadoCuentaSAAMModel.ClienteEstadoCuenta" />
+          <EntitySet Name="Orden" EntityType="EstadoCuentaSAAMModel.OrdenEstadoCuenta" />
+          <EntitySet Name="Tienda" EntityType="EstadoCuentaSAAMModel.TiendaEstadoCuenta" />
+          <AssociationSet Name="FK_Orden_Tienda" Association="EstadoCuentaSAAMModel.FK_Orden_Tienda">
+            <End Role="Tienda" EntitySet="Tienda" />
+            <End Role="OrdenEstadoCuenta" EntitySet="Orden" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ClienteEstadoCuenta">
+          <Key>
+            <PropertyRef Name="numero_dealer" />
+          </Key>
+          <Property Name="numero_dealer" Type="Int32" Nullable="false" />
+          <Property Name="concesionaria" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="fullname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="saldo" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ajuste" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="webUserID" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="OrdenEstadoCuenta">
+          <Key>
+            <PropertyRef Name="numero_orden" />
+          </Key>
+          <Property Name="numero_orden" Type="Int32" Nullable="false" />
+          <Property Name="total" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="esCampana" Type="Boolean" />
+          <Property Name="BillingMethod" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="estatus" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="webUserID" Type="Int32" />
+          <Property Name="fecha_registro" Type="DateTime" Precision="3" />
+          <Property Name="ReleaseDate" Type="DateTime" Precision="3" />
+          <Property Name="BillingDate" Type="DateTime" Precision="3" />
+          <Property Name="id_tienda" Type="Int32" />
+          <NavigationProperty Name="Tienda" Relationship="EstadoCuentaSAAMModel.FK_Orden_Tienda" FromRole="OrdenEstadoCuenta" ToRole="Tienda" />
+        </EntityType>
+        <EntityType Name="TiendaEstadoCuenta">
+          <Key>
+            <PropertyRef Name="id_tienda" />
+          </Key>
+          <Property Name="id_tienda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Orden" Relationship="EstadoCuentaSAAMModel.FK_Orden_Tienda" FromRole="Tienda" ToRole="OrdenEstadoCuenta" />
+        </EntityType>
+        <Association Name="FK_Orden_Tienda">
+          <End Type="EstadoCuentaSAAMModel.TiendaEstadoCuenta" Role="Tienda" Multiplicity="0..1" />
+          <End Type="EstadoCuentaSAAMModel.OrdenEstadoCuenta" Role="OrdenEstadoCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tienda">
+              <PropertyRef Name="id_tienda" />
+            </Principal>
+            <Dependent Role="OrdenEstadoCuenta">
+              <PropertyRef Name="id_tienda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EstadoCuentaSAAMModelStoreContainer" CdmEntityContainer="EstadoCuentaSAAMEntities">
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="EstadoCuentaSAAMModel.ClienteEstadoCuenta">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="webUserID" ColumnName="webUserID" />
+                <ScalarProperty Name="ajuste" ColumnName="ajuste" />
+                <ScalarProperty Name="saldo" ColumnName="saldo" />
+                <ScalarProperty Name="fullname" ColumnName="fullname" />
+                <ScalarProperty Name="concesionaria" ColumnName="concesionaria" />
+                <ScalarProperty Name="numero_dealer" ColumnName="numero_dealer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orden">
+            <EntityTypeMapping TypeName="EstadoCuentaSAAMModel.OrdenEstadoCuenta">
+              <MappingFragment StoreEntitySet="Orden">
+                <ScalarProperty Name="id_tienda" ColumnName="id_tienda" />
+                <ScalarProperty Name="BillingDate" ColumnName="BillingDate" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+                <ScalarProperty Name="webUserID" ColumnName="webUserID" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="BillingMethod" ColumnName="BillingMethod" />
+                <ScalarProperty Name="esCampana" ColumnName="esCampana" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="numero_orden" ColumnName="numero_orden" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tienda">
+            <EntityTypeMapping TypeName="EstadoCuentaSAAMModel.TiendaEstadoCuenta">
+              <MappingFragment StoreEntitySet="Tienda">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_tienda" ColumnName="id_tienda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
