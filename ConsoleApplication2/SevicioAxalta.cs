@@ -14,7 +14,7 @@ using Row = DocumentFormat.OpenXml.Spreadsheet.Row;
 
 namespace ConsoleApplication2
 {
-    public class ServicioAxalta:Servicio
+    public class ServicioAxalta:Servicio,IProduccion
     {
 
 
@@ -71,7 +71,7 @@ namespace ConsoleApplication2
 
 
 
-        public void DescargarArchivos()
+        public  void DescargarArchivos()
         {
             List<OrdenDTO> _ordenes = this.GetOrdenesConArchivos();
             if (_ordenes.Count == 0)

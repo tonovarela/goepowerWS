@@ -25,6 +25,7 @@ namespace ConsoleApplication2
 
         }
 
+       
 
         public void RegistrarOrdenesEnEstadoCuentaSAAM(int id_tienda)
         {

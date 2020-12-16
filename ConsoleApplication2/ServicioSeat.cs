@@ -8,7 +8,7 @@ using System.IO;
 
 namespace ConsoleApplication2
 {
-    public  class ServicioSeat:Servicio
+    public  class ServicioSeat:Servicio, IProduccion
     {
         public ServicioSeat()
         {                       
@@ -17,7 +17,7 @@ namespace ConsoleApplication2
             this._conexion = Credenciales.Seat();
         }
 
-        public void DescargarArchivos()
+        public  void DescargarArchivos()
         {
             List<OrdenDTO> _ordenes = this.GetOrdenesConArchivos();
             if (_ordenes.Count == 0)

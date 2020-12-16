@@ -11,5 +11,7 @@ namespace ConsoleApplication2
             this._workspace += _nombreTienda;
             this._conexion = Credenciales.Volkswagen();
         }
+
+        
     }
 }

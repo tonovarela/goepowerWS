@@ -17,6 +17,8 @@ namespace ConsoleApplication2
 
         }
 
+        
+
         public void RegistrarOrdenesEnEstadoCuentaSAAM(int id_tienda)
         {
             this._conexion.StartDate = new DateTime(2019, 03, 14, 15, 0, 0);

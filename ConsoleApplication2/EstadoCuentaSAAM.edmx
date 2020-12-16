@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="EstadoCuentaSAAMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BitacoraIntelisis">
+          <Key>
+            <PropertyRef Name="id_bitacora" />
+          </Key>
+          <Property Name="id_bitacora" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numero_orden" Type="int" />
+          <Property Name="total" Type="money" />
+          <Property Name="fecha_registro" Type="datetime" />
+        </EntityType>
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="numero_dealer" />
@@ -16,6 +25,23 @@
           <Property Name="ajuste" Type="money" />
           <Property Name="webUserID" Type="int" />
           <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="envioCorreo" Type="bit" />
+          <Property Name="envioCorreoSaldoPorVencer" Type="bit" />
+          <Property Name="saldoCategoria" Type="money" />
+        </EntityType>
+        <EntityType Name="ClienteExcluyente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="webUserID" Type="int" />
+        </EntityType>
+        <EntityType Name="Ejecucion">
+          <Key>
+            <PropertyRef Name="id_ejecucion" />
+          </Key>
+          <Property Name="id_ejecucion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha_registro" Type="datetime" />
         </EntityType>
         <EntityType Name="Orden">
           <Key>
@@ -53,7 +79,10 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="EstadoCuentaSAAMModelStoreContainer">
+          <EntitySet Name="BitacoraIntelisis" EntityType="Self.BitacoraIntelisis" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClienteExcluyente" EntityType="Self.ClienteExcluyente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ejecucion" EntityType="Self.Ejecucion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orden" EntityType="Self.Orden" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tienda" EntityType="Self.Tienda" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Orden_Tienda" Association="Self.FK_Orden_Tienda">
@@ -73,6 +102,9 @@
             <End Role="Tienda" EntitySet="Tienda" />
             <End Role="OrdenEstadoCuenta" EntitySet="Orden" />
           </AssociationSet>
+          <EntitySet Name="ClienteExcluyente" EntityType="EstadoCuentaSAAMModel.ClienteExcluyente" />
+          <EntitySet Name="BitacoraIntelisis" EntityType="EstadoCuentaSAAMModel.BitacoraIntelisis" />
+          <EntitySet Name="Ejecucion" EntityType="EstadoCuentaSAAMModel.Ejecucion" />
         </EntityContainer>
         <EntityType Name="ClienteEstadoCuenta">
           <Key>
@@ -85,6 +117,9 @@
           <Property Name="ajuste" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="webUserID" Type="Int32" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="envioCorreo" Type="Boolean" />
+          <Property Name="envioCorreoSaldoPorVencer" Type="Boolean" />
+          <Property Name="saldoCategoria" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="OrdenEstadoCuenta">
           <Key>
@@ -123,6 +158,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ClienteExcluyente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="webUserID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BitacoraIntelisis">
+          <Key>
+            <PropertyRef Name="id_bitacora" />
+          </Key>
+          <Property Name="id_bitacora" Type="Int32" Nullable="false" />
+          <Property Name="numero_orden" Type="Int32" />
+          <Property Name="total" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="fecha_registro" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Ejecucion">
+          <Key>
+            <PropertyRef Name="id_ejecucion" />
+          </Key>
+          <Property Name="id_ejecucion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha_registro" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -132,6 +190,9 @@
           <EntitySetMapping Name="Cliente">
             <EntityTypeMapping TypeName="EstadoCuentaSAAMModel.ClienteEstadoCuenta">
               <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="saldoCategoria" ColumnName="saldoCategoria" />
+                <ScalarProperty Name="envioCorreoSaldoPorVencer" ColumnName="envioCorreoSaldoPorVencer" />
+                <ScalarProperty Name="envioCorreo" ColumnName="envioCorreo" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="webUserID" ColumnName="webUserID" />
                 <ScalarProperty Name="ajuste" ColumnName="ajuste" />
@@ -164,6 +225,32 @@
               <MappingFragment StoreEntitySet="Tienda">
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id_tienda" ColumnName="id_tienda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClienteExcluyente">
+            <EntityTypeMapping TypeName="EstadoCuentaSAAMModel.ClienteExcluyente">
+              <MappingFragment StoreEntitySet="ClienteExcluyente">
+                <ScalarProperty Name="webUserID" ColumnName="webUserID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BitacoraIntelisis">
+            <EntityTypeMapping TypeName="EstadoCuentaSAAMModel.BitacoraIntelisis">
+              <MappingFragment StoreEntitySet="BitacoraIntelisis">
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="numero_orden" ColumnName="numero_orden" />
+                <ScalarProperty Name="id_bitacora" ColumnName="id_bitacora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ejecucion">
+            <EntityTypeMapping TypeName="EstadoCuentaSAAMModel.Ejecucion">
+              <MappingFragment StoreEntitySet="Ejecucion">
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+                <ScalarProperty Name="id_ejecucion" ColumnName="id_ejecucion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

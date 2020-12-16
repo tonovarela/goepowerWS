@@ -62,7 +62,7 @@ namespace ConsoleApplication2.Class
                 PartnerID = 5104,
                 Username = "sistemaskumon",
                 OrderStatus = OrderStatuses.InProduction,
-                StartDate = DateTime.Today.AddDays(-8),
+                StartDate = DateTime.Today.AddDays(_DIAS),
                 EndDate = DateTime.Now,
                 ProducerID = _PRODUCERID
             };
@@ -76,7 +76,7 @@ namespace ConsoleApplication2.Class
                 PartnerID = 5100,
                 Username = "sistemascirclek",
                 OrderStatus = OrderStatuses.InProduction,
-                StartDate = DateTime.Today.AddDays(-2),
+                StartDate = DateTime.Today.AddDays(_DIAS),
                 EndDate = DateTime.Now,
                 ProducerID = _PRODUCERID
             };
@@ -175,6 +175,21 @@ namespace ConsoleApplication2.Class
                 CompanyID = 6785,
                 PartnerID = 6785,
                 Username = "sistemaskia",
+                OrderStatus = OrderStatuses.InProduction,
+                StartDate = DateTime.Today.AddDays(_DIAS),
+                EndDate = DateTime.Now,
+                ProducerID = _PRODUCERID
+            };
+        }
+
+        public static AuthHeaderOrders LSM()
+        {
+            return new AuthHeaderOrders()
+            {
+                MasterKey = "3d2e434c-e73b-4ec1-8f6d-ad89e933b079",
+                CompanyID = 4909,
+                PartnerID = 4909,
+                Username = "sistemaslsmws",
                 OrderStatus = OrderStatuses.InProduction,
                 StartDate = DateTime.Today.AddDays(_DIAS),
                 EndDate = DateTime.Now,

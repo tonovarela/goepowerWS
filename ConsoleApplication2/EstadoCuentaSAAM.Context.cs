@@ -28,5 +28,8 @@ namespace ConsoleApplication2
         public virtual DbSet<ClienteEstadoCuenta> Cliente { get; set; }
         public virtual DbSet<OrdenEstadoCuenta> Orden { get; set; }
         public virtual DbSet<TiendaEstadoCuenta> Tienda { get; set; }
+        public virtual DbSet<ClienteExcluyente> ClienteExcluyente { get; set; }
+        public virtual DbSet<BitacoraIntelisis> BitacoraIntelisis { get; set; }
+        public virtual DbSet<Ejecucion> Ejecucion { get; set; }
     }
 }

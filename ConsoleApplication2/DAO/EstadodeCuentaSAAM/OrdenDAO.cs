@@ -8,6 +8,9 @@ namespace ConsoleApplication2.DAO.EstadodeCuentaSAAM
 {
     public class OrdenDAO:DAO
     {
+
+        
+
         public void Agregar(OrdenEstadoCuenta orden)
         {
             this.ctx.Orden.Add(orden);

@@ -10,7 +10,7 @@ using System.Xml.Linq;
 
 namespace ConsoleApplication2
 {
-    public class ServicioKumon : Servicio
+    public class ServicioKumon : Servicio, IProduccion
     {
         public ServicioKumon()
         {
@@ -115,7 +115,7 @@ namespace ConsoleApplication2
 
         }
 
-        public void DescargarArchivos()
+        public  void DescargarArchivos()
         {
             List<OrdenDTO> _ordenes = this.GetOrdenesConArchivos();
             if (_ordenes.Count == 0)
@@ -201,18 +201,6 @@ namespace ConsoleApplication2
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
     }
 }

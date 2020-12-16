@@ -16,6 +16,8 @@ namespace ConsoleApplication2
             this._conexion = Credenciales.KFC();                     
         }
 
+       
+
         //public new void CambiarEstatusOrdenes(string ordenes)
         //{
         //    base.CambiarEstatusOrdenes(ordenes);
@@ -33,7 +35,7 @@ namespace ConsoleApplication2
         //        Console.WriteLine("---------------------------------------------------------------------");
         //        Console.WriteLine(String.Format("No hay ordenes en la tienda {0} para descargar PDFs", this._nombreTienda.ToUpper()));
         //        Console.WriteLine("---------------------------------------------------------------------");
-                
+
         //    }           
         //    _ordenes.ForEach(orden=> 
         //    {
@@ -69,6 +71,6 @@ namespace ConsoleApplication2
 
 
         //}
-       
+
     }
 }

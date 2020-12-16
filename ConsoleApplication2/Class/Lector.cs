@@ -21,7 +21,7 @@ namespace ConsoleApplication2.Class
 
       public  bool borrarArchivo = false;
        private string _directorio = @"\\192.168.2.218\movimientos";
-       // string _directorio= @"C:\Desarrollo\Movimientos";
+        //string _directorio= @"C:\Desarrollo\Movimientos";
 
         private string _directorio_bitacora;
         protected FileInfo[] _archivos;
@@ -39,15 +39,16 @@ namespace ConsoleApplication2.Class
 
         public void moverArchivos()
         {
-            if (this.borrarArchivo)
-            {
-                this._archivos.ToList().ForEach(x =>File.Delete(x.FullName));
-            }
-            else
-            {
-                string directorioErrores = "Z:\\kumon\\reportesError";
-                this._archivos.ToList().ForEach(x =>File.Move(x.FullName, $"{directorioErrores}\\{x.Name}"));
-            }
+            //if (this.borrarArchivo)
+            //{
+            //    this._archivos.ToList().ForEach(x =>File.Delete(x.FullName));
+            //}
+            //else
+            //{            
+                DateTime now = DateTime.Now;
+                string directorioErrores = "Z:\\kumon\\bitacora";
+                this._archivos.ToList().ForEach(x =>File.Move(x.FullName, $"{directorioErrores}\\{now.Year}-{now.Month}-{now.Day}_{now.Minute}_{x.Name}"));
+            //}
             
         }
         protected string GetValue(SpreadsheetDocument doc, Cell cell)

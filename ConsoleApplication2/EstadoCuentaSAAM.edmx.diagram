@@ -4,11 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6c2de2a4f7144ea3973c417afa6945f4" Name="Diagram1">
+      <Diagram DiagramId="6c2de2a4f7144ea3973c417afa6945f4" Name="Diagram1" ZoomLevel="85">
         <EntityTypeShape EntityType="EstadoCuentaSAAMModel.ClienteEstadoCuenta" Width="1.5" PointX="0.625" PointY="1.125" />
         <EntityTypeShape EntityType="EstadoCuentaSAAMModel.OrdenEstadoCuenta" Width="1.5" PointX="3.125" PointY="1.25" />
         <EntityTypeShape EntityType="EstadoCuentaSAAMModel.TiendaEstadoCuenta" Width="1.5" PointX="7.125" PointY="1.375" />
         <AssociationConnector Association="EstadoCuentaSAAMModel.FK_Orden_Tienda" />
+        <EntityTypeShape EntityType="EstadoCuentaSAAMModel.ClienteExcluyente" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="EstadoCuentaSAAMModel.BitacoraIntelisis" Width="1.5" PointX="5.375" PointY="4.125" />
+        <EntityTypeShape EntityType="EstadoCuentaSAAMModel.Ejecucion" Width="1.5" PointX="3.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

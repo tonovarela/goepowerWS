@@ -9,6 +9,14 @@ namespace ConsoleApplication2.DAO.EstadodeCuentaSAAM
 {
     public class ClienteDAO:DAO
     {
+
+        public bool esUsuarioExcluyente(int webUserID)
+        {
+            return this.ctx
+                       .ClienteExcluyente
+                       .AsQueryable()
+                       .Any(x => x.webUserID == webUserID);
+        }
         public List<int> getPendientesMandarCorreo()
         {
             return this.ctx.Database.SqlQuery<int>(@"select 

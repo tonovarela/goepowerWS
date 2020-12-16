@@ -238,10 +238,7 @@ namespace ConsoleApplication2
 #pragma warning restore CS0618 // El tipo o el miembro están obsoletos
             t.Wait();
             var restResponse = await t;
-            Console.WriteLine(restResponse.Content);
-            //client.ExecuteAsync(request, response => {
-            //     Console.WriteLine(response.Content);
-            //});
+            Console.WriteLine(restResponse.Content);            
         }
 
         protected new void ProcesarOrden(int idOrden)
@@ -405,7 +402,7 @@ namespace ConsoleApplication2
 
         }
 
-        public  new void RegistrarPrefacturacionIntelisis(string condiciones, string agente, int? idOrden = null, double? agenteComision = null, OrderStatuses? status = OrderStatuses.Pending)
+        public   void RegistrarPrefacturacioIntelisis(string condiciones, string agente, int? idOrden = null, double? agenteComision = null, OrderStatuses? status = OrderStatuses.Pending)
         {
             this.condiciones = condiciones;
             this.agente = agente;
@@ -458,8 +455,7 @@ namespace ConsoleApplication2
             }
             
         }
-            
-            
 
+       
     }
 }

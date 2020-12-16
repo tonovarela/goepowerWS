@@ -12,17 +12,9 @@ namespace ConsoleApplication2
     using System;
     using System.Collections.Generic;
     
-    public partial class ClienteEstadoCuenta
+    public partial class ClienteExcluyente
     {
-        public int numero_dealer { get; set; }
-        public string concesionaria { get; set; }
-        public string fullname { get; set; }
-        public Nullable<decimal> saldo { get; set; }
-        public Nullable<decimal> ajuste { get; set; }
+        public int id { get; set; }
         public Nullable<int> webUserID { get; set; }
-        public string email { get; set; }
-        public Nullable<bool> envioCorreo { get; set; }
-        public Nullable<bool> envioCorreoSaldoPorVencer { get; set; }
-        public Nullable<decimal> saldoCategoria { get; set; }
     }
 }

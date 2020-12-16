@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace ConsoleApplication2
 {
-    public class ServicioMichelin:Servicio
+    public class ServicioMichelin:Servicio, IProduccion
     {
         public ServicioMichelin()
         {
@@ -56,7 +56,7 @@ namespace ConsoleApplication2
 
 
 
-        public void DescargarArchivos()
+        public  void DescargarArchivos()
         {
             List<OrdenDTO> _ordenes = this.GetOrdenesConArchivos();
             if (_ordenes.Count == 0)

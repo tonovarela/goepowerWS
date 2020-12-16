@@ -27,10 +27,10 @@ namespace ConsoleApplication2.Class
             {
                 if (Int32.TryParse(line.Substring(2, 1), out valor))  //Si el tercer Caracter es numerico y no es Cero
                 {
-                    if (valor > 0)
-                    {
+                    //if (valor > 0)
+                    //{
                         this.Concepto = line.Substring(0, 8);
-                    }
+                    //}
                 }
             }
             catch(Exception e)
